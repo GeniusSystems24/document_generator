@@ -113,6 +113,25 @@
   .gbar .seg{flex:0 0 auto}
   .gbar .seg button{flex:0 0 auto; font-size:11.5px}
 
+  /* ===== COLUMN / GROUP CONTROLS ===== */
+  .col-ctrl{margin-bottom:8px}
+  .col-row{display:flex; align-items:center; gap:8px; background:#0a1d24; border:1px solid var(--engine-line); border-radius:9px; padding:7px 9px; margin-bottom:6px}
+  .col-row.hidden-col{opacity:.5}
+  .col-row .grip{color:var(--cloud-dim); font-size:13px; cursor:default; flex:0 0 auto; font-family:var(--font-mono)}
+  .col-row .cname{flex:1; font-size:13px; color:var(--cloud); min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .col-row .col-btns{display:flex; gap:5px; flex:0 0 auto}
+  .col-row .col-btns button{width:28px; height:28px; border:1px solid var(--engine-line); background:#0c242c; color:var(--cloud); border-radius:7px; cursor:pointer; font-size:13px; line-height:1; transition:.15s; display:grid; place-items:center; padding:0}
+  .col-row .col-btns button:hover:not(:disabled){border-color:#2c5663; background:#0e2a33}
+  .col-row .col-btns button:disabled{opacity:.3; cursor:not-allowed}
+  .col-row .col-btns button.eye.on{color:var(--teal); border-color:#2c5663}
+  .col-row .col-btns button.eye.off{color:var(--cloud-dim)}
+  .chkline{display:flex; align-items:center; gap:8px; margin:10px 0 4px; font-size:12.5px; color:var(--cloud-dim); cursor:pointer}
+  .chkline input{accent-color:var(--teal)}
+  .field-sel{margin-bottom:12px}
+  .field-sel label{display:block; font-size:12px; color:var(--cloud-dim); margin-bottom:6px}
+  .field-sel select{width:100%; background:#0a1d24; border:1px solid var(--engine-line); border-radius:9px; padding:10px 12px; color:var(--cloud); font-family:var(--font-ui); font-size:13.5px}
+  .field-sel select:focus{outline:none; border-color:var(--teal)}
+
   .vrow{display:flex; align-items:center; gap:9px; padding:8px 11px; border-radius:9px; background:#0a1d24; border:1px solid var(--engine-line); font-size:12.5px; margin-bottom:7px; color:var(--cloud)}
   .vrow .ic{width:19px; height:19px; border-radius:50%; display:grid; place-items:center; font-size:11px; font-weight:700; flex:0 0 auto}
   .vrow.pass .ic{background:#1c6b4e33; color:#62d29f}
@@ -394,7 +413,9 @@
              {date:'2026-01-22',desc:'دفعة مستلمة',debit:0,credit:6000},
              {date:'2026-02-15',desc:'فاتورة مبيعات #1101',debit:5300,credit:0},
              {date:'2026-03-03',desc:'إشعار دائن مرتجع',debit:0,credit:1300} ] },
-    transactions:{ entity:'مؤسسة جينيَس لينك', from:'2026-03-01', to:'2026-03-31', groupBy:true,
+    transactions:{ entity:'مؤسسة جينيَس لينك', from:'2026-03-01', to:'2026-03-31',
+      groupMode:'type', showSubtotals:true,
+      columns:[ {key:'date',visible:true}, {key:'type',visible:true}, {key:'desc',visible:true}, {key:'amount',visible:true} ],
       txns:[ {date:'2026-03-02',type:'مبيعات',desc:'فاتورة #1101',amount:5300},
              {date:'2026-03-18',type:'مبيعات',desc:'فاتورة #1126',amount:4200},
              {date:'2026-03-05',type:'مقبوضات',desc:'تحصيل نقدي',amount:6000},
@@ -708,11 +729,52 @@
     }
   };
 
-  /* ---------- 3) TRANSACTIONS / OPERATIONS (كشف عمليات + تجميع) ---------- */
+  /* ---------- 3) TRANSACTIONS / OPERATIONS (كشف عمليات + تجميع وأعمدة) ---------- */
+  /* column catalogue: defines every available column once */
+  var TXN_COLS={
+    date:  {ar:'التاريخ',  en:'Date',        num:false, cell:function(x){return esc(x.date);}},
+    type:  {ar:'النوع',    en:'Type',        num:false, cell:function(x){return esc(L(x.type,TYPE_EN[x.type]||x.type));}},
+    desc:  {ar:'البيان',   en:'Description', num:false, cell:function(x){return esc(x.desc||'—');}},
+    amount:{ar:'المبلغ',   en:'Amount',      num:true,  cell:function(x){return fmt(halal(x.amount));}}
+  };
+  var GROUP_MODES=[
+    {id:'none',  ar:'بدون (مسطّح)',     en:'None (flat)'},
+    {id:'type',  ar:'حسب النوع',        en:'By type'},
+    {id:'month', ar:'حسب الشهر',        en:'By month'},
+    {id:'day',   ar:'حسب اليوم',        en:'By day'}
+  ];
+  /* normalise legacy/partial state (old templates used groupBy boolean) */
+  function txnNormalize(st){
+    if(st.groupMode==null){ st.groupMode=(st.groupBy===false?'none':'type'); }
+    delete st.groupBy;
+    if(st.showSubtotals==null) st.showSubtotals=true;
+    var keys=['date','type','desc','amount'];
+    if(!Array.isArray(st.columns)||!st.columns.length){
+      st.columns=keys.map(function(k){return {key:k,visible:true};});
+    }else{
+      /* drop unknown, ensure all known keys exist exactly once */
+      st.columns=st.columns.filter(function(c){return c&&TXN_COLS[c.key];});
+      keys.forEach(function(k){ if(!st.columns.some(function(c){return c.key===k;})) st.columns.push({key:k,visible:true}); });
+      st.columns.forEach(function(c){ if(c.visible==null) c.visible=true; });
+    }
+  }
+  function txnVisibleCols(st){ return st.columns.filter(function(c){return c.visible;}).map(function(c){return c.key;}); }
+  function groupKeyOf(x,mode){
+    if(mode==='type')  return x.type||'أخرى';
+    if(mode==='month') return (x.date||'').slice(0,7)||'—';      /* YYYY-MM */
+    if(mode==='day')   return (x.date||'').slice(0,10)||'—';     /* YYYY-MM-DD */
+    return null;
+  }
+  function groupLabel(k,mode){
+    if(mode==='type') return L(k,TYPE_EN[k]||k);
+    return k; /* month/day are dates — same in both languages */
+  }
+
   DOCS.transactions={
     editor:function(){
-      var st=state.transactions,rows='';
+      var st=state.transactions; txnNormalize(st);
       var opts=['مبيعات','مشتريات','مقبوضات','مدفوعات','أخرى'];
+      var rows='';
       st.txns.forEach(function(t,i){
         var sel=opts.map(function(o){return '<option value="'+o+'"'+(t.type===o?' selected':'')+'>'+(L(o,TYPE_EN[o]||o))+'</option>';}).join('');
         rows+='<div class="trow">'+
@@ -726,72 +788,143 @@
             '<button class="del" data-del="'+i+'" data-delarr="transactions.txns">×</button>'+
           '</div></div>';
       });
+
+      /* group-mode selector */
+      var gsel=GROUP_MODES.map(function(g){return '<option value="'+g.id+'"'+(st.groupMode===g.id?' selected':'')+'>'+L(g.ar,g.en)+'</option>';}).join('');
+      var grouped=st.groupMode!=='none';
+
+      /* column manager rows (respect current order) */
+      var visCount=txnVisibleCols(st).length;
+      var colRows='';
+      st.columns.forEach(function(c,i){
+        var meta=TXN_COLS[c.key];
+        var lastVisibleLock=(c.visible&&visCount<=1); /* can't hide the last visible column */
+        colRows+='<div class="col-row'+(c.visible?'':' hidden-col')+'">'+
+          '<span class="grip">⋮⋮</span>'+
+          '<span class="cname">'+L(meta.ar,meta.en)+'</span>'+
+          '<div class="col-btns">'+
+            '<button class="mv" data-colmove="up" data-coli="'+i+'"'+(i===0?' disabled':'')+' aria-label="'+L('أعلى','Up')+'">↑</button>'+
+            '<button class="mv" data-colmove="down" data-coli="'+i+'"'+(i===st.columns.length-1?' disabled':'')+' aria-label="'+L('أسفل','Down')+'">↓</button>'+
+            '<button class="eye '+(c.visible?'on':'off')+'" data-coltoggle="'+i+'"'+(lastVisibleLock?' disabled':'')+' aria-label="'+L('إظهار/إخفاء','Toggle')+'">'+(c.visible?'◉':'○')+'</button>'+
+          '</div>'+
+        '</div>';
+      });
+
       return '<div class="panel"><h2>'+L('بيانات الكشف','Statement data')+'</h2>'+
         field(L('الجهة','Entity'),'transactions.entity',st.entity)+
         '<div class="grid2">'+field(L('من تاريخ','From'),'transactions.from',st.from,'date')+
           field(L('إلى تاريخ','To'),'transactions.to',st.to,'date')+'</div>'+
-        '<div class="gbar"><span class="lbl">'+L('التجميع حسب نوع العملية','Group by operation type')+'</span>'+
-          '<div class="seg"><button data-grp="1" aria-pressed="'+(st.groupBy?'true':'false')+'">'+L('مجمّع','Grouped')+'</button>'+
-          '<button data-grp="0" aria-pressed="'+(!st.groupBy?'true':'false')+'">'+L('مسطّح','Flat')+'</button></div></div></div>'+
+        '<div class="field-sel"><label>'+L('التجميع حسب','Group by')+'</label>'+
+          '<select id="grpMode">'+gsel+'</select></div>'+
+        '<label class="chkline" style="'+(grouped?'':'opacity:.45;pointer-events:none')+'">'+
+          '<input type="checkbox" id="subToggle"'+(st.showSubtotals?' checked':'')+(grouped?'':' disabled')+'>'+
+          L('إظهار المجاميع الفرعية لكل مجموعة','Show subtotal for each group')+'</label>'+
+        '</div>'+
+        '<div class="panel"><h2>'+L('الأعمدة','Columns')+'</h2>'+
+          '<p class="sub">'+L('أظهِر أو أخفِ الأعمدة، ورتّبها بالأسهم.','Show/hide columns and reorder them with the arrows.')+'</p>'+
+          '<div class="col-ctrl">'+colRows+'</div></div>'+
         '<div class="panel"><h2>'+L('العمليات','Operations')+'</h2>'+rows+
           '<button class="addbtn" data-add="transactions.txns">'+L('+ إضافة عملية','+ Add operation')+'</button></div>';
     },
     compute:function(){
-      var st=state.transactions, order=[], map={}, per={}, grandH=0;
+      var st=state.transactions; txnNormalize(st);
+      var mode=st.groupMode, order=[], map={}, per={}, grandH=0;
       st.txns.forEach(function(x){
-        var k=x.type||'أخرى'; if(!map[k]){map[k]=[];order.push(k);per[k]={count:0,totalH:0};}
-        map[k].push(x); var h=halal(x.amount); per[k].count++; per[k].totalH+=h; grandH+=h;
+        var h=halal(x.amount); grandH+=h;
+        if(mode==='none') return;
+        var k=groupKeyOf(x,mode);
+        if(!map[k]){map[k]=[];order.push(k);per[k]={count:0,totalH:0};}
+        map[k].push(x); per[k].count++; per[k].totalH+=h;
       });
-      return {order:order,map:map,per:per,grandH:grandH};
+      /* sort month/day groups chronologically; type keeps insertion order */
+      if(mode==='month'||mode==='day') order.sort();
+      return {order:order,map:map,per:per,grandH:grandH,mode:mode};
     },
     validate:function(t){
       var st=state.transactions;
       var txOk=st.txns.length>0&&st.txns.every(function(x){return x.date&&String(x.type).trim()&&Number(x.amount)!==0;});
+      var visOk=txnVisibleCols(st).length>0;
+      var gm=GROUP_MODES.filter(function(g){return g.id===t.mode;})[0];
       var checks=[
         {pass:txOk,ar:'كل عملية لها تاريخ ونوع ومبلغ ≠ 0',en:'Every operation has date, type and amount ≠ 0',val:st.txns.length+L(' عمليات',' rows')},
-        {pass:true,ar:'عدد المجموعات (أنواع العمليات)',en:'Groups (operation types)',val:t.order.length},
+        {pass:visOk,ar:'عمود واحد ظاهر على الأقل',en:'At least one visible column',val:txnVisibleCols(st).length+L(' أعمدة',' cols')},
+        {pass:true,ar:'نمط التجميع',en:'Grouping mode',val:gm?L(gm.ar,gm.en):t.mode},
+        {pass:true,ar:t.mode==='none'?'لا توجد مجموعات':'عدد المجموعات',en:t.mode==='none'?'No groups':'Number of groups',val:t.mode==='none'?'—':t.order.length},
         {pass:true,ar:'صافي الإجمالي (وارد − صادر)',en:'Net total (in − out)',val:fmt(t.grandH)}
       ];
-      var err=txOk?null:{ar:'هناك عملية بلا تاريخ/نوع أو بمبلغ صفري.',en:'An operation is missing date/type or has a zero amount.'};
-      return {ok:txOk,checks:checks,err:err};
+      var err=!txOk?{ar:'هناك عملية بلا تاريخ/نوع أو بمبلغ صفري.',en:'An operation is missing date/type or has a zero amount.'}
+             :(!visOk?{ar:'يجب إبقاء عمود واحد ظاهر على الأقل.',en:'At least one column must stay visible.'}:null);
+      return {ok:txOk&&visOk,checks:checks,err:err};
     },
     build:function(t){
-      var st=state.transactions, body='', grouped=st.groupBy;
-      var head='<thead><tr><th>التاريخ / Date</th><th>النوع / Type</th><th>البيان / Description</th><th class="num">المبلغ / Amount</th></tr></thead>';
-      function row(x){return '<tr><td>'+esc(x.date)+'</td><td>'+esc(L(x.type,TYPE_EN[x.type]||x.type))+'</td><td>'+esc(x.desc||'—')+'</td><td class="num">'+fmt(halal(x.amount))+'</td></tr>';}
+      var st=state.transactions; txnNormalize(st);
+      var cols=txnVisibleCols(st), nCols=cols.length, grouped=t.mode!=='none', showSub=st.showSubtotals;
+      var amountVisible=cols.indexOf('amount')>=0;
 
-      // summary cards (report summary)
+      /* header from visible, ordered columns */
+      var head='<thead><tr>'+cols.map(function(k){
+        var m=TXN_COLS[k];
+        return '<th'+(m.num?' class="num"':'')+'>'+L(m.ar,m.en)+(state.lang==='ar'?' / '+m.en:'')+'</th>';
+      }).join('')+'</tr></thead>';
+
+      function row(x){
+        return '<tr>'+cols.map(function(k){
+          var m=TXN_COLS[k];
+          return '<td'+(m.num?' class="num"':'')+'>'+m.cell(x)+'</td>';
+        }).join('')+'</tr>';
+      }
+      /* a full-width label cell + amount cell, used for group/subtotal/grand rows */
+      function spanRow(cls,labelHtml,amountH){
+        if(amountVisible){
+          var lead=Math.max(1,nCols-1);
+          return '<tr class="'+cls+'"><td colspan="'+lead+'">'+labelHtml+'</td><td class="num">'+fmt(amountH)+'</td></tr>';
+        }
+        return '<tr class="'+cls+'"><td colspan="'+nCols+'">'+labelHtml+' · '+fmt(amountH)+'</td></tr>';
+      }
+
+      /* summary cards reflect current grouping (or a single net card when flat) */
       var summary='<div class="d-summary">';
-      t.order.forEach(function(k){
-        var p=t.per[k];
-        summary+='<div class="s'+(p.totalH<0?' neg':'')+'"><b>'+fmt(p.totalH)+'</b><span>'+esc(L(k,TYPE_EN[k]||k))+' · '+p.count+L(' عملية',' ops')+'</span></div>';
-      });
-      summary+='<div class="s"><b>'+fmt(t.grandH)+'</b><span>'+L('الصافي العام','Net total')+'</span></div></div>';
+      if(grouped){
+        t.order.forEach(function(k){
+          var p=t.per[k];
+          summary+='<div class="s'+(p.totalH<0?' neg':'')+'"><b>'+fmt(p.totalH)+'</b><span>'+esc(groupLabel(k,t.mode))+' · '+p.count+L(' عملية',' ops')+'</span></div>';
+        });
+      }
+      summary+='<div class="s'+(t.grandH<0?' neg':'')+'"><b>'+fmt(t.grandH)+'</b><span>'+L('الصافي العام','Net total')+'</span></div></div>';
 
       var tbody='';
       if(grouped){
         t.order.forEach(function(k){
-          var list=t.map[k], sub=t.per[k].totalH;
-          tbody+='<tr class="grp"><td colspan="4"><div style="display:flex;justify-content:space-between"><span>'+L('نوع العملية: ','Type: ')+esc(L(k,TYPE_EN[k]||k))+'</span><span class="c">'+t.per[k].count+L(' عملية',' ops')+'</span></div></td></tr>';
+          var list=t.map[k];
+          var hdr='<div style="display:flex;justify-content:space-between"><span>'+groupHeaderLabel(t.mode)+esc(groupLabel(k,t.mode))+'</span><span class="c">'+t.per[k].count+L(' عملية',' ops')+'</span></div>';
+          tbody+='<tr class="grp"><td colspan="'+nCols+'">'+hdr+'</td></tr>';
           list.forEach(function(x){tbody+=row(x);});
-          tbody+='<tr class="sub"><td colspan="3">'+L('إجمالي ','Subtotal ')+esc(L(k,TYPE_EN[k]||k))+'</td><td class="num">'+fmt(sub)+'</td></tr>';
+          if(showSub) tbody+=spanRow('sub',L('إجمالي ','Subtotal ')+esc(groupLabel(k,t.mode)),t.per[k].totalH);
         });
       }else{
         st.txns.forEach(function(x){tbody+=row(x);});
       }
-      tbody+='<tr class="grand"><td colspan="3">'+L('الإجمالي العام (صافي) / Grand Total','Grand Total (net)')+'</td><td class="num">'+fmt(t.grandH)+'</td></tr>';
+      tbody+=spanRow('grand',L('الإجمالي العام (صافي) / Grand Total','Grand Total (net)'),t.grandH);
 
-      body='<div class="d-two">'+
+      var gmName=(function(){var g=GROUP_MODES.filter(function(x){return x.id===t.mode;})[0];return g?L(g.ar,g.en):t.mode;})();
+      var body='<div class="d-two">'+
           infoBox('الجهة / Entity',st.entity,'Genius Link')+
           infoBox('الفترة / Period',st.from+' → '+st.to,'SAR')+
-          infoBox('التجميع / Grouping',grouped?L('حسب نوع العملية','By operation type'):L('بدون (مسطّح)','None (flat)'),t.order.length+L(' أنواع',' types'))+
+          infoBox('التجميع / Grouping',gmName,grouped?(t.order.length+L(' مجموعات',' groups')):L('—','—'))+
         '</div>'+ summary +
         '<table class="d-grid">'+head+'<tbody>'+tbody+'</tbody></table>';
-      var foot='كشف عمليات '+(grouped?'مجمّع حسب النوع':'')+' للفترة '+st.from+' إلى '+st.to+'<br>العملة: SAR<br><span class="vchip">تحقّق ناجح</span>';
+      var foot='كشف عمليات '+(grouped?'مجمّع ('+gmName+')':'مسطّح')+' للفترة '+st.from+' إلى '+st.to+'<br>العملة: SAR<br><span class="vchip">تحقّق ناجح</span>';
       document.getElementById('paper').innerHTML=shell('كشف عمليات','Operations Statement',st.entity,defaultMeta(),body,foot);
-      setQR('GENIUS|OPS|'+st.entity+'|'+st.from+'|'+st.to+'|NET:'+(t.grandH/100).toFixed(2));
+      setQR('GENIUS|OPS|'+st.entity+'|'+st.from+'|'+st.to+'|'+t.mode+'|NET:'+(t.grandH/100).toFixed(2));
     }
   };
+  function groupHeaderLabel(mode){
+    if(mode==='type')  return L('نوع العملية: ','Type: ');
+    if(mode==='month') return L('شهر: ','Month: ');
+    if(mode==='day')   return L('يوم: ','Day: ');
+    return '';
+  }
+
 
   /* ---------- number to words (تفقيط) ---------- */
   function tafqitAr(n){
@@ -1259,16 +1392,29 @@
   var em=document.getElementById('editorMain');
   function onEdit(e){
     var el=e.target;
+    if(el.id==='grpMode'){ state.transactions.groupMode=el.value; renderEditor(); refresh(); return; }
+    if(el.id==='subToggle'){ state.transactions.showSubtotals=el.checked; refresh(); return; }
     if(el.dataset.bind!=null){ setPath(el.dataset.bind, el.dataset.kind==='num'?num(el.value):el.value); refresh(); return; }
     if(el.dataset.arr!=null){ var arr=getPath(el.dataset.arr); arr[+el.dataset.i][el.dataset.f]= el.dataset.kind==='num'?num(el.value):el.value; refresh(); return; }
   }
   em.addEventListener('input',onEdit);
   em.addEventListener('change',onEdit);
   em.addEventListener('click',function(e){
-    var el=e.target;
+    var el=e.target.closest('[data-del],[data-add],[data-colmove],[data-coltoggle]')||e.target;
     if(el.dataset.del!=null){ getPath(el.dataset.delarr).splice(+el.dataset.del,1); renderEditor(); refresh(); return; }
     if(el.dataset.add!=null){ getPath(el.dataset.add).push(ADD[el.dataset.add]()); renderEditor(); refresh(); return; }
-    if(el.dataset.grp!=null){ state.transactions.groupBy=(el.dataset.grp==='1'); renderEditor(); refresh(); return; }
+    if(el.dataset.colmove!=null){
+      var cols=state.transactions.columns, i=+el.dataset.coli, j=el.dataset.colmove==='up'?i-1:i+1;
+      if(j>=0&&j<cols.length){ var tmp=cols[i]; cols[i]=cols[j]; cols[j]=tmp; renderEditor(); refresh(); }
+      return;
+    }
+    if(el.dataset.coltoggle!=null){
+      var c=state.transactions.columns[+el.dataset.coltoggle];
+      var visible=txnVisibleCols(state.transactions).length;
+      if(c.visible&&visible<=1) return; /* keep at least one column */
+      c.visible=!c.visible; renderEditor(); refresh();
+      return;
+    }
   });
   document.getElementById('docType').addEventListener('click',function(e){
     var b=e.target.closest('button'); if(!b) return;
