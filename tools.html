@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>الأدوات — Genius PDF Web</title>
+<meta name="description" content="باركود و QR وعلامات مائية وتأمين وتوقيع رقمي، تصدير متعدّد الصيغ وطباعة ومشاركة، وصندوق أدوات PDF: دمج وتقسيم وتدوير واستخراج.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body dir="rtl">
+
+<!-- ===== shared navigation ===== -->
+<header class="site-nav">
+  <div class="nav-wrap">
+    <a class="site-brand" href="index.html">
+      <span class="site-logo">G</span>
+      <span class="brand-text">Genius PDF<small data-ar="مكتبة توليد المستندات لـ React" data-en="Document library for React">مكتبة توليد المستندات لـ React</small></span>
+    </a>
+    <nav class="nav-links" aria-label="الأقسام">
+      <a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+      <a href="components.html" data-ar="المكوّنات" data-en="Components">المكوّنات</a>
+      <a href="templates.html" data-ar="القوالب" data-en="Templates">القوالب</a>
+      <a href="tools.html" data-ar="الأدوات" data-en="Tools">الأدوات</a>
+      <a href="architecture.html" data-ar="البنية" data-en="Architecture">البنية</a>
+      <a href="generator.html" class="nav-cta" data-ar="المولّد الحي" data-en="Live generator">المولّد الحي</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <div class="seg" role="group" aria-label="language">
+          <button id="ar" aria-pressed="true">العربية</button>
+          <button id="en" aria-pressed="false">English</button>
+        </div>
+      </div>
+      <button class="nav-burger" aria-label="القائمة" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== page hero ===== -->
+<section class="page-hero">
+  <div class="wrap">
+    <p class="crumbs"><a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a><span class="sep">/</span><span data-ar="الأدوات" data-en="Tools">الأدوات</span><span class="sep">·</span><span data-ar="المراحل 5 · 6 · 7" data-en="Phases 5 · 6 · 7">المراحل 5 · 6 · 7</span></p>
+    <h1 data-ar="ما يحدث بعد أن يُرسم المستند" data-en="What happens after the document is drawn">ما يحدث بعد أن يُرسم المستند</h1>
+    <p class="lede" data-ar="بعد التوليد تأتي طبقة الترميز والتأمين، ثم التصدير والمشاركة، ثم معالجة ملفات الـ PDF نفسها. هذه أدوات المراحل <b>الخامسة والسادسة والسابعة</b> مجتمعةً." data-en="After rendering comes the encoding and security layer, then export and sharing, then operating on the PDF files themselves. These are the <b>Phase 5, 6 and 7</b> tools together.">بعد التوليد تأتي طبقة الترميز والتأمين، ثم التصدير والمشاركة، ثم معالجة ملفات الـ PDF نفسها. هذه أدوات المراحل <b>الخامسة والسادسة والسابعة</b> مجتمعةً.</p>
+  </div>
+</section>
+
+<!-- ===== PHASE 5 · encoding & security ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="k">PHASE 5 · ENCODE &amp; SECURE</p>
+        <h2 class="h" data-ar="الترميز والتأمين" data-en="Encoding & security">الترميز والتأمين</h2>
+        <p data-ar="باركود متعدّد المعايير، رمز ZATCA المعتمد، علامات مائية، تشفير وصلاحيات، وتوقيع رقمي X.509." data-en="Multi-standard barcodes, the certified ZATCA code, watermarks, encryption and permissions, and X.509 digital signing.">باركود متعدّد المعايير، رمز ZATCA المعتمد، علامات مائية، تشفير وصلاحيات، وتوقيع رقمي X.509.</p>
+      </div>
+    </div>
+
+    <div class="gal">
+
+      <!-- symbologies -->
+      <div class="card span8">
+        <div>
+          <p class="tag"><b data-ar="رموز قابلة للقراءة آلياً" data-en="Machine-readable codes">رموز قابلة للقراءة آلياً</b> · EAN-13 · Code128 · DataMatrix · PDF417</p>
+          <h3 data-ar="مولّد الباركود" data-en="Barcode generator">مولّد الباركود</h3>
+        </div>
+        <div class="codes">
+          <div class="code">
+            <div class="bars" data-code="ean"></div>
+            <small>EAN-13</small>
+          </div>
+          <div class="code">
+            <div class="bars" data-code="c128"></div>
+            <small>CODE 128</small>
+          </div>
+          <div class="code">
+            <div class="dm" data-dm></div>
+            <small>DATA MATRIX</small>
+          </div>
+        </div>
+        <p class="desc" data-ar="ترقيم تسلسلي تلقائي، حساب خانة التحقّق (check digit)، وموضع قابل للضبط داخل المستند مع التفاف النصّ حوله." data-en="Automatic sequential numbering, check-digit calculation, and an adjustable position inside the document with text wrapping around it.">ترقيم تسلسلي تلقائي، حساب خانة التحقّق (check digit)، وموضع قابل للضبط داخل المستند مع التفاف النصّ حوله.</p>
+      </div>
+
+      <!-- ZATCA QR -->
+      <div class="card span4">
+        <div>
+          <p class="tag"><b>ZATCA</b> · TLV · Phase-2 e-invoice</p>
+          <h3 data-ar="ختم QR المعتمد" data-en="Certified QR seal">ختم QR المعتمد</h3>
+        </div>
+        <div class="mini" style="display:flex;gap:12px;align-items:center">
+          <div class="qr" style="width:74px;height:74px"><svg viewBox="0 0 23 23" data-qr shape-rendering="crispEdges"></svg></div>
+          <div style="font-family:var(--font-mono);font-size:9.5px;color:var(--ink-2);line-height:1.8">
+            <div><b style="color:var(--ink)" data-ar="البائع" data-en="Seller">البائع</b> · TLV-1</div>
+            <div><b style="color:var(--ink)" data-ar="الرقم الضريبي" data-en="VAT no.">الرقم الضريبي</b> · TLV-2</div>
+            <div><b style="color:var(--ink)" data-ar="الطابع الزمني" data-en="Timestamp">الطابع الزمني</b> · TLV-3</div>
+            <div><b style="color:var(--ink)" data-ar="الإجمالي" data-en="Total">الإجمالي</b> · TLV-4</div>
+            <div><b style="color:var(--ink)" data-ar="الضريبة" data-en="VAT">الضريبة</b> · TLV-5</div>
+          </div>
+        </div>
+        <p class="desc" data-ar="حمولة TLV مُرمّزة بـ Base64 وفق هيئة الزكاة والضريبة — وهي نفسها المُولّدة حيّاً في المولّد." data-en="A Base64-encoded TLV payload per the ZATCA spec — the same one generated live in the generator.">حمولة TLV مُرمّزة بـ Base64 وفق هيئة الزكاة والضريبة — وهي نفسها المُولّدة حيّاً في المولّد.</p>
+      </div>
+
+      <!-- watermark -->
+      <div class="card span6">
+        <div>
+          <p class="tag"><b data-ar="علامة مائية" data-en="Watermark">علامة مائية</b> · text · image · tiled</p>
+          <h3 data-ar="أنماط العلامة المائية" data-en="Watermark modes">أنماط العلامة المائية</h3>
+        </div>
+        <div class="wmmini">
+          <span class="tx">DRAFT · 38% opacity</span>
+          <div class="tiled"></div>
+          <div class="diag"><span data-ar="نسخة أوّلية" data-en="DRAFT COPY">نسخة أوّلية</span></div>
+        </div>
+        <div class="pills">
+          <span class="pill on" data-ar="قطري" data-en="Diagonal">قطري</span>
+          <span class="pill" data-ar="مبلّط" data-en="Tiled">مبلّط</span>
+          <span class="pill" data-ar="نصّي" data-en="Text">نصّي</span>
+          <span class="pill" data-ar="صورة/شعار" data-en="Image/logo">صورة/شعار</span>
+          <span class="pill" data-ar="شفافية" data-en="Opacity">شفافية</span>
+        </div>
+      </div>
+
+      <!-- signature -->
+      <div class="card span6">
+        <div>
+          <p class="tag"><b data-ar="توقيع رقمي" data-en="Digital signature">توقيع رقمي</b> · X.509 · PAdES</p>
+          <h3 data-ar="توقيع واعتماد" data-en="Sign & certify">توقيع واعتماد</h3>
+        </div>
+        <div class="mini">
+          <div class="sig" style="border-top:0;padding-top:0">
+            <span class="pen">✒</span>
+            <div style="font-family:var(--font-mono);font-size:10px;color:var(--ink-2);line-height:1.7">
+              <div data-ar="المُوقِّع: الإدارة المالية" data-en="Signer: Finance dept.">المُوقِّع: الإدارة المالية</div>
+              <div data-ar="الشهادة: X.509 سارية" data-en="Cert: X.509 valid">الشهادة: X.509 سارية</div>
+            </div>
+          </div>
+        </div>
+        <div class="chips">
+          <span class="chip"><b>SHA-256</b></span>
+          <span class="chip" data-ar="ختم زمني موثوق" data-en="Trusted timestamp">ختم زمني موثوق</span>
+          <span class="chip" data-ar="كشف العبث" data-en="Tamper-evident">كشف العبث</span>
+        </div>
+      </div>
+
+      <!-- encryption -->
+      <div class="card span6">
+        <div>
+          <p class="tag"><b data-ar="تشفير" data-en="Encryption">تشفير</b> · AES-256 · owner / user password</p>
+          <h3 data-ar="الحماية بكلمة مرور" data-en="Password protection">الحماية بكلمة مرور</h3>
+        </div>
+        <div class="lockrow">
+          <span style="font-size:18px">🔒</span>
+          <div class="pwd">••••••••••</div>
+          <span class="lockbadge">AES-256</span>
+        </div>
+        <p class="desc" data-ar="كلمتا مرور منفصلتان: واحدة لفتح المستند، وأخرى لمالك الملف تتحكّم في الصلاحيات أدناه." data-en="Two separate passwords: one to open the document, and an owner password that controls the permissions below.">كلمتا مرور منفصلتان: واحدة لفتح المستند، وأخرى لمالك الملف تتحكّم في الصلاحيات أدناه.</p>
+      </div>
+
+      <!-- permissions -->
+      <div class="card span6">
+        <div>
+          <p class="tag"><b data-ar="الصلاحيات" data-en="Permissions">الصلاحيات</b> · per-document policy</p>
+          <h3 data-ar="ما الذي يُسمح به" data-en="What's allowed">ما الذي يُسمح به</h3>
+        </div>
+        <div class="perm">
+          <div class="pr"><span data-ar="الطباعة" data-en="Printing">الطباعة</span><span class="sw"></span></div>
+          <div class="pr"><span data-ar="النسخ والاستخراج" data-en="Copy & extract">النسخ والاستخراج</span><span class="sw off"></span></div>
+          <div class="pr"><span data-ar="التعديل" data-en="Editing">التعديل</span><span class="sw off"></span></div>
+          <div class="pr"><span data-ar="التعليقات والتوقيع" data-en="Annotate & sign">التعليقات والتوقيع</span><span class="sw"></span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== PHASE 6 · export, print, share ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="k">PHASE 6 · DELIVER</p>
+        <h2 class="h" data-ar="التصدير والطباعة والمشاركة" data-en="Export, print & share">التصدير والطباعة والمشاركة</h2>
+        <p data-ar="صدّر إلى أيّ صيغة، اطبع بإعدادات دقيقة، أو شارك مباشرةً عبر عدّة قنوات." data-en="Export to any format, print with precise settings, or share straight through several channels.">صدّر إلى أيّ صيغة، اطبع بإعدادات دقيقة، أو شارك مباشرةً عبر عدّة قنوات.</p>
+      </div>
+    </div>
+
+    <div class="gal">
+
+      <!-- multi-export -->
+      <div class="card span6">
+        <div>
+          <p class="tag"><b data-ar="تصدير متعدّد" data-en="Multi-export">تصدير متعدّد</b> · single &amp; batch</p>
+          <h3 data-ar="صيغ الإخراج" data-en="Output formats">صيغ الإخراج</h3>
+        </div>
+        <div class="pills">
+          <span class="pill on">PDF / A</span>
+          <span class="pill">PNG</span>
+          <span class="pill">JPEG</span>
+          <span class="pill">SVG</span>
+          <span class="pill">HTML</span>
+          <span class="pill">TXT</span>
+        </div>
+        <div>
+          <div class="progress"><i></i></div>
+          <p class="desc" style="margin-top:8px" data-ar="تصدير دفعي قيد التنفيذ — 36 من 50 مستنداً." data-en="Batch export in progress — 36 of 50 documents.">تصدير دفعي قيد التنفيذ — 36 من 50 مستنداً.</p>
+        </div>
+      </div>
+
+      <!-- print -->
+      <div class="card span3">
+        <div>
+          <p class="tag"><b data-ar="طباعة" data-en="Print">طباعة</b></p>
+          <h3 data-ar="إعدادات الطباعة" data-en="Print settings">إعدادات الطباعة</h3>
+        </div>
+        <div class="proplist">
+          <span data-ar="مقاس: A4" data-en="Size: A4">مقاس: <b>A4</b></span>
+          <span data-ar="هوامش: 18مم" data-en="Margins: 18mm">هوامش: <b>18mm</b></span>
+          <span data-ar="وجهان" data-en="Duplex">وجهان <b>✓</b></span>
+          <span data-ar="نطاق الصفحات" data-en="Page range">نطاق <b>1–4</b></span>
+        </div>
+      </div>
+
+      <!-- share -->
+      <div class="card span3">
+        <div>
+          <p class="tag"><b data-ar="مشاركة" data-en="Share">مشاركة</b></p>
+          <h3 data-ar="قنوات المشاركة" data-en="Share channels">قنوات المشاركة</h3>
+        </div>
+        <div class="share-list">
+          <span class="shr"><i class="d" style="background:var(--sky)"></i><span data-ar="بريد" data-en="Email">بريد</span></span>
+          <span class="shr"><i class="d" style="background:var(--teal)"></i><span data-ar="رابط" data-en="Link">رابط</span></span>
+          <span class="shr"><i class="d" style="background:var(--brass)"></i><span>Drive</span></span>
+          <span class="shr"><i class="d" style="background:var(--jade)"></i><span>WhatsApp</span></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== PHASE 7 · PDF toolbox + jobs ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="k">PHASE 7 · PROCESS</p>
+        <h2 class="h" data-ar="صندوق أدوات الـ PDF" data-en="The PDF toolbox">صندوق أدوات الـ PDF</h2>
+        <p data-ar="عمليات على ملفات الـ PDF نفسها، تُدار كمهامّ يمكن تتبّع حالتها وإحصاؤها." data-en="Operations on the PDF files themselves, run as jobs you can track and measure.">عمليات على ملفات الـ PDF نفسها، تُدار كمهامّ يمكن تتبّع حالتها وإحصاؤها.</p>
+      </div>
+    </div>
+
+    <div class="tools">
+      <div class="tool">
+        <div class="diagram"><span class="pg"></span><span class="pg"></span><span class="op">→</span><span class="pg" style="height:36px"></span></div>
+        <h3 data-ar="دمج" data-en="Merge">دمج</h3>
+        <p data-ar="اجمع عدّة ملفات في مستند واحد مرتّب." data-en="Combine several files into one ordered document.">اجمع عدّة ملفات في مستند واحد مرتّب.</p>
+      </div>
+      <div class="tool">
+        <div class="diagram"><span class="pg" style="height:36px"></span><span class="op">→</span><span class="pg s"></span><span class="pg s"></span></div>
+        <h3 data-ar="تقسيم" data-en="Split">تقسيم</h3>
+        <p data-ar="افصل المستند إلى ملفّات حسب النطاق أو الحجم." data-en="Break a document into files by range or size.">افصل المستند إلى ملفّات حسب النطاق أو الحجم.</p>
+      </div>
+      <div class="tool">
+        <div class="diagram"><span class="pg"></span><span class="rot">↻</span><span class="pg" style="transform:rotate(90deg)"></span></div>
+        <h3 data-ar="تدوير" data-en="Rotate">تدوير</h3>
+        <p data-ar="دوّر صفحات مختارة بزوايا 90 / 180 / 270." data-en="Rotate selected pages by 90 / 180 / 270.">دوّر صفحات مختارة بزوايا 90 / 180 / 270.</p>
+      </div>
+      <div class="tool">
+        <div class="diagram"><span class="pg" style="height:36px"></span><span class="op">⇲</span><span class="pg s"></span></div>
+        <h3 data-ar="استخراج" data-en="Extract">استخراج</h3>
+        <p data-ar="انتزع صفحات أو نصّاً أو صوراً من ملفّ قائم." data-en="Pull pages, text, or images out of an existing file.">انتزع صفحات أو نصّاً أو صوراً من ملفّ قائم.</p>
+      </div>
+    </div>
+
+    <div class="gal" style="margin-top:18px">
+      <!-- jobs -->
+      <div class="card span7">
+        <div>
+          <p class="tag"><b data-ar="قائمة المهام" data-en="Job queue">قائمة المهام</b> · queued · running · done · failed</p>
+          <h3 data-ar="حالة المعالجة الحيّة" data-en="Live processing status">حالة المعالجة الحيّة</h3>
+        </div>
+        <div class="jobs">
+          <div class="job"><i class="js done"></i><div class="jn" data-ar="دمج كشوف الربع الأول" data-en="Merge Q1 statements">دمج كشوف الربع الأول<span>merge · 12 files</span></div><span class="jt" data-ar="اكتمل · 0.8ث" data-en="done · 0.8s">اكتمل · 0.8ث</span></div>
+          <div class="job"><i class="js run"></i><div class="jn" data-ar="تصدير 50 فاتورة إلى PDF/A" data-en="Export 50 invoices to PDF/A">تصدير 50 فاتورة إلى PDF/A<span>batch export · 36/50</span></div><span class="jt" data-ar="يعمل…" data-en="running…">يعمل…</span></div>
+          <div class="job"><i class="js queue"></i><div class="jn" data-ar="ختم مائي على عقود" data-en="Watermark contracts">ختم مائي على عقود<span>watermark · 8 files</span></div><span class="jt" data-ar="في الانتظار" data-en="queued">في الانتظار</span></div>
+          <div class="job"><i class="js fail"></i><div class="jn" data-ar="تقسيم تقرير تالف" data-en="Split corrupt report">تقسيم تقرير تالف<span>split · I/O error</span></div><span class="jt" data-ar="فشل · أعد المحاولة" data-en="failed · retry">فشل · أعد المحاولة</span></div>
+        </div>
+      </div>
+
+      <!-- stats -->
+      <div class="card span5">
+        <div>
+          <p class="tag"><b data-ar="إحصاءات" data-en="Statistics">إحصاءات</b> · last 24h</p>
+          <h3 data-ar="ملخّص التشغيل" data-en="Run summary">ملخّص التشغيل</h3>
+        </div>
+        <div class="statgrid">
+          <div class="sc"><b>1,284</b><span data-ar="مستنداً" data-en="documents">مستنداً</span></div>
+          <div class="sc"><b>98.7٪</b><span data-ar="نجاح" data-en="success">نجاح</span></div>
+          <div class="sc"><b>0.6s</b><span data-ar="متوسّط الزمن" data-en="avg time">متوسّط الزمن</span></div>
+          <div class="sc"><b>42</b><span data-ar="دفعة" data-en="batches">دفعة</span></div>
+          <div class="sc"><b>7</b><span data-ar="أنواع تصدير" data-en="export types">أنواع تصدير</span></div>
+          <div class="sc"><b>3.2GB</b><span data-ar="مُعالَجة" data-en="processed">مُعالَجة</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== footer ===== -->
+<footer class="site-footer">
+  <div class="foot-wrap">
+    <span data-ar="Genius PDF Web — موقع تعريفي تُبنى صفحاته مرحلةً بمرحلة." data-en="Genius PDF Web — a showcase site built phase by phase.">Genius PDF Web — موقع تعريفي تُبنى صفحاته مرحلةً بمرحلة.</span>
+    <nav class="foot-nav">
+      <a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+      <a href="components.html" data-ar="المكوّنات" data-en="Components">المكوّنات</a>
+      <a href="templates.html" data-ar="القوالب" data-en="Templates">القوالب</a>
+      <a href="architecture.html" data-ar="البنية" data-en="Architecture">البنية</a>
+      <a href="generator.html" data-ar="المولّد" data-en="Generator">المولّد</a>
+    </nav>
+    <span class="mono">jsPDF · pdf-lib · html2canvas · qrcode</span>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

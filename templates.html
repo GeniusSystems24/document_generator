@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>القوالب الجاهزة — Genius PDF Web</title>
+<meta name="description" content="قوالب مالية ومحاسبية وموارد بشرية جاهزة: فاتورة ZATCA، ميزان مراجعة، كشف حساب، قائمة دخل، مسيّر رواتب، و16 فئة سندات.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body dir="rtl">
+
+<!-- ===== shared navigation ===== -->
+<header class="site-nav">
+  <div class="nav-wrap">
+    <a class="site-brand" href="index.html">
+      <span class="site-logo">G</span>
+      <span class="brand-text">Genius PDF<small data-ar="مكتبة توليد المستندات لـ React" data-en="Document library for React">مكتبة توليد المستندات لـ React</small></span>
+    </a>
+    <nav class="nav-links" aria-label="الأقسام">
+      <a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+      <a href="components.html" data-ar="المكوّنات" data-en="Components">المكوّنات</a>
+      <a href="templates.html" data-ar="القوالب" data-en="Templates">القوالب</a>
+      <a href="tools.html" data-ar="الأدوات" data-en="Tools">الأدوات</a>
+      <a href="architecture.html" data-ar="البنية" data-en="Architecture">البنية</a>
+      <a href="generator.html" class="nav-cta" data-ar="المولّد الحي" data-en="Live generator">المولّد الحي</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <div class="seg" role="group" aria-label="language">
+          <button id="ar" aria-pressed="true">العربية</button>
+          <button id="en" aria-pressed="false">English</button>
+        </div>
+      </div>
+      <button class="nav-burger" aria-label="القائمة" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== page hero ===== -->
+<section class="page-hero">
+  <div class="wrap">
+    <p class="crumbs"><a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a><span class="sep">/</span><span data-ar="القوالب" data-en="Templates">القوالب</span><span class="sep">·</span><span data-ar="المرحلتان 3 و 4" data-en="Phases 3 & 4">المرحلتان 3 و 4</span></p>
+    <h1 data-ar="قوالب جاهزة تُبنى من نفس المكوّنات" data-en="Ready templates, built from the same parts">قوالب جاهزة تُبنى من نفس المكوّنات</h1>
+    <p class="lede" data-ar="كل قالب هنا يُركّب من مكوّنات المرحلة الثانية ويمرّ عبر <b>بوّابة تحقّق مالي</b> قبل أن يُطبع. اختر فئةً للتصفية، أو افتح أيّ قالب مباشرةً في <b>المولّد الحي</b>." data-en="Every template here is assembled from Phase 2 components and passes a <b>financial validation gate</b> before it prints. Filter by category, or open any template straight in the <b>live generator</b>.">كل قالب هنا يُركّب من مكوّنات المرحلة الثانية ويمرّ عبر <b>بوّابة تحقّق مالي</b> قبل أن يُطبع. اختر فئةً للتصفية، أو افتح أيّ قالب مباشرةً في <b>المولّد الحي</b>.</p>
+  </div>
+</section>
+
+<!-- ===== template catalogue ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="k">PHASE 3 + 4 · CATALOGUE</p>
+        <h2 class="h" data-ar="مكتبة القوالب" data-en="Template library">مكتبة القوالب</h2>
+      </div>
+      <div class="chips">
+        <span class="chip"><b>16</b> <span data-ar="قالباً" data-en="templates">قالباً</span></span>
+        <span class="chip" data-ar="تحقّق قبل الطباعة" data-en="validate before print">تحقّق قبل الطباعة</span>
+      </div>
+    </div>
+
+    <div class="filterbar" data-filter aria-label="تصفية حسب الفئة">
+      <button data-cat="all" aria-pressed="true" data-ar="الكل" data-en="All">الكل</button>
+      <button data-cat="financial" aria-pressed="false" data-ar="مالية" data-en="Financial">مالية</button>
+      <button data-cat="sales" aria-pressed="false" data-ar="مبيعات" data-en="Sales">مبيعات</button>
+      <button data-cat="hr" aria-pressed="false" data-ar="موارد بشرية" data-en="HR">موارد بشرية</button>
+    </div>
+
+    <div class="tpls">
+
+      <!-- ===== FINANCIAL ===== -->
+      <a class="tpl" data-cat="financial" href="generator.html">
+        <div class="top">
+          <div class="tt" data-ar="فاتورة ضريبية" data-en="Tax Invoice">فاتورة ضريبية<small>Tax Invoice · ZATCA</small></div>
+          <span class="cat" style="background:var(--jade)" data-ar="مالية" data-en="Financial">مالية</span>
+        </div>
+        <div class="body">
+          <div class="rowmini"><span data-ar="بند ١" data-en="Line 1">بند ١</span><span>4,200.00</span></div>
+          <div class="rowmini"><span data-ar="بند ٢" data-en="Line 2">بند ٢</span><span>8,800.00</span></div>
+          <div class="rowmini"><span data-ar="ضريبة ١٥٪" data-en="VAT 15%">ضريبة ١٥٪</span><span>1,950.00</span></div>
+        </div>
+        <div class="gm" data-ar="الإجمالي · 14,950" data-en="Total · 14,950">الإجمالي · 14,950</div>
+        <div class="open" data-ar="افتح في المولّد ←" data-en="Open in generator →">افتح في المولّد ←</div>
+      </a>
+
+      <a class="tpl" data-cat="financial" href="generator.html">
+        <div class="top">
+          <div class="tt" data-ar="ميزان المراجعة" data-en="Trial Balance">ميزان المراجعة<small>Trial Balance</small></div>
+          <span class="cat" style="background:var(--jade)" data-ar="مالية" data-en="Financial">مالية</span>
+        </div>
+        <div class="body">
+          <div class="tcol">
+            <div class="box" data-ar="مدين Σ\n482,300" data-en="Debit Σ\n482,300">مدين Σ<br>482,300</div>
+            <div class="box" data-ar="دائن Σ\n482,300" data-en="Credit Σ\n482,300">دائن Σ<br>482,300</div>
+          </div>
+          <div class="rowmini"><span data-ar="عدد الحسابات" data-en="Accounts">عدد الحسابات</span><span>128</span></div>
+        </div>
+        <div class="gm ink" data-ar="متوازن ✓" data-en="Balanced ✓">متوازن ✓</div>
+        <div class="open" data-ar="افتح في المولّد ←" data-en="Open in generator →">افتح في المولّد ←</div>
+      </a>
+
+      <a class="tpl" data-cat="financial" href="generator.html">
+        <div class="top">
+          <div class="tt" data-ar="كشف حساب عميل" data-en="Customer Statement">كشف حساب عميل<small>Customer Statement</small></div>
+          <span class="cat" style="background:var(--jade)" data-ar="مالية" data-en="Financial">مالية</span>
+        </div>
+        <div class="body">
+          <div class="rowmini"><span data-ar="رصيد افتتاحي" data-en="Opening">رصيد افتتاحي</span><span>12,000</span></div>
+          <div class="rowmini"><span data-ar="مدين" data-en="Debit">مدين</span><span>+34,500</span></div>
+          <div class="rowmini"><span data-ar="دائن" data-en="Credit">دائن</span><span>−28,300</span></div>
+        </div>
+        <div class="gm sky" data-ar="الرصيد · 18,200" data-en="Balance · 18,200">الرصيد · 18,200</div>
+        <div class="open" data-ar="افتح في المولّد ←" data-en="Open in generator →">افتح في المولّد ←</div>
+      </a>
+
+      <a class="tpl" data-cat="financial" href="generator.html">
+        <div class="top">
+          <div class="tt" data-ar="تقرير المخزون" data-en="Inventory Report">تقرير المخزون<small>Inventory Report</small></div>
+          <span class="cat" style="background:var(--jade)" data-ar="مالية" data-en="Financial">مالية</span>
+        </div>
+        <div class="body">
+          <div class="rowmini"><span data-ar="أصناف" data-en="SKUs">أصناف</span><span>340</span></div>
+          <div class="rowmini"><span data-ar="تحت الحد" data-en="Below min">تحت الحد</span><span>12</span></div>
+          <div class="ln"></div><div class="ln" style="width:70%"></div>
+        </div>
+        <div class="gm brass" data-ar="القيمة · 1.2M" data-en="Value · 1.2M">القيمة · 1.2M</div>
+        <div class="open" data-ar="افتح في المولّد ←" data-en="Open in generator →">افتح في المولّد ←</div>
+      </a>
+
+      <a class="tpl" data-cat="financial" href="generator.html">
+        <div class="top">
+          <div class="tt" data-ar="الميزانية العمومية" data-en="Balance Sheet">الميزانية العمومية<small>Balance Sheet</small></div>
+          <span class="cat" style="background:var(--jade)" data-ar="مالية" data-en="Financial">مالية</span>
+        </div>
+        <div class="body">
+          <div class="tcol">
+            <div class="box" data-ar="أصول\n2,840,000" data-en="Assets\n2,840,000">أصول<br>2,840,000</div>
+            <div class="box" data-ar="خصوم + حقوق\n2,840,000" data-en="Liab + Equity\n2,840,000">خصوم + حقوق<br>2,840,000</div>
+          </div>
+        </div>
+        <div class="gm ink" data-ar="متطابقة ✓" data-en="Matched ✓">متطابقة ✓</div>
+        <div class="open" data-ar="افتح في المولّد ←" data-en="Open in generator →">افتح في المولّد ←</div>
+      </a>
+
+      <a class="tpl" data-cat="financial" href="generator.html">
+        <div class="top">
+          <div class="tt" data-ar="قائمة الدخل" data-en="Income Statement">قائمة الدخل<small>Income Statement</small></div>
+          <span class="cat" style="background:var(--jade)" data-ar="مالية" data-en="Financial">مالية</span>
+        </div>
+        <div class="body">
+          <div class="rowmini"><span data-ar="الإيرادات" data-en="Revenue">الإيرادات</span><span>980,000</span></div>
+          <div class="rowmini"><span data-ar="المصروفات" data-en="Expenses">المصروفات</span><span>−712,000</span></div>
+        </div>
+        <div class="gm" data-ar="صافي الربح · 268,000" data-en="Net · 268,000">صافي الربح · 268,000</div>
+        <div class="open" data-ar="افتح في المولّد ←" data-en="Open in generator →">افتح في المولّد ←</div>
+      </a>
+
+      <a class="tpl" data-cat="financial" href="generator.html">
+        <div class="top">
+          <div class="tt" data-ar="قائمة التدفقات النقدية" data-en="Cash Flow">قائمة التدفقات<small>Cash Flow</small></div>
+          <span class="cat" style="background:var(--jade)" data-ar="مالية" data-en="Financial">مالية</span>
+        </div>
+        <div class="body">
+          <div class="rowmini"><span data-ar="تشغيلية" data-en="Operating">تشغيلية</span><span>+310,000</span></div>
+          <div class="rowmini"><span data-ar="استثمارية" data-en="Investing">استثمارية</span><span>−120,000</span></div>
+          <div class="rowmini"><span data-ar="تمويلية" data-en="Financing">تمويلية</span><span>−40,000</span></div>
+        </div>
+        <div class="gm sky" data-ar="صافي التدفق · 150,000" data-en="Net flow · 150,000">صافي التدفق · 150,000</div>
+        <div class="open" data-ar="افتح في المولّد ←" data-en="Open in generator →">افتح في المولّد ←</div>
+      </a>
+
+      <a class="tpl" data-cat="financial" href="generator.html">
+        <div class="top">
+          <div class="tt" data-ar="الموازنة التقديرية" data-en="Budget">الموازنة التقديرية<small>Budget vs Actual</small></div>
+          <span class="cat" style="background:var(--jade)" data-ar="مالية" data-en="Financial">مالية</span>
+        </div>
+        <div class="body">
+          <div class="rowmini"><span data-ar="مخطّط" data-en="Planned">مخطّط</span><span>500,000</span></div>
+          <div class="rowmini"><span data-ar="فعلي" data-en="Actual">فعلي</span><span>462,500</span></div>
+        </div>
+        <div class="gm brass" data-ar="انحراف · −7.5٪" data-en="Variance · −7.5%">انحراف · −7.5٪</div>
+        <div class="open" data-ar="افتح في المولّد ←" data-en="Open in generator →">افتح في المولّد ←</div>
+      </a>
+
+      <!-- ===== SALES ===== -->
+      <a class="tpl" data-cat="sales" href="generator.html">
+        <div class="top">
+          <div class="tt" data-ar="عرض سعر" data-en="Quotation">عرض سعر<small>Quotation</small></div>
+          <span class="cat" style="background:var(--sky)" data-ar="مبيعات" data-en="Sales">مبيعات</span>
+        </div>
+        <div class="body">
+          <div class="rowmini"><span data-ar="٣ بنود" data-en="3 lines">٣ بنود</span><span>22,000</span></div>
+          <div class="rowmini"><span data-ar="صلاحية" data-en="Valid for">صلاحية</span><span data-ar="٣٠ يوماً" data-en="30 days">٣٠ يوماً</span></div>
+        </div>
+        <div class="gm sky" data-ar="الإجمالي · 25,300" data-en="Total · 25,300">الإجمالي · 25,300</div>
+        <div class="open" data-ar="افتح في المولّد ←" data-en="Open in generator →">افتح في المولّد ←</div>
+      </a>
+
+      <a class="tpl" data-cat="sales" href="generator.html">
+        <div class="top">
+          <div class="tt" data-ar="أمر شراء" data-en="Purchase Order">أمر شراء<small>Purchase Order</small></div>
+          <span class="cat" style="background:var(--sky)" data-ar="مبيعات" data-en="Sales">مبيعات</span>
+        </div>
+        <div class="body">
+          <div class="rowmini"><span data-ar="مورّد" data-en="Vendor">مورّد</span><span>PO-2041</span></div>
+          <div class="ln"></div><div class="ln" style="width:80%"></div><div class="ln" style="width:60%"></div>
+        </div>
+        <div class="gm ink" data-ar="قيمة الأمر · 64,000" data-en="Order · 64,000">قيمة الأمر · 64,000</div>
+        <div class="open" data-ar="افتح في المولّد ←" data-en="Open in generator →">افتح في المولّد ←</div>
+      </a>
+
+      <a class="tpl" data-cat="sales" href="generator.html">
+        <div class="top">
+          <div class="tt" data-ar="إشعار تسليم" data-en="Delivery Note">إشعار تسليم<small>Delivery Note</small></div>
+          <span class="cat" style="background:var(--sky)" data-ar="مبيعات" data-en="Sales">مبيعات</span>
+        </div>
+        <div class="body">
+          <div class="rowmini"><span data-ar="أصناف مُسلّمة" data-en="Items">أصناف مُسلّمة</span><span>7</span></div>
+          <div class="rowmini"><span data-ar="الكمية" data-en="Qty">الكمية</span><span>240</span></div>
+        </div>
+        <div class="gm brass" data-ar="توقيع الاستلام" data-en="Receiver sign">توقيع الاستلام</div>
+        <div class="open" data-ar="افتح في المولّد ←" data-en="Open in generator →">افتح في المولّد ←</div>
+      </a>
+
+      <a class="tpl" data-cat="sales" href="generator.html">
+        <div class="top">
+          <div class="tt" data-ar="إشعار دائن / مدين" data-en="Credit / Debit Note">إشعار دائن / مدين<small>Credit / Debit Note</small></div>
+          <span class="cat" style="background:var(--sky)" data-ar="مبيعات" data-en="Sales">مبيعات</span>
+        </div>
+        <div class="body">
+          <div class="rowmini"><span data-ar="مرجع الفاتورة" data-en="Invoice ref">مرجع الفاتورة</span><span>INV-880</span></div>
+          <div class="rowmini"><span data-ar="تسوية" data-en="Adjustment">تسوية</span><span>−1,500</span></div>
+        </div>
+        <div class="gm rose" data-ar="إشعار دائن · 1,500" data-en="Credit · 1,500">إشعار دائن · 1,500</div>
+        <div class="open" data-ar="افتح في المولّد ←" data-en="Open in generator →">افتح في المولّد ←</div>
+      </a>
+
+      <!-- ===== HR ===== -->
+      <a class="tpl" data-cat="hr" href="generator.html">
+        <div class="top">
+          <div class="tt" data-ar="مسيّر راتب" data-en="Payslip">مسيّر راتب<small>Payslip</small></div>
+          <span class="cat" style="background:var(--brass)" data-ar="موارد بشرية" data-en="HR">موارد بشرية</span>
+        </div>
+        <div class="body">
+          <div class="tcol">
+            <div class="box" data-ar="استحقاقات\n14,500" data-en="Earnings\n14,500">استحقاقات<br>14,500</div>
+            <div class="box" data-ar="استقطاعات\n2,100" data-en="Deductions\n2,100">استقطاعات<br>2,100</div>
+          </div>
+        </div>
+        <div class="gm" data-ar="الصافي · 12,400" data-en="Net · 12,400">الصافي · 12,400</div>
+        <div class="open" data-ar="افتح في المولّد ←" data-en="Open in generator →">افتح في المولّد ←</div>
+      </a>
+
+      <a class="tpl" data-cat="hr" href="generator.html">
+        <div class="top">
+          <div class="tt" data-ar="تقرير موظف" data-en="Employee Report">تقرير موظف<small>Employee Report</small></div>
+          <span class="cat" style="background:var(--brass)" data-ar="موارد بشرية" data-en="HR">موارد بشرية</span>
+        </div>
+        <div class="body">
+          <div class="rowmini"><span data-ar="الرقم الوظيفي" data-en="ID">الرقم الوظيفي</span><span>EMP-204</span></div>
+          <div class="rowmini"><span data-ar="القسم" data-en="Dept">القسم</span><span data-ar="المالية" data-en="Finance">المالية</span></div>
+          <div class="ln" style="width:75%"></div>
+        </div>
+        <div class="gm ink" data-ar="ملف كامل" data-en="Full profile">ملف كامل</div>
+        <div class="open" data-ar="افتح في المولّد ←" data-en="Open in generator →">افتح في المولّد ←</div>
+      </a>
+
+      <a class="tpl" data-cat="hr" href="generator.html">
+        <div class="top">
+          <div class="tt" data-ar="كشف حضور وانصراف" data-en="Attendance">كشف حضور<small>Attendance</small></div>
+          <span class="cat" style="background:var(--brass)" data-ar="موارد بشرية" data-en="HR">موارد بشرية</span>
+        </div>
+        <div class="body">
+          <div class="rowmini"><span data-ar="أيام العمل" data-en="Work days">أيام العمل</span><span>22</span></div>
+          <div class="rowmini"><span data-ar="تأخير" data-en="Late">تأخير</span><span>3</span></div>
+          <div class="rowmini"><span data-ar="إضافي" data-en="Overtime">إضافي</span><span>8h</span></div>
+        </div>
+        <div class="gm sky" data-ar="نسبة الالتزام · 96٪" data-en="Compliance · 96%">نسبة الالتزام · 96٪</div>
+        <div class="open" data-ar="افتح في المولّد ←" data-en="Open in generator →">افتح في المولّد ←</div>
+      </a>
+
+      <a class="tpl" data-cat="hr" href="generator.html">
+        <div class="top">
+          <div class="tt" data-ar="طلب إجازة" data-en="Leave Request">طلب إجازة<small>Leave Request</small></div>
+          <span class="cat" style="background:var(--brass)" data-ar="موارد بشرية" data-en="HR">موارد بشرية</span>
+        </div>
+        <div class="body">
+          <div class="rowmini"><span data-ar="النوع" data-en="Type">النوع</span><span data-ar="سنوية" data-en="Annual">سنوية</span></div>
+          <div class="box" data-ar="من ٠١/٠٧ إلى ٠٧/٠٧ — اعتماد المدير المباشر" data-en="01/07 → 07/07 — line-manager approval">من ٠١/٠٧ إلى ٠٧/٠٧ — اعتماد المدير المباشر</div>
+        </div>
+        <div class="gm brass" data-ar="٧ أيام · معتمد" data-en="7 days · approved">٧ أيام · معتمد</div>
+        <div class="open" data-ar="افتح في المولّد ←" data-en="Open in generator →">افتح في المولّد ←</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== voucher classes ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="k">PHASE 4 · VOUCHERS</p>
+        <h2 class="h" data-ar="فئات السندات الـ16" data-en="The 16 voucher classes">فئات السندات الـ16</h2>
+        <p data-ar="ستّ عشرة فئة سندات، أربعة أنواع فرعية لكل فئة — أربعة وستّون نوعاً تتشارك نفس محرّك التحقّق والترقيم التسلسلي." data-en="Sixteen voucher classes, four subtypes each — sixty-four types sharing the same validation engine and sequential numbering.">ستّ عشرة فئة سندات، أربعة أنواع فرعية لكل فئة — أربعة وستّون نوعاً تتشارك نفس محرّك التحقّق والترقيم التسلسلي.</p>
+      </div>
+      <div class="chips">
+        <span class="chip"><b>16</b> <span data-ar="فئة" data-en="classes">فئة</span></span>
+        <span class="chip"><b>64</b> <span data-ar="نوعاً" data-en="types">نوعاً</span></span>
+      </div>
+    </div>
+
+    <div class="vclasses">
+
+      <div class="vclass">
+        <div class="vh"><i class="dot" style="background:var(--jade)"></i><h3 data-ar="سند قبض" data-en="Receipt Voucher">سند قبض</h3><small>4 / 64</small></div>
+        <ul>
+          <li data-ar="نقدي" data-en="Cash">نقدي<span>Cash</span></li>
+          <li data-ar="شيك" data-en="Cheque">شيك<span>Cheque</span></li>
+          <li data-ar="تحويل بنكي" data-en="Bank transfer">تحويل بنكي<span>Bank transfer</span></li>
+          <li data-ar="بطاقة" data-en="Card">بطاقة<span>Card</span></li>
+        </ul>
+      </div>
+
+      <div class="vclass">
+        <div class="vh"><i class="dot" style="background:var(--rose)"></i><h3 data-ar="سند صرف" data-en="Payment Voucher">سند صرف</h3><small>4 / 64</small></div>
+        <ul>
+          <li data-ar="نقدي" data-en="Cash">نقدي<span>Cash</span></li>
+          <li data-ar="شيك" data-en="Cheque">شيك<span>Cheque</span></li>
+          <li data-ar="تحويل بنكي" data-en="Bank transfer">تحويل بنكي<span>Bank transfer</span></li>
+          <li data-ar="سلفة" data-en="Advance">سلفة<span>Advance</span></li>
+        </ul>
+      </div>
+
+      <div class="vclass">
+        <div class="vh"><i class="dot" style="background:var(--brass)"></i><h3 data-ar="سند قيد يومية" data-en="Journal Voucher">سند قيد يومية</h3><small>4 / 64</small></div>
+        <ul>
+          <li data-ar="بسيط" data-en="Simple">بسيط<span>Simple</span></li>
+          <li data-ar="مركّب" data-en="Compound">مركّب<span>Compound</span></li>
+          <li data-ar="افتتاحي" data-en="Opening">افتتاحي<span>Opening</span></li>
+          <li data-ar="إقفال" data-en="Closing">إقفال<span>Closing</span></li>
+        </ul>
+      </div>
+
+      <div class="vclass">
+        <div class="vh"><i class="dot" style="background:var(--sky)"></i><h3 data-ar="سند تحويل" data-en="Transfer Voucher">سند تحويل</h3><small>4 / 64</small></div>
+        <ul>
+          <li data-ar="بين الصناديق" data-en="Cash ↔ cash">بين الصناديق<span>Cash ↔ cash</span></li>
+          <li data-ar="بين البنوك" data-en="Bank ↔ bank">بين البنوك<span>Bank ↔ bank</span></li>
+          <li data-ar="صندوق ↔ بنك" data-en="Cash ↔ bank">صندوق ↔ بنك<span>Cash ↔ bank</span></li>
+          <li data-ar="بين الفروع" data-en="Branch ↔ branch">بين الفروع<span>Branch ↔ branch</span></li>
+        </ul>
+      </div>
+
+      <div class="vclass">
+        <div class="vh"><i class="dot" style="background:var(--jade)"></i><h3 data-ar="سند إيداع" data-en="Deposit Voucher">سند إيداع</h3><small>4 / 64</small></div>
+        <ul>
+          <li data-ar="إيداع نقدي" data-en="Cash deposit">إيداع نقدي<span>Cash deposit</span></li>
+          <li data-ar="إيداع شيكات" data-en="Cheque deposit">إيداع شيكات<span>Cheque deposit</span></li>
+          <li data-ar="تحصيل" data-en="Collection">تحصيل<span>Collection</span></li>
+          <li data-ar="إيداع مورّد" data-en="Vendor deposit">إيداع مورّد<span>Vendor deposit</span></li>
+        </ul>
+      </div>
+
+      <div class="vclass">
+        <div class="vh"><i class="dot" style="background:var(--rose)"></i><h3 data-ar="سند سحب" data-en="Withdrawal Voucher">سند سحب</h3><small>4 / 64</small></div>
+        <ul>
+          <li data-ar="سحب نقدي" data-en="Cash withdrawal">سحب نقدي<span>Cash withdrawal</span></li>
+          <li data-ar="سحب لمصروف" data-en="For expense">سحب لمصروف<span>For expense</span></li>
+          <li data-ar="سحب عُهدة" data-en="Custody">سحب عُهدة<span>Custody</span></li>
+          <li data-ar="سحب راتب" data-en="Salary">سحب راتب<span>Salary</span></li>
+        </ul>
+      </div>
+
+      <div class="vclass">
+        <div class="vh"><i class="dot" style="background:var(--brass)"></i><h3 data-ar="سند تسوية" data-en="Settlement Voucher">سند تسوية</h3><small>4 / 64</small></div>
+        <ul>
+          <li data-ar="تسوية حساب" data-en="Account">تسوية حساب<span>Account</span></li>
+          <li data-ar="فروق عملة" data-en="FX difference">فروق عملة<span>FX difference</span></li>
+          <li data-ar="تقريب" data-en="Rounding">تقريب<span>Rounding</span></li>
+          <li data-ar="إعادة تقييم" data-en="Revaluation">إعادة تقييم<span>Revaluation</span></li>
+        </ul>
+      </div>
+
+      <div class="vclass">
+        <div class="vh"><i class="dot" style="background:var(--sky)"></i><h3 data-ar="سند مرتجع" data-en="Return Voucher">سند مرتجع</h3><small>4 / 64</small></div>
+        <ul>
+          <li data-ar="مرتجع مبيعات" data-en="Sales return">مرتجع مبيعات<span>Sales return</span></li>
+          <li data-ar="مرتجع مشتريات" data-en="Purchase return">مرتجع مشتريات<span>Purchase return</span></li>
+          <li data-ar="مرتجع نقدي" data-en="Cash return">مرتجع نقدي<span>Cash return</span></li>
+          <li data-ar="إشعار" data-en="Note">إشعار<span>Note</span></li>
+        </ul>
+      </div>
+
+      <div class="vclass">
+        <div class="vh"><i class="dot" style="background:var(--jade)"></i><h3 data-ar="سند خصم" data-en="Discount Voucher">سند خصم</h3><small>4 / 64</small></div>
+        <ul>
+          <li data-ar="خصم مكتسب" data-en="Earned">خصم مكتسب<span>Earned</span></li>
+          <li data-ar="خصم مسموح" data-en="Allowed">خصم مسموح<span>Allowed</span></li>
+          <li data-ar="خصم كمية" data-en="Volume">خصم كمية<span>Volume</span></li>
+          <li data-ar="خصم تعجيل" data-en="Early-pay">خصم تعجيل<span>Early-pay</span></li>
+        </ul>
+      </div>
+
+      <div class="vclass">
+        <div class="vh"><i class="dot" style="background:var(--rose)"></i><h3 data-ar="سند مصروف" data-en="Expense Voucher">سند مصروف</h3><small>4 / 64</small></div>
+        <ul>
+          <li data-ar="تشغيلي" data-en="Operating">تشغيلي<span>Operating</span></li>
+          <li data-ar="إداري" data-en="Admin">إداري<span>Admin</span></li>
+          <li data-ar="تسويقي" data-en="Marketing">تسويقي<span>Marketing</span></li>
+          <li data-ar="نثري" data-en="Petty">نثري<span>Petty</span></li>
+        </ul>
+      </div>
+
+      <div class="vclass">
+        <div class="vh"><i class="dot" style="background:var(--jade)"></i><h3 data-ar="سند إيراد" data-en="Revenue Voucher">سند إيراد</h3><small>4 / 64</small></div>
+        <ul>
+          <li data-ar="مبيعات" data-en="Sales">مبيعات<span>Sales</span></li>
+          <li data-ar="خدمات" data-en="Services">خدمات<span>Services</span></li>
+          <li data-ar="إيجار" data-en="Rent">إيجار<span>Rent</span></li>
+          <li data-ar="متنوّع" data-en="Misc">متنوّع<span>Misc</span></li>
+        </ul>
+      </div>
+
+      <div class="vclass">
+        <div class="vh"><i class="dot" style="background:var(--brass)"></i><h3 data-ar="سند عُهدة" data-en="Custody Voucher">سند عُهدة</h3><small>4 / 64</small></div>
+        <ul>
+          <li data-ar="فتح عُهدة" data-en="Open">فتح عُهدة<span>Open</span></li>
+          <li data-ar="تغذية" data-en="Top-up">تغذية<span>Top-up</span></li>
+          <li data-ar="تصفية" data-en="Liquidate">تصفية<span>Liquidate</span></li>
+          <li data-ar="ترحيل" data-en="Carry-over">ترحيل<span>Carry-over</span></li>
+        </ul>
+      </div>
+
+      <div class="vclass">
+        <div class="vh"><i class="dot" style="background:var(--sky)"></i><h3 data-ar="سند سلفة" data-en="Advance Voucher">سند سلفة</h3><small>4 / 64</small></div>
+        <ul>
+          <li data-ar="سلفة موظف" data-en="Employee">سلفة موظف<span>Employee</span></li>
+          <li data-ar="سلفة مورّد" data-en="Vendor">سلفة مورّد<span>Vendor</span></li>
+          <li data-ar="دفعة مقدّمة" data-en="Down-payment">دفعة مقدّمة<span>Down-payment</span></li>
+          <li data-ar="تسوية سلفة" data-en="Settle advance">تسوية سلفة<span>Settle advance</span></li>
+        </ul>
+      </div>
+
+      <div class="vclass">
+        <div class="vh"><i class="dot" style="background:var(--jade)"></i><h3 data-ar="سند رواتب" data-en="Payroll Voucher">سند رواتب</h3><small>4 / 64</small></div>
+        <ul>
+          <li data-ar="راتب أساسي" data-en="Basic">راتب أساسي<span>Basic</span></li>
+          <li data-ar="بدلات" data-en="Allowances">بدلات<span>Allowances</span></li>
+          <li data-ar="استقطاعات" data-en="Deductions">استقطاعات<span>Deductions</span></li>
+          <li data-ar="مكافآت" data-en="Bonuses">مكافآت<span>Bonuses</span></li>
+        </ul>
+      </div>
+
+      <div class="vclass">
+        <div class="vh"><i class="dot" style="background:var(--brass)"></i><h3 data-ar="سند ضريبة" data-en="Tax Voucher">سند ضريبة</h3><small>4 / 64</small></div>
+        <ul>
+          <li data-ar="قيمة مضافة" data-en="VAT">قيمة مضافة<span>VAT</span></li>
+          <li data-ar="مستقطعة" data-en="Withholding">مستقطعة<span>Withholding</span></li>
+          <li data-ar="تسوية ضريبية" data-en="Tax settle">تسوية ضريبية<span>Tax settle</span></li>
+          <li data-ar="إقرار" data-en="Filing">إقرار<span>Filing</span></li>
+        </ul>
+      </div>
+
+      <div class="vclass">
+        <div class="vh"><i class="dot" style="background:var(--sky)"></i><h3 data-ar="سند أصول" data-en="Asset Voucher">سند أصول</h3><small>4 / 64</small></div>
+        <ul>
+          <li data-ar="شراء أصل" data-en="Acquire">شراء أصل<span>Acquire</span></li>
+          <li data-ar="إهلاك" data-en="Depreciation">إهلاك<span>Depreciation</span></li>
+          <li data-ar="استبعاد" data-en="Disposal">استبعاد<span>Disposal</span></li>
+          <li data-ar="إعادة تقييم" data-en="Revaluation">إعادة تقييم<span>Revaluation</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== validation note ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="hub">
+      <a class="hub-card wide" href="generator.html">
+        <span class="num" data-ar="بوّابة التحقّق" data-en="VALIDATION GATE">بوّابة التحقّق</span>
+        <h3 data-ar="لا يُطبع مستند قبل أن تُوازن أرقامه" data-en="No document prints before its numbers balance">لا يُطبع مستند قبل أن تُوازن أرقامه</h3>
+        <p data-ar="كل قالب يمرّ بفحوص: مطابقة المجاميع، صحّة الضريبة، توازن المدين والدائن، واكتمال الحقول الإلزامية. جرّب القواعد حيّةً في المولّد." data-en="Every template runs checks: total reconciliation, VAT correctness, debit/credit balance, and required-field completeness. Try the rules live in the generator.">كل قالب يمرّ بفحوص: مطابقة المجاميع، صحّة الضريبة، توازن المدين والدائن، واكتمال الحقول الإلزامية. جرّب القواعد حيّةً في المولّد.</p>
+        <span class="meta" data-ar="افتح المولّد الحي ←" data-en="Open the live generator →">افتح المولّد الحي ←</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== footer ===== -->
+<footer class="site-footer">
+  <div class="foot-wrap">
+    <span data-ar="Genius PDF Web — موقع تعريفي تُبنى صفحاته مرحلةً بمرحلة." data-en="Genius PDF Web — a showcase site built phase by phase.">Genius PDF Web — موقع تعريفي تُبنى صفحاته مرحلةً بمرحلة.</span>
+    <nav class="foot-nav">
+      <a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+      <a href="components.html" data-ar="المكوّنات" data-en="Components">المكوّنات</a>
+      <a href="tools.html" data-ar="الأدوات" data-en="Tools">الأدوات</a>
+      <a href="architecture.html" data-ar="البنية" data-en="Architecture">البنية</a>
+      <a href="generator.html" data-ar="المولّد" data-en="Generator">المولّد</a>
+    </nav>
+    <span class="mono">React · TypeScript · @react-pdf · pdf-lib</span>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

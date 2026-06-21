@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>البنية — Genius PDF Web</title>
+<meta name="description" content="واجهة API انسيابية، تأسيس بـ design tokens و i18n، معمارية نظيفة بطبقات domain/data/infrastructure/presentation، خريطة MVC، ونظام إضافات وذكاء اصطناعي.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body dir="rtl">
+
+<!-- ===== shared navigation ===== -->
+<header class="site-nav">
+  <div class="nav-wrap">
+    <a class="site-brand" href="index.html">
+      <span class="site-logo">G</span>
+      <span class="brand-text">Genius PDF<small data-ar="مكتبة توليد المستندات لـ React" data-en="Document library for React">مكتبة توليد المستندات لـ React</small></span>
+    </a>
+    <nav class="nav-links" aria-label="الأقسام">
+      <a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+      <a href="components.html" data-ar="المكوّنات" data-en="Components">المكوّنات</a>
+      <a href="templates.html" data-ar="القوالب" data-en="Templates">القوالب</a>
+      <a href="tools.html" data-ar="الأدوات" data-en="Tools">الأدوات</a>
+      <a href="architecture.html" data-ar="البنية" data-en="Architecture">البنية</a>
+      <a href="generator.html" class="nav-cta" data-ar="المولّد الحي" data-en="Live generator">المولّد الحي</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <div class="seg" role="group" aria-label="language">
+          <button id="ar" aria-pressed="true">العربية</button>
+          <button id="en" aria-pressed="false">English</button>
+        </div>
+      </div>
+      <button class="nav-burger" aria-label="القائمة" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== page hero ===== -->
+<section class="page-hero">
+  <div class="wrap">
+    <p class="crumbs"><a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a><span class="sep">/</span><span data-ar="البنية" data-en="Architecture">البنية</span><span class="sep">·</span><span data-ar="المراحل 0 · 1 · 8" data-en="Phases 0 · 1 · 8">المراحل 0 · 1 · 8</span></p>
+    <h1 data-ar="الهيكل الذي يحمل كلّ ما سبق" data-en="The structure that holds it all up">الهيكل الذي يحمل كلّ ما سبق</h1>
+    <p class="lede" data-ar="من واجهة API الانسيابية التي تبني المستند، إلى التأسيس بـ design tokens و i18n، إلى معمارية نظيفة تفصل المنطق عن العرض، إلى طبقة التوسّع والذكاء. هذه عظام المكتبة." data-en="From the fluent API that builds the document, to the foundation of design tokens and i18n, to a clean architecture that separates logic from view, to the extensibility and intelligence layer. These are the library's bones.">من واجهة API الانسيابية التي تبني المستند، إلى التأسيس بـ design tokens و i18n، إلى معمارية نظيفة تفصل المنطق عن العرض، إلى طبقة التوسّع والذكاء. هذه عظام المكتبة.</p>
+  </div>
+</section>
+
+<!-- ===== PHASE 1 · fluent engine ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="k">PHASE 1 · ENGINE</p>
+        <h2 class="h" data-ar="واجهة انسيابية تبني المستند" data-en="A fluent API that builds the document">واجهة انسيابية تبني المستند</h2>
+        <p data-ar="نفس الاستدعاءات تتقدّم بالموضع تلقائياً، وتُنشئ صفحات جديدة عند الحاجة، وتطبع باللغتين — والتحقّق يسبق التوليد دائماً." data-en="The same calls advance the cursor automatically, spawn new pages when needed, and print in both languages — and validation always precedes generation.">نفس الاستدعاءات تتقدّم بالموضع تلقائياً، وتُنشئ صفحات جديدة عند الحاجة، وتطبع باللغتين — والتحقّق يسبق التوليد دائماً.</p>
+      </div>
+    </div>
+
+    <div class="engine-grid">
+      <div class="codeblock">
+        <div class="top">
+          <span class="dot" style="background:#e0654f"></span>
+          <span class="dot" style="background:#e3b765"></span>
+          <span class="dot" style="background:#46BEAE"></span>
+          <span class="mono">invoice.builder.ts</span>
+        </div>
+<pre><span class="t-key">const</span> <span class="t-var">doc</span> = <span class="t-key">new</span> <span class="t-fn">GeniusPdfBuilder</span>({ <span class="t-var">dir</span>: <span class="t-str">'rtl'</span>, <span class="t-var">locale</span>: <span class="t-str">'ar'</span> });
+
+<span class="t-var">doc</span>
+  .<span class="t-fn">addReportHeader</span>({ <span class="t-var">company</span>, <span class="t-var">vat</span>, <span class="t-var">logo</span> })
+  .<span class="t-fn">addInfoBox</span>({ <span class="t-var">label</span>: <span class="t-str">'العميل'</span>, <span class="t-var">value</span>: <span class="t-var">client</span> })
+  .<span class="t-fn">addGrid</span>(<span class="t-var">items</span>, {
+    <span class="t-var">preset</span>: <span class="t-str">'elegant'</span>,
+    <span class="t-var">totals</span>: [<span class="t-str">'sum'</span>],          <span class="t-com">// صف مجموع تلقائي</span>
+  })
+  .<span class="t-fn">addSummary</span>({ <span class="t-var">vat</span>: <span class="t-num">0.15</span>, <span class="t-var">discount</span>: <span class="t-num">0.05</span> })
+  .<span class="t-fn">addQRCode</span>(<span class="t-fn">zatca</span>(<span class="t-var">invoice</span>), { <span class="t-var">align</span>: <span class="t-str">'start'</span> });
+
+<span class="t-com">// التحقّق المالي يسبق التوليد دائماً</span>
+<span class="t-key">await</span> <span class="t-var">doc</span>.<span class="t-fn">validate</span>().<span class="t-fn">then</span>(<span class="t-var">d</span> =&gt; <span class="t-var">d</span>.<span class="t-fn">save</span>());</pre>
+      </div>
+
+      <div class="out">
+        <div class="obadge mono" data-ar="← الناتج المُولّد" data-en="RENDERED OUTPUT →">← الناتج المُولّد</div>
+        <div class="ohead" data-ar="مؤسسة جينيَس لينك · فاتورة ضريبية" data-en="Genius Link Est. · Tax Invoice">مؤسسة جينيَس لينك · فاتورة ضريبية</div>
+        <div class="ibox" style="border:1px solid var(--paper-line);border-radius:5px;padding:8px 9px">
+          <h4 style="margin:0 0 4px;font-size:9px;color:var(--brass);font-family:var(--font-mono)" data-ar="العميل / Bill to" data-en="Bill to / العميل">العميل / Bill to</h4>
+          <p style="margin:0;font-size:11px" data-ar="شركة الواحة للتجارة" data-en="Al-Waha Trading Co.">شركة الواحة للتجارة</p>
+        </div>
+        <table class="demo elegant" style="font-size:10.5px">
+          <thead><tr><th data-ar="الصنف" data-en="Item">الصنف</th><th class="n" data-ar="كمية" data-en="Qty">كمية</th><th class="n" data-ar="الإجمالي" data-en="Total">الإجمالي</th></tr></thead>
+          <tbody>
+            <tr><td data-ar="تطوير React" data-en="React dev">تطوير React</td><td class="n">1</td><td class="n">8,000</td></tr>
+            <tr><td data-ar="ترخيص" data-en="License">ترخيص</td><td class="n">2</td><td class="n">3,000</td></tr>
+          </tbody>
+          <tfoot><tr><td data-ar="الإجمالي" data-en="Total">الإجمالي</td><td class="n">3</td><td class="n">11,000</td></tr></tfoot>
+        </table>
+        <div class="totals" style="width:100%;margin-top:2px">
+          <div class="grand" style="font-size:11px"><span data-ar="الإجمالي المستحق (شامل الضريبة)" data-en="Total due (incl. VAT)">الإجمالي المستحق (شامل الضريبة)</span><span class="v">12,007.50</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chips" style="margin-top:18px">
+      <span class="chip" data-ar="ترقيم صفحات تلقائي" data-en="Automatic pagination">ترقيم صفحات تلقائي</span>
+      <span class="chip" data-ar="مؤشّر موضع متقدّم" data-en="Advancing cursor">مؤشّر موضع متقدّم</span>
+      <span class="chip" data-ar="فاصل صفحات ذكي" data-en="Smart page-break">فاصل صفحات ذكي</span>
+      <span class="chip" data-ar="رأس/تذييل متكرّر" data-en="Repeating header/footer">رأس/تذييل متكرّر</span>
+      <span class="chip" data-ar="معاينة حيّة" data-en="Live preview">معاينة حيّة</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PHASE 0 · foundation ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="k">PHASE 0 · FOUNDATION</p>
+        <h2 class="h" data-ar="التأسيس قبل أيّ مكوّن" data-en="The foundation before any component">التأسيس قبل أيّ مكوّن</h2>
+        <p data-ar="رموز تصميم موحّدة، طبقة i18n بلا نصوص ثابتة، هيكل تطبيق، ومعرض مكوّنات حيّ — كلّها أُرسيت في المرحلة صفر." data-en="Unified design tokens, an i18n layer with no hard-coded strings, an app shell, and a live component gallery — all laid down in Phase 0.">رموز تصميم موحّدة، طبقة i18n بلا نصوص ثابتة، هيكل تطبيق، ومعرض مكوّنات حيّ — كلّها أُرسيت في المرحلة صفر.</p>
+      </div>
+    </div>
+
+    <div class="gal">
+      <div class="card span6">
+        <div>
+          <p class="tag"><b>design-tokens</b> · colors · spacing · type</p>
+          <h3 data-ar="رموز التصميم" data-en="Design tokens">رموز التصميم</h3>
+        </div>
+        <div class="chips">
+          <span class="chip" style="background:#14313A;color:#fff;border-color:#14313A">--ink</span>
+          <span class="chip" style="background:#46BEAE;color:#06181d;border-color:#46BEAE">--teal</span>
+          <span class="chip" style="background:#FAF7EF;color:#14313A;border-color:#e7dfcd">--paper</span>
+          <span class="chip" style="background:#A6792E;color:#fff;border-color:#A6792E">--brass</span>
+          <span class="chip" style="background:#1C6B4E;color:#fff;border-color:#1C6B4E">--jade</span>
+          <span class="chip" style="background:#B0432D;color:#fff;border-color:#B0432D">--rose</span>
+        </div>
+        <p class="desc" data-ar="مصدر واحد للحقيقة للألوان والمسافات والخطوط — تلتزم به كل الصفحات والقوالب بلا قيم صلبة." data-en="A single source of truth for colors, spacing and type — every page and template obeys it with no hard-coded values.">مصدر واحد للحقيقة للألوان والمسافات والخطوط — تلتزم به كل الصفحات والقوالب بلا قيم صلبة.</p>
+      </div>
+
+      <div class="card span6">
+        <div>
+          <p class="tag"><b>i18n</b> · AR / EN · RTL ↔ LTR</p>
+          <h3 data-ar="طبقة التدويل" data-en="The i18n layer">طبقة التدويل</h3>
+        </div>
+        <div class="mini" style="font-family:var(--font-mono);font-size:11px">
+          <div style="color:var(--ink-2)">t(<span style="color:var(--jade)">'invoice.total'</span>)</div>
+          <div style="margin-top:6px;display:flex;justify-content:space-between"><span>ar →</span><b style="font-family:var(--font-display)">الإجمالي المستحق</b></div>
+          <div style="display:flex;justify-content:space-between"><span>en →</span><b>Total due</b></div>
+        </div>
+        <p class="desc" data-ar="لا نصّ ثابت داخل أيّ مكوّن — كلّ سلسلة تمرّ بـ i18n، والاتجاه يُشتقّ من اللغة فيقلب الواجهة والمستند معاً." data-en="No hard-coded string inside any component — every string flows through i18n, and direction is derived from locale, flipping UI and document together.">لا نصّ ثابت داخل أيّ مكوّن — كلّ سلسلة تمرّ بـ i18n، والاتجاه يُشتقّ من اللغة فيقلب الواجهة والمستند معاً.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Clean Architecture ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="k">CLEAN ARCHITECTURE · MVC-ON-REACT</p>
+        <h2 class="h" data-ar="طبقات يتّجه اعتمادها للداخل" data-en="Layers whose dependencies point inward">طبقات يتّجه اعتمادها للداخل</h2>
+        <p data-ar="الـ View بلا منطق، والـ Controller (hooks + use cases) يحمل المنطق، والـ Model في الـ domain. الاعتماد يسير من الخارج نحو القلب فقط." data-en="The View has no logic, the Controller (hooks + use cases) holds the logic, and the Model lives in the domain. Dependencies flow from the outside toward the core only.">الـ View بلا منطق، والـ Controller (hooks + use cases) يحمل المنطق، والـ Model في الـ domain. الاعتماد يسير من الخارج نحو القلب فقط.</p>
+      </div>
+    </div>
+
+    <div class="layers">
+      <div class="layer">
+        <div class="lname"><i style="background:var(--brass-soft)"></i>domain</div>
+        <div class="ldesc" data-ar="<b>قلب المكتبة</b> — كيانات، عقود مستودعات، و use cases قابلة للاختبار باستقلال عن React." data-en="<b>The core</b> — entities, repository contracts, and use cases testable independently of React.">قلب المكتبة — كيانات، عقود مستودعات، و use cases قابلة للاختبار باستقلال عن React.</div>
+        <div class="l-mvc">Model + Logic</div>
+      </div>
+      <div class="layer">
+        <div class="lname"><i style="background:var(--sky)"></i>data</div>
+        <div class="ldesc" data-ar="<b>تنفيذ المستودعات</b> — مصادر بيانات ومحوّلات (mappers) تُترجم بين الخارج والـ domain." data-en="<b>Repository implementations</b> — datasources and mappers translating between the outside and the domain.">تنفيذ المستودعات — مصادر بيانات ومحوّلات تُترجم بين الخارج والـ domain.</div>
+        <div class="l-mvc">Data access</div>
+      </div>
+      <div class="layer">
+        <div class="lname"><i style="background:var(--amber)"></i>infrastructure</div>
+        <div class="ldesc" data-ar="<b>محوّلات خارجية</b> — محرّك الـ PDF، التصدير، التخزين، الطباعة، المشاركة، والباركود." data-en="<b>External adapters</b> — the PDF engine, export, storage, print, share, and barcode.">محوّلات خارجية — محرّك الـ PDF، التصدير، التخزين، الطباعة، المشاركة، والباركود.</div>
+        <div class="l-mvc">Adapters</div>
+      </div>
+      <div class="layer">
+        <div class="lname"><i style="background:var(--teal)"></i>presentation</div>
+        <div class="ldesc" data-ar="<b>View + Controller</b> — مكوّنات وشاشات، و hooks/viewmodels تربط الـ use cases بالعرض." data-en="<b>View + Controller</b> — components and pages, with hooks/viewmodels wiring use cases to the view.">View + Controller — مكوّنات وشاشات، و hooks/viewmodels تربط الـ use cases بالعرض.</div>
+        <div class="l-mvc">View + Controller</div>
+      </div>
+      <div class="layer">
+        <div class="lname"><i style="background:var(--jade)"></i>templates</div>
+        <div class="ldesc" data-ar="<b>قوالب جاهزة</b> — reports / financial / sales / hr / vouchers، مبنيّة من المكوّنات." data-en="<b>Ready templates</b> — reports / financial / sales / hr / vouchers, assembled from components.">قوالب جاهزة — reports / financial / sales / hr / vouchers، مبنيّة من المكوّنات.</div>
+        <div class="l-mvc">Composition</div>
+      </div>
+    </div>
+
+    <div class="gal" style="margin-top:20px">
+      <div class="card span12">
+        <div>
+          <p class="tag"><b data-ar="هيكل المجلدات" data-en="Folder structure">هيكل المجلدات</b> · src/</p>
+          <h3 data-ar="الخريطة على القرص" data-en="The map on disk">الخريطة على القرص</h3>
+        </div>
+        <div class="tree"><span class="root">src/</span>
+  <span class="dir">core/</span>            <span class="cm"># config · constants · utils · i18n · design-tokens · types</span>
+  <span class="dir">domain/</span>          <span class="cm"># entities · repositories(interfaces) · usecases  ← Model + logic</span>
+  <span class="dir">data/</span>            <span class="cm"># repositories(impl) · datasources · mappers</span>
+  <span class="dir">infrastructure/</span>  <span class="cm"># pdf-engine · export · storage · print · share · barcode</span>
+  <span class="dir">presentation/</span>    <span class="cm"># View + Controller</span>
+    <span class="dir">components/</span>     <span class="cm"># common/ + pdf/  (reusable)</span>
+    <span class="dir">pages/</span>          <span class="cm"># screens</span>
+    <span class="dir">hooks/</span>          <span class="cm"># controllers (bind use cases to View)</span>
+    <span class="dir">viewmodels/</span>     <span class="cm"># map domain data to display</span>
+    <span class="dir">layouts/</span>
+  <span class="dir">templates/</span>       <span class="cm"># reports/ financial/ sales/ hr/ vouchers/</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MVC mapping ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="k">MVC · WHERE EACH PIECE LIVES</p>
+        <h2 class="h" data-ar="أين يسكن كلّ دور" data-en="Where each role lives">أين يسكن كلّ دور</h2>
+      </div>
+    </div>
+    <div class="mvc">
+      <div class="m model">
+        <span class="badge">MODEL</span>
+        <h3 data-ar="domain" data-en="domain">domain</h3>
+        <p data-ar="الكيانات والـ use cases — حيث تعيش قواعد العمل والتحقّق المالي، بمعزل تامّ عن React." data-en="Entities and use cases — where business rules and financial validation live, fully isolated from React.">الكيانات والـ use cases — حيث تعيش قواعد العمل والتحقّق المالي، بمعزل تامّ عن React.</p>
+        <div><code>entities</code> <code>usecases</code> <code>repositories</code></div>
+      </div>
+      <div class="m view">
+        <span class="badge">VIEW</span>
+        <h3 data-ar="presentation/components + pages" data-en="presentation/components + pages">components + pages</h3>
+        <p data-ar="عرض خالص بلا منطق — يستقبل بيانات جاهزة ويرسمها، في الواجهة وفي الـ PDF." data-en="Pure view with no logic — receives ready data and renders it, both in the UI and the PDF.">عرض خالص بلا منطق — يستقبل بيانات جاهزة ويرسمها، في الواجهة وفي الـ PDF.</p>
+        <div><code>common/</code> <code>pdf/</code> <code>layouts/</code></div>
+      </div>
+      <div class="m ctrl">
+        <span class="badge">CONTROLLER</span>
+        <h3 data-ar="hooks + viewmodels" data-en="hooks + viewmodels">hooks + viewmodels</h3>
+        <p data-ar="الوسيط — يستدعي الـ use cases ويحوّل بيانات الـ domain إلى شكل عرض، ثم يغذّي الـ View." data-en="The mediator — calls use cases and maps domain data into display shape, then feeds the View.">الوسيط — يستدعي الـ use cases ويحوّل بيانات الـ domain إلى شكل عرض، ثم يغذّي الـ View.</p>
+        <div><code>hooks/</code> <code>viewmodels/</code></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PHASE 8 · advanced + AI ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="k">PHASE 8 · SCALE &amp; INTELLIGENCE</p>
+        <h2 class="h" data-ar="التوسّع والذكاء" data-en="Scale & intelligence">التوسّع والذكاء</h2>
+        <p data-ar="طبقة اختيارية تُضاف فوق ما سبق: قابلية توسّع بالإضافات والحقن والأحداث، ومساعد ذكيّ يقرأ المستند ويحسّن تخطيطه." data-en="An optional layer added on top: extensibility via plugins, injection and events, plus a smart assistant that reads the document and improves its layout.">طبقة اختيارية تُضاف فوق ما سبق: قابلية توسّع بالإضافات والحقن والأحداث، ومساعد ذكيّ يقرأ المستند ويحسّن تخطيطه.</p>
+      </div>
+    </div>
+
+    <div class="gal">
+      <div class="card span4">
+        <p class="tag" data-ar="بنية متقدّمة" data-en="Advanced architecture">بنية متقدّمة</p>
+        <h3 data-ar="نظام إضافات" data-en="Plugin system">نظام إضافات</h3>
+        <p class="desc" data-ar="عقد واجهة واضح يسمح بإضافة قدرات جديدة دون لمس النواة." data-en="A clear interface contract that adds new capabilities without touching the core.">عقد واجهة واضح يسمح بإضافة قدرات جديدة دون لمس النواة.</p>
+      </div>
+      <div class="card span4">
+        <p class="tag" data-ar="بنية متقدّمة" data-en="Advanced architecture">بنية متقدّمة</p>
+        <h3 data-ar="حقن التبعيات (DI)" data-en="Dependency injection">حقن التبعيات (DI)</h3>
+        <p class="desc" data-ar="حاوية بسيطة تدير الخدمات وتفكّ الارتباط بين الطبقات." data-en="A simple container that manages services and decouples the layers.">حاوية بسيطة تدير الخدمات وتفكّ الارتباط بين الطبقات.</p>
+      </div>
+      <div class="card span4">
+        <p class="tag" data-ar="بنية متقدّمة" data-en="Advanced architecture">بنية متقدّمة</p>
+        <h3 data-ar="نظام أحداث" data-en="Event-driven">نظام أحداث</h3>
+        <p class="desc" data-ar="دورة حياة المستند عبر أحداث: onBuild · onRender · onExport." data-en="The document lifecycle through events: onBuild · onRender · onExport.">دورة حياة المستند عبر أحداث: <span class="mono">onBuild · onRender · onExport</span>.</p>
+      </div>
+      <div class="card span4">
+        <p class="tag" data-ar="بنية متقدّمة" data-en="Advanced architecture">بنية متقدّمة</p>
+        <h3 data-ar="تخزين مؤقّت ذكي" data-en="Smart caching">تخزين مؤقّت ذكي</h3>
+        <p class="desc" data-ar="استراتيجيات تخزين متعددة تسرّع إعادة التوليد والمعاينة." data-en="Multiple caching strategies that speed up re-render and preview.">استراتيجيات تخزين متعددة تسرّع إعادة التوليد والمعاينة.</p>
+      </div>
+      <div class="card span4">
+        <p class="tag" data-ar="بنية متقدّمة" data-en="Advanced architecture">بنية متقدّمة</p>
+        <h3 data-ar="نظام تسجيل" data-en="Structured logger">نظام تسجيل</h3>
+        <p class="desc" data-ar="مستويات، تتبّع مصدر، ومؤقّتات لقياس كل خطوة." data-en="Levels, source tracing, and timers to measure every step.">مستويات، تتبّع مصدر، ومؤقّتات لقياس كل خطوة.</p>
+      </div>
+      <div class="card span4" style="background:linear-gradient(120deg,#0e2a33,#0c2128)">
+        <p class="tag" data-ar="التسليم" data-en="Delivery">التسليم</p>
+        <h3 data-ar="لوحتان جانبيّتان" data-en="Two side panels">لوحتان جانبيّتان</h3>
+        <p class="desc" data-ar="لوحة «إعدادات متقدّمة» + لوحة «مساعد ذكيّ» تظهران عند الطلب." data-en="An 'Advanced settings' panel + a 'Smart assistant' panel, surfaced on demand.">لوحة «إعدادات متقدّمة» + لوحة «مساعد ذكيّ» تظهران عند الطلب.</p>
+      </div>
+    </div>
+
+    <div class="gal" style="margin-top:18px">
+      <div class="card span3">
+        <div class="ai-ic">🧠</div>
+        <h3 data-ar="محلّل محتوى" data-en="Content analyzer">محلّل محتوى</h3>
+        <p class="desc" data-ar="استخراج نصّ، كشف نوع المستند، وإيجاد كلمات مفتاحية." data-en="Text extraction, document-type detection, and keyword finding.">استخراج نصّ، كشف نوع المستند، وإيجاد كلمات مفتاحية.</p>
+      </div>
+      <div class="card span3">
+        <div class="ai-ic">📐</div>
+        <h3 data-ar="تخطيط ذكي" data-en="Smart layout">تخطيط ذكي</h3>
+        <p class="desc" data-ar="تحسين حجم الخطّ والهوامش تلقائياً وفق المحتوى." data-en="Auto-tuning font size and margins to fit the content.">تحسين حجم الخطّ والهوامش تلقائياً وفق المحتوى.</p>
+      </div>
+      <div class="card span3">
+        <div class="ai-ic">✦</div>
+        <h3 data-ar="خدمات نصّية" data-en="Text services">خدمات نصّية</h3>
+        <p class="desc" data-ar="تلخيص، كشف لغة، وتوليد عنوان مناسب." data-en="Summarization, language detection, and title generation.">تلخيص، كشف لغة، وتوليد عنوان مناسب.</p>
+      </div>
+      <div class="card span3">
+        <div class="ai-ic">🖼</div>
+        <h3 data-ar="محسّن صور" data-en="Image optimizer">محسّن صور</h3>
+        <p class="desc" data-ar="تحليل الصور وضغطها وتحسينها قبل الإدراج." data-en="Analyzing, compressing and improving images before embedding.">تحليل الصور وضغطها وتحسينها قبل الإدراج.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== final checklist ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="k">✓ FINAL CHECKLIST</p>
+        <h2 class="h" data-ar="قائمة التحقّق الختامية" data-en="The final checklist">قائمة التحقّق الختامية</h2>
+        <p data-ar="المعايير التي يُراجَع بها المشروع كاملاً بعد آخر مرحلة." data-en="The criteria the whole project is reviewed against after the last phase.">المعايير التي يُراجَع بها المشروع كاملاً بعد آخر مرحلة.</p>
+      </div>
+    </div>
+    <div class="checklist">
+      <div class="check"><span class="cb">✓</span><span data-ar="فصل صارم: View بلا منطق، Controller (hooks/usecases) يحمل المنطق، Model في domain." data-en="Strict separation: View has no logic, Controller (hooks/usecases) holds it, Model in domain.">فصل صارم: View بلا منطق، Controller (hooks/usecases) يحمل المنطق، Model في domain.</span></div>
+      <div class="check"><span class="cb">✓</span><span data-ar="اتجاه الاعتماد للداخل فقط (presentation → domain، لا العكس)." data-en="Dependencies point inward only (presentation → domain, never the reverse).">اتجاه الاعتماد للداخل فقط (presentation → domain، لا العكس).</span></div>
+      <div class="check"><span class="cb">✓</span><span data-ar="كل مكوّن PDF قابل لإعادة الاستخدام وموجود في المعرض بمثالي AR/EN." data-en="Every PDF component is reusable and present in the gallery with AR/EN examples.">كل مكوّن PDF قابل لإعادة الاستخدام وموجود في المعرض بمثالي AR/EN.</span></div>
+      <div class="check"><span class="cb">✓</span><span data-ar="لا نصوص ثابتة؛ كلها عبر i18n." data-en="No hard-coded strings; everything through i18n.">لا نصوص ثابتة؛ كلها عبر i18n.</span></div>
+      <div class="check"><span class="cb">✓</span><span data-ar="RTL/LTR يعمل في كل الشاشات والقوالب." data-en="RTL/LTR works across all screens and templates.">RTL/LTR يعمل في كل الشاشات والقوالب.</span></div>
+      <div class="check"><span class="cb">✓</span><span data-ar="التزام design tokens بلا قيم صلبة." data-en="Design tokens are honored with no hard-coded values.">التزام design tokens بلا قيم صلبة.</span></div>
+      <div class="check"><span class="cb">✓</span><span data-ar="التحقّق المالي يمنع التوليد عند وجود خطأ." data-en="Financial validation blocks generation whenever there's an error.">التحقّق المالي يمنع التوليد عند وجود خطأ.</span></div>
+    </div>
+
+    <div class="hub" style="margin-top:24px">
+      <a class="hub-card wide" href="generator.html">
+        <span class="num" data-ar="جاهز للتجربة" data-en="READY TO TRY">جاهز للتجربة</span>
+        <h3 data-ar="شاهد البنية كلّها تعمل في المولّد الحي" data-en="See the whole architecture run in the live generator">شاهد البنية كلّها تعمل في المولّد الحي</h3>
+        <p data-ar="المولّد يطبّق هذه الطبقات فعلياً: مكوّنات، تحقّق مالي، توليد PDF، ورمز ZATCA — بالعربية والإنجليزية." data-en="The generator actually applies these layers: components, financial validation, PDF generation, and the ZATCA code — in Arabic and English.">المولّد يطبّق هذه الطبقات فعلياً: مكوّنات، تحقّق مالي، توليد PDF، ورمز ZATCA — بالعربية والإنجليزية.</p>
+        <span class="meta" data-ar="افتح المولّد الحي ←" data-en="Open the live generator →">افتح المولّد الحي ←</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== footer ===== -->
+<footer class="site-footer">
+  <div class="foot-wrap">
+    <span data-ar="Genius PDF Web — موقع تعريفي تُبنى صفحاته مرحلةً بمرحلة." data-en="Genius PDF Web — a showcase site built phase by phase.">Genius PDF Web — موقع تعريفي تُبنى صفحاته مرحلةً بمرحلة.</span>
+    <nav class="foot-nav">
+      <a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+      <a href="components.html" data-ar="المكوّنات" data-en="Components">المكوّنات</a>
+      <a href="templates.html" data-ar="القوالب" data-en="Templates">القوالب</a>
+      <a href="tools.html" data-ar="الأدوات" data-en="Tools">الأدوات</a>
+      <a href="generator.html" data-ar="المولّد" data-en="Generator">المولّد</a>
+    </nav>
+    <span class="mono">Clean Architecture · MVC · React · TS</span>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

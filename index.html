@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Genius PDF Web — مكتبة توليد المستندات المالية</title>
+<meta name="description" content="مكتبة React لتوليد المستندات المالية والمحاسبية بصيغة PDF، بدعم عربي أصيل و RTL وتحقّق مالي قبل التوليد.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body dir="rtl">
+
+<!-- ===== shared navigation ===== -->
+<header class="site-nav">
+  <div class="nav-wrap">
+    <a class="site-brand" href="index.html">
+      <span class="site-logo">G</span>
+      <span class="brand-text">Genius PDF<small data-ar="مكتبة توليد المستندات لـ React" data-en="Document library for React">مكتبة توليد المستندات لـ React</small></span>
+    </a>
+    <nav class="nav-links" aria-label="الأقسام">
+      <a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+      <a href="components.html" data-ar="المكوّنات" data-en="Components">المكوّنات</a>
+      <a href="templates.html" data-ar="القوالب" data-en="Templates">القوالب</a>
+      <a href="tools.html" data-ar="الأدوات" data-en="Tools">الأدوات</a>
+      <a href="architecture.html" data-ar="البنية" data-en="Architecture">البنية</a>
+      <a href="generator.html" class="nav-cta" data-ar="المولّد الحي" data-en="Live generator">المولّد الحي</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <div class="seg" role="group" aria-label="language">
+          <button id="ar" aria-pressed="true">العربية</button>
+          <button id="en" aria-pressed="false">English</button>
+        </div>
+      </div>
+      <button class="nav-burger" aria-label="القائمة" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== hero (signature) ===== -->
+<header class="home-hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow" data-ar="مكتبة React + TypeScript" data-en="React + TypeScript library">مكتبة React + TypeScript</p>
+      <h1 data-ar='مستندات مالية تُبنى بالكود،<br>وتُطبع كأنها <span class="accent">خُطّت بِيَد.</span>'
+          data-en='Financial documents built in code,<br>printed like they were <span class="accent">drawn by hand.</span>'>
+        مستندات مالية تُبنى بالكود،<br>وتُطبع كأنها <span class="accent">خُطّت بِيَد.</span>
+      </h1>
+      <p class="lede"
+         data-ar='يولّد <b>Genius PDF Web</b> فواتير ZATCA وكشوف الحسابات والقوائم المالية والسندات من مكوّنات قابلة لإعادة الاستخدام — بدعم عربي أصيل و RTL، وبوّابة تحقّق مالي تمنع التوليد قبل أن تختلّ الأرقام.'
+         data-en='<b>Genius PDF Web</b> generates ZATCA invoices, statements, financial reports and vouchers from reusable components — with first-class Arabic and RTL, and a validation gate that blocks generation before the numbers break.'>
+        يولّد <b>Genius PDF Web</b> فواتير ZATCA وكشوف الحسابات والقوائم المالية والسندات من مكوّنات قابلة لإعادة الاستخدام — بدعم عربي أصيل و RTL، وبوّابة تحقّق مالي تمنع التوليد قبل أن تختلّ الأرقام.
+      </p>
+      <div class="cta-row">
+        <a class="btn primary" href="generator.html" data-ar="جرّب المولّد الحي" data-en="Try the live generator">جرّب المولّد الحي</a>
+        <a class="btn ghost" href="components.html" data-ar="استكشف المكوّنات" data-en="Explore components">استكشف المكوّنات</a>
+      </div>
+      <p class="note" data-ar="بدّل اللغة من الأعلى لترى الواجهة والمستند ينقلبان بين RTL و LTR." data-en="Switch language above to watch the UI and document flip between RTL and LTR.">بدّل اللغة من الأعلى لترى الواجهة والمستند ينقلبان بين RTL و LTR.</p>
+    </div>
+
+    <!-- rendered tax invoice -->
+    <div class="stage">
+      <div class="sheet">
+        <div class="wm"><span data-ar="نسخة أصلية" data-en="ORIGINAL">نسخة أصلية</span></div>
+        <div class="doc">
+          <div class="doc-head">
+            <div class="doc-co">مؤسسة جينيَس لينك<small>Genius Link Tech Solutions</small></div>
+            <div class="seal" data-ar="ختم<br>معتمد" data-en="Certified<br>Seal">ختم<br>معتمد</div>
+            <div class="doc-meta">
+              VAT <b>3100&nbsp;4567&nbsp;800003</b><br>
+              CR&nbsp;&nbsp; <b>1010&nbsp;845&nbsp;221</b><br>
+              <span data-ar="الرياض، السعودية" data-en="Riyadh, KSA">الرياض، السعودية</span>
+            </div>
+          </div>
+          <div class="doc-title">
+            <h3 data-ar="فاتورة ضريبية" data-en="Tax Invoice">فاتورة ضريبية</h3>
+            <span class="en">Tax Invoice · INV-2026-0418</span>
+          </div>
+          <div class="two">
+            <div class="ibox">
+              <h4 data-ar="العميل / Bill to" data-en="Bill to">العميل / Bill to</h4>
+              <p>شركة الواحة للتجارة<br><span>Al-Waha Trading Co.</span></p>
+            </div>
+            <div class="ibox">
+              <h4 data-ar="التاريخ / Date" data-en="Date">التاريخ / Date</h4>
+              <p>2026-06-12<br><span data-ar="طريقة الدفع: تحويل بنكي" data-en="Method: bank transfer">طريقة الدفع: تحويل بنكي</span></p>
+            </div>
+          </div>
+          <table class="grid">
+            <thead>
+              <tr>
+                <th data-ar="البند / Item" data-en="Item">البند / Item</th>
+                <th class="num" data-ar="كمية" data-en="Qty">كمية</th>
+                <th class="num" data-ar="السعر" data-en="Price">السعر</th>
+                <th class="num" data-ar="الإجمالي" data-en="Total">الإجمالي</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td data-ar="تطوير واجهة React" data-en="React UI build">تطوير واجهة React</td><td class="num">1</td><td class="num">8,000.00</td><td class="num">8,000.00</td></tr>
+              <tr><td data-ar="ترخيص سنوي للمكتبة" data-en="Annual license">ترخيص سنوي للمكتبة</td><td class="num">2</td><td class="num">1,500.00</td><td class="num">3,000.00</td></tr>
+              <tr><td data-ar="دعم فني وصيانة" data-en="Support & maintenance">دعم فني وصيانة</td><td class="num">6</td><td class="num">450.00</td><td class="num">2,700.00</td></tr>
+            </tbody>
+          </table>
+          <div class="totals">
+            <div class="row"><span data-ar="المجموع الفرعي" data-en="Subtotal">المجموع الفرعي</span><span class="v">13,700.00</span></div>
+            <div class="row disc"><span data-ar="الخصم (5%)" data-en="Discount (5%)">الخصم (5%)</span><span class="v">−685.00</span></div>
+            <div class="row"><span data-ar="ضريبة القيمة المضافة 15%" data-en="VAT 15%">ضريبة القيمة المضافة 15%</span><span class="v">1,952.25</span></div>
+            <div class="grand"><span data-ar="الإجمالي المستحق" data-en="Amount Due">الإجمالي المستحق</span><span class="v">14,967.25</span></div>
+          </div>
+          <div class="doc-foot">
+            <div class="qr"><svg viewBox="0 0 23 23" data-qr shape-rendering="crispEdges"></svg></div>
+            <div class="foot-txt">
+              <span data-ar="رمز الاستجابة وفق هيئة الزكاة والضريبة (ZATCA)" data-en="ZATCA-compliant QR code">رمز الاستجابة وفق هيئة الزكاة والضريبة (ZATCA)</span><br>
+              <span data-ar="العملة: SAR · صفحة 1 من 1" data-en="Currency: SAR · page 1 of 1">العملة: SAR · صفحة 1 من 1</span><br>
+              <span class="validchip" data-ar="تحقّق مالي ناجح" data-en="Validation passed">تحقّق مالي ناجح</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== features ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="k" data-ar="لماذا المكتبة" data-en="Why this library">لماذا المكتبة</p>
+        <h2 class="h" data-ar="أربعة مبادئ تحكم كل صفحة" data-en="Four principles behind every page">أربعة مبادئ تحكم كل صفحة</h2>
+      </div>
+    </div>
+    <div class="features">
+      <div class="feature">
+        <div class="fi">ع</div>
+        <h3 data-ar="عربي أصيل أولاً" data-en="Arabic-first">عربي أصيل أولاً</h3>
+        <p data-ar="اتجاه ديناميكي، خطوط عربية مدمجة، أرقام وتفقيط — لا ترجمة لاحقة بل تصميم ثنائي اللغة من الجذر." data-en="Dynamic direction, embedded Arabic fonts, numerals and amount-in-words — bilingual from the root, not a bolt-on.">اتجاه ديناميكي، خطوط عربية مدمجة، أرقام وتفقيط — لا ترجمة لاحقة بل تصميم ثنائي اللغة من الجذر.</p>
+      </div>
+      <div class="feature">
+        <div class="fi">✓</div>
+        <h3 data-ar="تحقّق قبل التوليد" data-en="Validate before render">تحقّق قبل التوليد</h3>
+        <p data-ar="تُفحص المجاميع والضريبة بعد الخصم وتوازن المعادلة المحاسبية أولاً — وحساب بأعداد صحيحة آمنة." data-en="Totals, post-discount VAT and the accounting equation are checked first — with IEEE-754-safe integer math.">تُفحص المجاميع والضريبة بعد الخصم وتوازن المعادلة المحاسبية أولاً — وحساب بأعداد صحيحة آمنة.</p>
+      </div>
+      <div class="feature">
+        <div class="fi">▦</div>
+        <h3 data-ar="مكوّنات تُعاد" data-en="Reusable parts">مكوّنات تُعاد</h3>
+        <p data-ar="كل قالب يُركَّب من قطع صغيرة: جداول، صناديق معلومات، نص منسّق، رؤوس تقارير — لكلٍّ معاينة ونسخة PDF." data-en="Every template is assembled from small pieces — grids, info boxes, rich text, report headers — each with a preview and a PDF version.">كل قالب يُركَّب من قطع صغيرة: جداول، صناديق معلومات، نص منسّق، رؤوس تقارير — لكلٍّ معاينة ونسخة PDF.</p>
+      </div>
+      <div class="feature">
+        <div class="fi">⤓</div>
+        <h3 data-ar="مخرجات متعددة" data-en="Many outputs">مخرجات متعددة</h3>
+        <p data-ar="PDF و PDF/A و PNG و JPEG و HTML ونص — مع باركود وعلامات مائية وتشفير وتوقيع رقمي." data-en="PDF, PDF/A, PNG, JPEG, HTML and text — plus barcodes, watermarks, encryption and digital signing.">PDF و PDF/A و PNG و JPEG و HTML ونص — مع باركود وعلامات مائية وتشفير وتوقيع رقمي.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== hub: links to every page ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="k" data-ar="جولة في الموقع" data-en="Tour the site">جولة في الموقع</p>
+        <h2 class="h" data-ar="ابدأ من حيث تريد" data-en="Start wherever you like">ابدأ من حيث تريد</h2>
+        <p data-ar="الموقع مقسّم على صفحات متخصّصة — كلٌّ منها تغطّي مرحلة أو أكثر من خارطة بناء المكتبة." data-en="The site is split into focused pages — each covering one or more phases of the library's roadmap.">الموقع مقسّم على صفحات متخصّصة — كلٌّ منها تغطّي مرحلة أو أكثر من خارطة بناء المكتبة.</p>
+      </div>
+    </div>
+    <div class="hub">
+      <a class="hub-card" href="components.html">
+        <span class="num" data-ar="المرحلة 2" data-en="Phase 2">المرحلة 2</span>
+        <h3 data-ar="معرض المكوّنات" data-en="Component library">معرض المكوّنات</h3>
+        <p data-ar="جداول البيانات، النص المنسّق، صناديق المعلومات، رؤوس التقارير، الملخّصات والفواصل — بحالاتها وأنماطها." data-en="Data grids, rich text, info boxes, report headers, summaries and dividers — with all their states and styles.">جداول البيانات، النص المنسّق، صناديق المعلومات، رؤوس التقارير، الملخّصات والفواصل — بحالاتها وأنماطها.</p>
+        <span class="meta">DataGrid · RichText · InfoBox · ReportHeader</span>
+      </a>
+      <a class="hub-card" href="templates.html">
+        <span class="num" data-ar="المرحلتان 3 و4" data-en="Phases 3 & 4">المرحلتان 3 و4</span>
+        <h3 data-ar="القوالب والسندات" data-en="Templates & vouchers">القوالب والسندات</h3>
+        <p data-ar="فواتير وقوائم مالية وكشوف ومبيعات وموارد بشرية — و16 فئة سندات (64 نوعاً فرعياً)." data-en="Invoices, financial statements, statements, sales and HR — plus 16 voucher classes (64 subtypes).">فواتير وقوائم مالية وكشوف ومبيعات وموارد بشرية — و16 فئة سندات (64 نوعاً فرعياً).</p>
+        <span class="meta" data-ar="مالية · مبيعات · موارد بشرية · سندات" data-en="Financial · Sales · HR · Vouchers">مالية · مبيعات · موارد بشرية · سندات</span>
+      </a>
+      <a class="hub-card" href="tools.html">
+        <span class="num" data-ar="المراحل 5–7" data-en="Phases 5–7">المراحل 5–7</span>
+        <h3 data-ar="الأدوات والحماية" data-en="Tools & security">الأدوات والحماية</h3>
+        <p data-ar="باركود ورموز استجابة، علامات مائية، تشفير وتوقيع، تصدير متعدّد، طباعة، ومعالجة ملفات PDF قائمة." data-en="Barcodes and QR, watermarks, encryption and signing, multi-export, print, and operations on existing PDFs.">باركود ورموز استجابة، علامات مائية، تشفير وتوقيع، تصدير متعدّد، طباعة، ومعالجة ملفات PDF قائمة.</p>
+        <span class="meta">QR · Watermark · Encrypt · Merge/Split</span>
+      </a>
+      <a class="hub-card" href="architecture.html">
+        <span class="num" data-ar="المراحل 0 · 1 · 8" data-en="Phases 0 · 1 · 8">المراحل 0 · 1 · 8</span>
+        <h3 data-ar="المحرّك والبنية" data-en="Engine & architecture">المحرّك والبنية</h3>
+        <p data-ar="واجهة Fluent، فاصل صفحات تلقائي، طبقات Clean Architecture، هيكل المجلدات، وطبقة ذكاء اختيارية." data-en="A fluent API, auto page-breaks, Clean-Architecture layers, the folder structure, and an optional intelligence layer.">واجهة Fluent، فاصل صفحات تلقائي، طبقات Clean Architecture، هيكل المجلدات، وطبقة ذكاء اختيارية.</p>
+        <span class="meta">Fluent API · MVC · Clean Architecture · AI</span>
+      </a>
+      <a class="hub-card wide" href="generator.html">
+        <span class="num" data-ar="جرّبها الآن" data-en="Try it now">جرّبها الآن</span>
+        <h3 data-ar="المولّد الحي — أنشئ PDF حقيقياً في متصفّحك" data-en="Live generator — make a real PDF in your browser">المولّد الحي — أنشئ PDF حقيقياً في متصفّحك</h3>
+        <p data-ar="اختر نوع المستند، املأ البيانات، شاهد التحقّق المالي فورياً، ثم نزّل ملف PDF — لا يُرسل شيء إلى أي خادم." data-en="Pick a document type, fill the data, watch validation in real time, then download a PDF — nothing leaves your browser.">اختر نوع المستند، املأ البيانات، شاهد التحقّق المالي فورياً، ثم نزّل ملف PDF — لا يُرسل شيء إلى أي خادم.</p>
+        <span class="meta" data-ar="فاتورة · عرض سعر · كشف حساب · كشف عمليات · سند · قسيمة راتب · قيد" data-en="Invoice · Quotation · Statement · Operations · Voucher · Payslip · Journal">فاتورة · عرض سعر · كشف حساب · كشف عمليات · سند · قسيمة راتب · قيد</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== stats ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><b>16<span class="u">+</span></b><span data-ar="فئة سندات" data-en="voucher classes">فئة سندات</span></div>
+      <div class="stat"><b>64</b><span data-ar="نوعاً فرعياً للسندات" data-en="voucher subtypes">نوعاً فرعياً للسندات</span></div>
+      <div class="stat"><b>9</b><span data-ar="مراحل بناء (0 → 8)" data-en="build phases (0 → 8)">مراحل بناء (0 → 8)</span></div>
+      <div class="stat"><b>2</b><span data-ar="لغتان · RTL و LTR" data-en="languages · RTL & LTR">لغتان · RTL و LTR</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== footer ===== -->
+<footer class="site-footer">
+  <div class="foot-wrap">
+    <span data-ar="Genius PDF Web — موقع تعريفي تُبنى صفحاته مرحلةً بمرحلة." data-en="Genius PDF Web — a showcase site built phase by phase.">Genius PDF Web — موقع تعريفي تُبنى صفحاته مرحلةً بمرحلة.</span>
+    <nav class="foot-nav">
+      <a href="components.html" data-ar="المكوّنات" data-en="Components">المكوّنات</a>
+      <a href="templates.html" data-ar="القوالب" data-en="Templates">القوالب</a>
+      <a href="tools.html" data-ar="الأدوات" data-en="Tools">الأدوات</a>
+      <a href="architecture.html" data-ar="البنية" data-en="Architecture">البنية</a>
+      <a href="generator.html" data-ar="المولّد" data-en="Generator">المولّد</a>
+    </nav>
+    <span class="mono">React · TypeScript · @react-pdf · pdf-lib</span>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

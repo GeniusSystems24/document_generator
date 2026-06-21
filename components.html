@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>المكوّنات — Genius PDF Web</title>
+<meta name="description" content="معرض المكوّنات القابلة لإعادة الاستخدام: جداول بيانات، نص منسّق، صناديق معلومات، رؤوس تقارير، ملخّصات وفواصل.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body dir="rtl">
+
+<header class="site-nav">
+  <div class="nav-wrap">
+    <a class="site-brand" href="index.html">
+      <span class="site-logo">G</span>
+      <span class="brand-text">Genius PDF<small data-ar="مكتبة توليد المستندات لـ React" data-en="Document library for React">مكتبة توليد المستندات لـ React</small></span>
+    </a>
+    <nav class="nav-links" aria-label="الأقسام">
+      <a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+      <a href="components.html" data-ar="المكوّنات" data-en="Components">المكوّنات</a>
+      <a href="templates.html" data-ar="القوالب" data-en="Templates">القوالب</a>
+      <a href="tools.html" data-ar="الأدوات" data-en="Tools">الأدوات</a>
+      <a href="architecture.html" data-ar="البنية" data-en="Architecture">البنية</a>
+      <a href="generator.html" class="nav-cta" data-ar="المولّد الحي" data-en="Live generator">المولّد الحي</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <div class="seg" role="group" aria-label="language">
+          <button id="ar" aria-pressed="true">العربية</button>
+          <button id="en" aria-pressed="false">English</button>
+        </div>
+      </div>
+      <button class="nav-burger" aria-label="القائمة" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== page hero ===== -->
+<section class="page-hero">
+  <div class="wrap">
+    <p class="crumbs"><a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a><span class="sep">/</span><span data-ar="المكوّنات" data-en="Components">المكوّنات</span><span class="sep">·</span><span data-ar="المرحلة 2" data-en="Phase 2">المرحلة 2</span></p>
+    <h1 data-ar="معرض المكوّنات القابلة لإعادة الاستخدام" data-en="The reusable component library">معرض المكوّنات القابلة لإعادة الاستخدام</h1>
+    <p class="lede" data-ar="هذه القطع هي العمود الفقري للمكتبة — كل قالب لاحق يُبنى منها. لكل مكوّن <b>نسخة معاينة</b> في الواجهة و<b>نسخة توليد</b> في PDF، ومدخل في المعرض بمثالين بالعربية والإنجليزية." data-en="These pieces are the backbone of the library — every template is built from them. Each component has a <b>preview version</b> in the UI and a <b>render version</b> in the PDF, plus a gallery entry with Arabic and English examples.">هذه القطع هي العمود الفقري للمكتبة — كل قالب لاحق يُبنى منها. لكل مكوّن <b>نسخة معاينة</b> في الواجهة و<b>نسخة توليد</b> في PDF، ومدخل في المعرض بمثالين بالعربية والإنجليزية.</p>
+  </div>
+</section>
+
+<!-- ===== gallery ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="gal">
+
+      <!-- DataGrid -->
+      <div class="card span7">
+        <div>
+          <p class="tag"><b>&lt;DataGrid /&gt;</b> · widthPercent · multi-total · nested groups</p>
+          <h3 data-ar="جدول بيانات متعدّد الأنماط" data-en="Multi-style data grid">جدول بيانات متعدّد الأنماط</h3>
+        </div>
+        <div class="tabs" data-tabs="gridTable">
+          <button data-tab="default" aria-pressed="true">default</button>
+          <button data-tab="striped" aria-pressed="false">striped</button>
+          <button data-tab="dark" aria-pressed="false">dark</button>
+          <button data-tab="elegant" aria-pressed="false">elegant</button>
+          <button data-tab="pastel" aria-pressed="false">pastel</button>
+          <button data-tab="bordered" aria-pressed="false">bordered</button>
+        </div>
+        <div class="mini">
+          <table class="demo default" id="gridTable" data-base="demo">
+            <thead><tr>
+              <th data-ar="الصنف" data-en="Item">الصنف</th>
+              <th class="n" data-ar="كمية" data-en="Qty">كمية</th>
+              <th class="n" data-ar="القيمة" data-en="Value">القيمة</th>
+            </tr></thead>
+            <tbody>
+              <tr><td data-ar="أجهزة حاسب" data-en="Computers">أجهزة حاسب</td><td class="n">12</td><td class="n">48,000</td></tr>
+              <tr><td data-ar="طابعات ليزر" data-en="Laser printers">طابعات ليزر</td><td class="n">5</td><td class="n">9,250</td></tr>
+              <tr><td data-ar="شاشات عرض" data-en="Monitors">شاشات عرض</td><td class="n">8</td><td class="n">16,400</td></tr>
+            </tbody>
+            <tfoot><tr><td data-ar="الإجمالي" data-en="Total">الإجمالي</td><td class="n">25</td><td class="n">73,650</td></tr></tfoot>
+          </table>
+        </div>
+        <div class="cond">
+          <span class="pos" data-ar="أخضر ← ربح" data-en="green ← profit">أخضر ← ربح</span>
+          <span class="neg" data-ar="أحمر ← خسارة" data-en="red ← loss">أحمر ← خسارة</span>
+          <span class="warnc" data-ar="كهرماني ← تحت الحد" data-en="amber ← below threshold">كهرماني ← تحت الحد</span>
+        </div>
+        <p class="desc" data-ar="توزيع عرض ذكي متعدّد المرور، صفوف مجاميع متعددة (sum / avg / count / min / max)، مجموعات متداخلة بمجاميع لكل مستوى، تنسيق شرطي شبيه Excel، وارتفاع صف تلقائي واستمرارية الجدول عبر الصفحات." data-en="Multi-pass width distribution, multiple total rows (sum / avg / count / min / max), nested groups with per-level subtotals, Excel-like conditional formatting, auto row height, and table continuity across pages.">توزيع عرض ذكي متعدّد المرور، صفوف مجاميع متعددة (sum / avg / count / min / max)، مجموعات متداخلة بمجاميع لكل مستوى، تنسيق شرطي شبيه Excel، وارتفاع صف تلقائي واستمرارية الجدول عبر الصفحات.</p>
+      </div>
+
+      <!-- InfoBox + DualInfoBox -->
+      <div class="card span5">
+        <div>
+          <p class="tag"><b>&lt;InfoBox /&gt;</b> · status presets · DualInfoBox</p>
+          <h3 data-ar="صناديق معلومات بحالات" data-en="Info boxes with states">صناديق معلومات بحالات</h3>
+        </div>
+        <div class="mini">
+          <div class="states">
+            <div class="st info"><h5>ⓘ <span data-ar="معلومة" data-en="Info">معلومة</span></h5><p data-ar="رقم المرجع: PO-7741" data-en="Reference: PO-7741">رقم المرجع: PO-7741</p></div>
+            <div class="st success"><h5>✓ <span data-ar="مدفوعة" data-en="Paid">مدفوعة</span></h5><p data-ar="سُدّدت بالكامل" data-en="Settled in full">سُدّدت بالكامل</p></div>
+            <div class="st warn"><h5>⚠ <span data-ar="استحقاق قريب" data-en="Due soon">استحقاق قريب</span></h5><p data-ar="خلال 3 أيام" data-en="In 3 days">خلال 3 أيام</p></div>
+            <div class="st err"><h5>✕ <span data-ar="رصيد متأخر" data-en="Overdue">رصيد متأخر</span></h5><p data-ar="مضى 14 يوماً" data-en="14 days past">مضى 14 يوماً</p></div>
+          </div>
+          <div class="dual" style="margin-top:9px">
+            <div class="du"><h6 data-ar="المستحق" data-en="Amount due">المستحق</h6><b>14,967.25</b><span data-ar="بارتفاع متساوٍ" data-en="equal height">بارتفاع متساوٍ</span></div>
+            <div class="du"><h6 data-ar="المتأخّر" data-en="Overdue">المتأخّر</h6><b>0.00</b><span data-ar="بارتفاع متساوٍ" data-en="equal height">بارتفاع متساوٍ</span></div>
+          </div>
+        </div>
+        <p class="desc" data-ar="أربع حالات جاهزة (info / success / warning / error) بأيقونات ومحاذاة RTL، و DualInfoBox يضمن ارتفاعاً متساوياً للصندوقين." data-en="Four ready states (info / success / warning / error) with icons and RTL alignment, plus a DualInfoBox that keeps both boxes the same height.">أربع حالات جاهزة (info / success / warning / error) بأيقونات ومحاذاة RTL، و DualInfoBox يضمن ارتفاعاً متساوياً للصندوقين.</p>
+      </div>
+
+      <!-- RichText -->
+      <div class="card span5">
+        <div>
+          <p class="tag"><b>&lt;RichText /&gt;</b> · spans · links · nested lists</p>
+          <h3 data-ar="نص منسّق" data-en="Rich text">نص منسّق</h3>
+        </div>
+        <div class="mini">
+          <div class="rt">
+            <span class="b" data-ar="شروط الدفع:" data-en="Payment terms:">شروط الدفع:</span>
+            <span data-ar=" السداد خلال " data-en=" Net "> السداد خلال </span><span class="hi">30 <span data-ar="يوماً" data-en="days">يوماً</span></span>
+            <span data-ar=" من تاريخ الفاتورة" data-en=" from invoice date"> من تاريخ الفاتورة</span>
+            <span class="badge">ZATCA</span><sup>*</sup>.
+            <ul>
+              <li data-ar="تحويل بنكي إلى IBAN المرفق" data-en="Bank transfer to attached IBAN">تحويل بنكي إلى IBAN المرفق</li>
+              <li><span data-ar="الاستفسارات عبر " data-en="Questions via ">الاستفسارات عبر </span><span class="lnk">billing@geniuslink.sa</span></li>
+              <li><span class="it" data-ar="غرامة تأخير 1٪ شهرياً" data-en="1% monthly late fee">غرامة تأخير 1٪ شهرياً</span></li>
+            </ul>
+          </div>
+        </div>
+        <p class="desc" data-ar="عريض ومائل وتسطير وخط فوقي، أعلى/أسفل (sub/superscript)، خلفية، روابط قابلة للنقر، Markdown مبسّط، قوائم نقطية/مرقّمة (عربية/هندية/أبجدية) متداخلة، وتجاوز نص (maxLines + ellipsis)." data-en="Bold, italic, underline, overline, super/subscript, background, clickable links, simple Markdown, nested bullet/numbered lists (Arabic/Hindi/alpha), and text overflow (maxLines + ellipsis).">عريض ومائل وتسطير وخط فوقي، أعلى/أسفل (sub/superscript)، خلفية، روابط قابلة للنقر، Markdown مبسّط، قوائم نقطية/مرقّمة (عربية/هندية/أبجدية) متداخلة، وتجاوز نص (maxLines + ellipsis).</p>
+      </div>
+
+      <!-- ReportHeader -->
+      <div class="card span7">
+        <div>
+          <p class="tag"><b>&lt;ReportHeader /&gt;</b> · logo · company · HeaderInfoGroup</p>
+          <h3 data-ar="رأس تقرير ثنائي اللغة" data-en="Bilingual report header">رأس تقرير ثنائي اللغة</h3>
+        </div>
+        <div class="mini">
+          <div class="rhead">
+            <div class="top">
+              <div style="display:flex; gap:10px; align-items:center">
+                <div class="logo">G</div>
+                <div class="co">مؤسسة جينيَس لينك<small>Genius Link Tech Solutions</small></div>
+              </div>
+              <div class="hg" style="text-align:end">
+                <b data-ar="تقرير" data-en="Report">تقرير</b>
+                <span data-ar="ميزان المراجعة" data-en="Trial Balance">ميزان المراجعة</span><br>2026-03-31
+              </div>
+            </div>
+            <div class="hgroups">
+              <div class="hg"><b data-ar="التسجيل" data-en="Registration">التسجيل</b>VAT 310045678000003<br>CR 1010845221</div>
+              <div class="hg"><b data-ar="التواصل" data-en="Contact">التواصل</b>+966 11 245 0000<br>billing@geniuslink.sa</div>
+              <div class="hg"><b data-ar="العنوان" data-en="Address">العنوان</b><span data-ar="طريق الملك فهد، الرياض" data-en="King Fahd Rd, Riyadh">طريق الملك فهد، الرياض</span></div>
+            </div>
+          </div>
+        </div>
+        <p class="desc" data-ar="شعار + معلومات الشركة + HeaderInfoGroup (تسجيل / تواصل / عنوان) بتخطيط ثنائي اللغة ينقلب تلقائياً بين RTL و LTR." data-en="Logo + company info + HeaderInfoGroup (registration / contact / address) with a bilingual layout that flips automatically between RTL and LTR.">شعار + معلومات الشركة + HeaderInfoGroup (تسجيل / تواصل / عنوان) بتخطيط ثنائي اللغة ينقلب تلقائياً بين RTL و LTR.</p>
+      </div>
+
+      <!-- Summary / ReportSummary -->
+      <div class="card span7">
+        <div>
+          <p class="tag"><b>&lt;Summary /&gt;</b> · ReportSummary · multi-table totals</p>
+          <h3 data-ar="ملخّص المجاميع" data-en="Totals summary">ملخّص المجاميع</h3>
+        </div>
+        <div class="mini">
+          <div class="summ">
+            <div class="s"><b>73,650</b><span data-ar="المبيعات" data-en="Sales">المبيعات</span></div>
+            <div class="s neg"><b>−18,100</b><span data-ar="المشتريات" data-en="Purchases">المشتريات</span></div>
+            <div class="s"><b>9,500</b><span data-ar="المقبوضات" data-en="Receipts">المقبوضات</span></div>
+            <div class="s tot"><b>64,050</b><span data-ar="الصافي العام" data-en="Net total">الصافي العام</span></div>
+          </div>
+        </div>
+        <p class="desc" data-ar="بطاقات ملخّص لمجاميع قسم واحد، و ReportSummary يجمع مجاميع عدة جداول في كتلة واحدة بأرقام سالبة مميّزة بالأحمر." data-en="Summary cards for a single section's totals, and ReportSummary that rolls up totals from several tables into one block with negative figures flagged in red.">بطاقات ملخّص لمجاميع قسم واحد، و ReportSummary يجمع مجاميع عدة جداول في كتلة واحدة بأرقام سالبة مميّزة بالأحمر.</p>
+      </div>
+
+      <!-- SectionDivider -->
+      <div class="card span5">
+        <div>
+          <p class="tag"><b>&lt;SectionDivider /&gt;</b> · centred title</p>
+          <h3 data-ar="فاصل أقسام" data-en="Section divider">فاصل أقسام</h3>
+        </div>
+        <div class="mini" style="display:flex; flex-direction:column; gap:14px; justify-content:center">
+          <div class="divprev"><span data-ar="الأصول المتداولة" data-en="Current Assets">الأصول المتداولة</span></div>
+          <div class="divprev"><span data-ar="الخصوم وحقوق الملكية" data-en="Liabilities & Equity">الخصوم وحقوق الملكية</span></div>
+        </div>
+        <p class="desc" data-ar="فاصل بصري يفصل أقسام المستند، مع عنوان اختياري متمركز بين خطّين نحاسيين." data-en="A visual divider that separates document sections, with an optional title centred between two brass rules.">فاصل بصري يفصل أقسام المستند، مع عنوان اختياري متمركز بين خطّين نحاسيين.</p>
+      </div>
+
+      <!-- TwoColumns -->
+      <div class="card span12">
+        <div>
+          <p class="tag"><b>&lt;TwoColumns /&gt;</b> · flexible callbacks · direction-aware</p>
+          <h3 data-ar="تخطيط عمودين" data-en="Two-column layout">تخطيط عمودين</h3>
+        </div>
+        <div class="mini">
+          <div class="twocol">
+            <div class="c">
+              <h6 data-ar="بيانات البائع" data-en="Seller details">بيانات البائع</h6>
+              <p data-ar="مؤسسة جينيَس لينك — السجل التجاري 1010845221 — الرقم الضريبي 310045678000003 — الرياض، طريق الملك فهد." data-en="Genius Link Est. — CR 1010845221 — VAT 310045678000003 — Riyadh, King Fahd Rd.">مؤسسة جينيَس لينك — السجل التجاري 1010845221 — الرقم الضريبي 310045678000003 — الرياض، طريق الملك فهد.</p>
+            </div>
+            <div class="c">
+              <h6 data-ar="بيانات المشتري" data-en="Buyer details">بيانات المشتري</h6>
+              <p data-ar="شركة الواحة للتجارة — السجل التجاري 2050112233 — الرقم الضريبي 300112233400003 — جدة، حي الروضة." data-en="Al-Waha Trading Co. — CR 2050112233 — VAT 300112233400003 — Jeddah, Al-Rawdah.">شركة الواحة للتجارة — السجل التجاري 2050112233 — الرقم الضريبي 300112233400003 — جدة، حي الروضة.</p>
+            </div>
+          </div>
+        </div>
+        <p class="desc" data-ar="عمودان مرنان يُملأ كلٌّ منهما عبر callback مستقل، فيمكن وضع أي مكوّن في أي عمود — وتنقلب الأعمدة مع اتجاه الصفحة." data-en="Two flexible columns, each filled by its own callback, so any component can go in either column — and the columns flip with the page direction.">عمودان مرنان يُملأ كلٌّ منهما عبر callback مستقل، فيمكن وضع أي مكوّن في أي عمود — وتنقلب الأعمدة مع اتجاه الصفحة.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== how each component is structured ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="k" data-ar="عقد كل مكوّن" data-en="Each component's contract">عقد كل مكوّن</p>
+        <h2 class="h" data-ar="ثلاث نسخ لكل مكوّن" data-en="Three faces per component">ثلاث نسخ لكل مكوّن</h2>
+      </div>
+    </div>
+    <div class="mvc">
+      <div class="m view">
+        <span class="badge">PDF</span>
+        <h3 data-ar="نسخة التوليد" data-en="Render version">نسخة التوليد</h3>
+        <p data-ar="مكوّن @react-pdf يرسم القطعة داخل المستند بمحاذاة وخطوط مدركة للاتجاه." data-en="A @react-pdf component that draws the piece inside the document with direction-aware alignment and fonts.">مكوّن @react-pdf يرسم القطعة داخل المستند بمحاذاة وخطوط مدركة للاتجاه.</p>
+      </div>
+      <div class="m model">
+        <span class="badge">Preview</span>
+        <h3 data-ar="نسخة المعاينة" data-en="Preview version">نسخة المعاينة</h3>
+        <p data-ar="معادل في الواجهة يطابق المخرَج بصرياً، فيرى المستخدم النتيجة قبل التوليد." data-en="A UI counterpart that visually matches the output, so the user sees the result before rendering.">معادل في الواجهة يطابق المخرَج بصرياً، فيرى المستخدم النتيجة قبل التوليد.</p>
+      </div>
+      <div class="m ctrl">
+        <span class="badge">Gallery</span>
+        <h3 data-ar="مدخل المعرض" data-en="Gallery entry">مدخل المعرض</h3>
+        <p data-ar="مثالان جاهزان (AR / EN) يوثّقان الـ props والحالات — مصدر الحقيقة الوحيد لكل قطعة." data-en="Two ready examples (AR / EN) documenting props and states — the single source of truth for each piece.">مثالان جاهزان (AR / EN) يوثّقان الـ props والحالات — مصدر الحقيقة الوحيد لكل قطعة.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="foot-wrap">
+    <span data-ar="المكوّنات هي القطع التي تُبنى منها كل القوالب." data-en="Components are the pieces every template is built from.">المكوّنات هي القطع التي تُبنى منها كل القوالب.</span>
+    <nav class="foot-nav">
+      <a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+      <a href="templates.html" data-ar="القوالب" data-en="Templates">القوالب</a>
+      <a href="tools.html" data-ar="الأدوات" data-en="Tools">الأدوات</a>
+      <a href="architecture.html" data-ar="البنية" data-en="Architecture">البنية</a>
+      <a href="generator.html" data-ar="المولّد" data-en="Generator">المولّد</a>
+    </nav>
+    <span class="mono">DataGrid · RichText · InfoBox · ReportHeader · Summary</span>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
