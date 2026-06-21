@@ -152,6 +152,22 @@
   .spin{width:15px; height:15px; border:2px solid #06181d44; border-top-color:#06181d; border-radius:50%; animation:sp .7s linear infinite}
   @keyframes sp{to{transform:rotate(360deg)}}
 
+  /* ===== EXPORT FORMAT GRID ===== */
+  .exp-head{display:flex; align-items:center; gap:8px; margin:16px 0 9px}
+  .exp-head .ttl{font-size:12px; font-family:var(--font-mono); color:var(--teal); letter-spacing:1.2px; text-transform:uppercase}
+  .exp-head .ln{flex:1; height:1px; background:var(--engine-line)}
+  .exp-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px}
+  .exp-btn{display:flex; flex-direction:column; align-items:center; gap:5px; background:#0a1d24; border:1px solid var(--engine-line); border-radius:11px; padding:11px 6px; cursor:pointer; transition:.15s; color:var(--cloud); font-family:var(--font-ui)}
+  .exp-btn:hover:not(:disabled){border-color:var(--teal); background:#0e2a33; transform:translateY(-1px)}
+  .exp-btn:disabled{opacity:.45; cursor:not-allowed}
+  .exp-btn .ic{font-size:18px; line-height:1; font-family:var(--font-mono); color:var(--teal); font-weight:600}
+  .exp-btn .nm{font-size:12px; font-weight:600}
+  .exp-btn .ex{font-size:9.5px; font-family:var(--font-mono); color:var(--cloud-dim); letter-spacing:.4px}
+  .exp-btn.busy{pointer-events:none}
+  .exp-btn.busy .ic{animation:sp .7s linear infinite; border:2px solid #46beae44; border-top-color:var(--teal); border-radius:50%; width:16px; height:16px; font-size:0}
+  .share-row{display:flex; gap:8px; margin-top:9px}
+  .share-row .btn{font-size:13px; padding:11px}
+
   .col-prev{min-width:0}
   .prev-bar{display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; gap:12px; flex-wrap:wrap}
   .prev-bar h1{font-family:var(--font-display); font-weight:700; font-size:22px; color:#fff; margin:0; letter-spacing:.4px}
@@ -368,7 +384,24 @@
         <button class="btn primary" id="gen" data-ar="توليد PDF وتنزيله" data-en="Generate & download PDF">توليد PDF وتنزيله</button>
         <button class="btn ghost" id="printBtn" data-ar="طباعة" data-en="Print">طباعة</button>
       </div>
-      <p class="hint" data-ar="يُنشأ ملف PDF حقيقي في متصفّحك — لا يُرسل شيء إلى أي خادم." data-en="A real PDF is created in your browser — nothing is sent to any server.">يُنشأ ملف PDF حقيقي في متصفّحك — لا يُرسل شيء إلى أي خادم.</p>
+
+      <div class="exp-head"><span class="ttl" data-ar="تصدير بصيغ أخرى" data-en="Export as">تصدير بصيغ أخرى</span><span class="ln"></span></div>
+      <div class="exp-grid" id="expGrid">
+        <button class="exp-btn" data-export="pdfa"><span class="ic">▤</span><span class="nm">PDF/A</span><span class="ex" data-ar="أرشيفي" data-en="archival">أرشيفي</span></button>
+        <button class="exp-btn" data-export="png"><span class="ic">▦</span><span class="nm">PNG</span><span class="ex" data-ar="صورة" data-en="image">صورة</span></button>
+        <button class="exp-btn" data-export="jpeg"><span class="ic">▣</span><span class="nm">JPEG</span><span class="ex" data-ar="صورة" data-en="image">صورة</span></button>
+        <button class="exp-btn" data-export="svg"><span class="ic">◈</span><span class="nm">SVG</span><span class="ex" data-ar="متجهي" data-en="vector">متجهي</span></button>
+        <button class="exp-btn" data-export="html"><span class="ic">&lt;/&gt;</span><span class="nm">HTML</span><span class="ex" data-ar="صفحة ويب" data-en="web page">صفحة ويب</span></button>
+        <button class="exp-btn" data-export="txt"><span class="ic">¶</span><span class="nm" data-ar="نص" data-en="Text">نص</span><span class="ex">TXT</span></button>
+        <button class="exp-btn" data-export="json"><span class="ic">{ }</span><span class="nm">JSON</span><span class="ex" data-ar="بيانات" data-en="data">بيانات</span></button>
+      </div>
+
+      <div class="share-row">
+        <button class="btn ghost" id="shareBtn" style="flex:1" data-ar="مشاركة المستند…" data-en="Share document…">مشاركة المستند…</button>
+        <button class="btn ghost" id="copyImgBtn" data-ar="نسخ كصورة" data-en="Copy image">نسخ كصورة</button>
+      </div>
+
+      <p class="hint" data-ar="كل التصدير يتم داخل متصفّحك — لا يُرسل شيء إلى أي خادم." data-en="All exports happen inside your browser — nothing is sent to any server.">كل التصدير يتم داخل متصفّحك — لا يُرسل شيء إلى أي خادم.</p>
     </div>
   </div>
 
@@ -1161,29 +1194,209 @@
   };
 
   /* ===================== ENGINE: PDF export ===================== */
+  /* ===================== ENGINE: shared helpers ===================== */
+  function docRef(){
+    var refs={invoice:state.invoice.inv,quotation:state.quotation.quoteNo,statement:state.statement.acct,
+      transactions:state.transactions.entity,voucher:state.voucher.voucherNo,payslip:state.payslip.empId,journal:state.journal.entryNo};
+    return refs[state.docType]||state.docType;
+  }
+  function baseName(){ return 'GeniusPDF-'+state.docType+'-'+String(docRef()).replace(/[^\w\u0600-\u06FF.-]+/g,'_'); }
+  function downloadBlob(blob,filename){
+    var url=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=url; a.download=filename; document.body.appendChild(a); a.click();
+    document.body.removeChild(a); setTimeout(function(){URL.revokeObjectURL(url);},1500);
+  }
+  function dataURLtoBlob(dataURL){
+    var parts=dataURL.split(','),mime=parts[0].match(/:(.*?);/)[1],bin=atob(parts[1]),n=bin.length,u8=new Uint8Array(n);
+    while(n--) u8[n]=bin.charCodeAt(n);
+    return new Blob([u8],{type:mime});
+  }
+  /* render the live paper to a canvas (shared by pdf / png / jpeg / share) */
+  async function paperCanvas(){
+    if(!window.html2canvas) throw new Error(L('مكتبة الصور غير محمّلة','image library not loaded'));
+    if(document.fonts&&document.fonts.ready){ await document.fonts.ready; }
+    var src=document.getElementById('paper'),clone=src.cloneNode(true);
+    clone.style.transform='none'; clone.style.position='fixed'; clone.style.left='-10000px'; clone.style.top='0'; clone.style.width='794px';
+    document.body.appendChild(clone);
+    try{ return await html2canvas(clone,{scale:2,backgroundColor:'#FAF7EF',useCORS:true,logging:false}); }
+    finally{ document.body.removeChild(clone); }
+  }
+  function canvasToPdf(canvas,opts){
+    opts=opts||{};
+    var jsPDF=window.jspdf.jsPDF, pdf=new jsPDF('p','mm','a4');
+    var pageW=pdf.internal.pageSize.getWidth(),pageH=pdf.internal.pageSize.getHeight();
+    var imgW=pageW,imgH=canvas.height*imgW/canvas.width,img=canvas.toDataURL('image/jpeg',0.95);
+    var pos=0,left=imgH;
+    pdf.addImage(img,'JPEG',0,pos,imgW,imgH); left-=pageH;
+    while(left>0){ pos-=pageH; pdf.addPage(); pdf.addImage(img,'JPEG',0,pos,imgW,imgH); left-=pageH; }
+    /* metadata — for PDF/A we mark it archival in the document properties */
+    try{
+      pdf.setProperties({
+        title:(L('مستند','Document'))+' '+state.docType+' '+docRef(),
+        subject:opts.pdfa?'PDF/A archival document':'Financial document',
+        author:SELLER(), creator:'Genius PDF Web',
+        keywords:opts.pdfa?'PDF/A, archival, '+state.docType:state.docType
+      });
+    }catch(e){}
+    return pdf;
+  }
+
+  /* busy-state helper for the small export buttons */
+  function withBusy(btn,fn){
+    var ic=btn&&btn.querySelector('.ic'), prev=ic?ic.textContent:'';
+    if(btn){ btn.classList.add('busy'); btn.disabled=true; }
+    return Promise.resolve().then(fn).catch(function(e){
+      flashError('خطأ أثناء التصدير: '+e.message,'Export error: '+e.message);
+    }).then(function(){
+      if(btn){ btn.classList.remove('busy'); btn.disabled=false; if(ic) ic.textContent=prev; }
+    });
+  }
+
+  /* ===================== ENGINE: PDF (primary button) ===================== */
   async function generatePdf(){
     var gen=document.getElementById('gen');
     if(!window.jspdf||!window.html2canvas){ flashError('تعذّر تحميل مكتبة التوليد — استخدم زرّ الطباعة.','PDF library failed to load — use Print.'); return; }
     var orig=gen.innerHTML; gen.disabled=true;
     gen.innerHTML='<span class="spin"></span>'+L('جارٍ التوليد…','Generating…');
     try{
-      if(document.fonts&&document.fonts.ready){ await document.fonts.ready; }
-      var src=document.getElementById('paper'), clone=src.cloneNode(true);
-      clone.style.transform='none'; clone.style.position='fixed'; clone.style.left='-10000px'; clone.style.top='0'; clone.style.width='794px';
-      document.body.appendChild(clone);
-      var canvas=await html2canvas(clone,{scale:2,backgroundColor:'#FAF7EF',useCORS:true,logging:false});
-      document.body.removeChild(clone);
-      var jsPDF=window.jspdf.jsPDF, pdf=new jsPDF('p','mm','a4');
-      var pageW=pdf.internal.pageSize.getWidth(), pageH=pdf.internal.pageSize.getHeight();
-      var imgW=pageW, imgH=canvas.height*imgW/canvas.width, img=canvas.toDataURL('image/jpeg',0.95);
-      var pos=0,left=imgH;
-      pdf.addImage(img,'JPEG',0,pos,imgW,imgH); left-=pageH;
-      while(left>0){ pos-=pageH; pdf.addPage(); pdf.addImage(img,'JPEG',0,pos,imgW,imgH); left-=pageH; }
-      var refs={invoice:state.invoice.inv,quotation:state.quotation.quoteNo,statement:state.statement.acct,transactions:state.transactions.entity,voucher:state.voucher.voucherNo,payslip:state.payslip.empId,journal:state.journal.entryNo};
-      var ref=refs[state.docType]||state.docType;
-      pdf.save('GeniusPDF-'+state.docType+'-'+ref+'.pdf');
+      var canvas=await paperCanvas();
+      canvasToPdf(canvas).save(baseName()+'.pdf');
     }catch(e){ flashError('خطأ أثناء التوليد: '+e.message,'Generation error: '+e.message); }
     finally{ gen.disabled=false; gen.innerHTML=orig; applyLang(state.lang); }
+  }
+
+  /* ===================== ENGINE: other formats ===================== */
+  async function exportPdfA(){
+    if(!window.jspdf||!window.html2canvas) throw new Error(L('المكتبة غير محمّلة','library not loaded'));
+    var canvas=await paperCanvas();
+    canvasToPdf(canvas,{pdfa:true}).save(baseName()+'-PDFA.pdf');
+  }
+  async function exportImage(type){
+    var canvas=await paperCanvas();
+    var mime=type==='png'?'image/png':'image/jpeg';
+    var dataURL=canvas.toDataURL(mime,type==='png'?undefined:0.95);
+    downloadBlob(dataURLtoBlob(dataURL), baseName()+'.'+(type==='png'?'png':'jpg'));
+  }
+  /* standalone HTML page: inlines current paper + minimal styles, opens anywhere */
+  function exportHtml(){
+    var paper=document.getElementById('paper');
+    var styleEl=document.querySelector('head style');
+    var css=styleEl?styleEl.textContent:'';
+    var rtl=state.lang==='ar';
+    var fonts='<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">';
+    var html='<!doctype html>\n<html lang="'+state.lang+'" dir="'+(rtl?'rtl':'ltr')+'">\n<head>\n<meta charset="utf-8">\n'+
+      '<meta name="viewport" content="width=device-width, initial-scale=1">\n'+
+      '<title>'+esc(L('مستند','Document'))+' · '+esc(docRef())+'</title>\n'+fonts+'\n<style>\n'+css+
+      '\nbody{background:#e9eef0;margin:0;padding:24px;display:flex;justify-content:center}'+
+      '\n#paper{margin:0 auto;box-shadow:0 10px 40px -12px rgba(0,0,0,.4)}'+
+      '\n@media print{body{background:#fff;padding:0}#paper{box-shadow:none}}\n</style>\n</head>\n'+
+      '<body dir="'+(rtl?'rtl':'ltr')+'">\n'+paper.outerHTML+'\n</body>\n</html>';
+    downloadBlob(new Blob([html],{type:'text/html;charset=utf-8'}), baseName()+'.html');
+  }
+  /* plain-text extraction from the rendered document */
+  function exportTxt(){
+    var paper=document.getElementById('paper').cloneNode(true);
+    var wm=paper.querySelector('.wm'); if(wm) wm.remove();
+    var qr=paper.querySelector('#docQR'); if(qr) qr.remove();
+    var lines=[];
+    /* walk tables specially so columns stay aligned with tabs */
+    paper.querySelectorAll('.doc > *').forEach(function(node){
+      if(node.tagName==='TABLE'){
+        node.querySelectorAll('tr').forEach(function(tr){
+          var cells=[].map.call(tr.querySelectorAll('th,td'),function(c){return c.textContent.trim().replace(/\s+/g,' ');});
+          lines.push(cells.join('\t'));
+        });
+        lines.push('');
+      }else{
+        var txt=node.textContent.replace(/\s*\n\s*/g,'\n').replace(/[ \t]+/g,' ').trim();
+        if(txt) lines.push(txt);
+      }
+    });
+    var header=''+SELLER()+'\nVAT: '+SELLER_VAT()+'\n'+'='.repeat(40)+'\n';
+    downloadBlob(new Blob([header+lines.join('\n')+'\n'],{type:'text/plain;charset=utf-8'}), baseName()+'.txt');
+  }
+  /* raw structured data of the current document */
+  function exportJson(){
+    var payload={ format:'genius-pdf-document', version:1, exportedAt:new Date().toISOString(),
+      docType:state.docType, data:state[state.docType],
+      brand:state.brand, headerStyle:state.headerStyle, footerStyle:state.footerStyle, footerData:state.footerData };
+    downloadBlob(new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}), baseName()+'.json');
+  }
+  /* scalable SVG: wraps the rendered paper as XHTML inside <foreignObject> */
+  function exportSvg(){
+    var paper=document.getElementById('paper');
+    var styleEl=document.querySelector('head style');
+    var css=(styleEl?styleEl.textContent:'')+'\n#paper{box-shadow:none;margin:0}';
+    var w=794, h=Math.max(paper.offsetHeight, paper.scrollHeight)||1123;
+    var rtl=state.lang==='ar';
+    /* clone, strip live transform/positioning so it lays out naturally */
+    var clone=paper.cloneNode(true);
+    clone.removeAttribute('style');
+    /* serialize the clone as well-formed XHTML (closes void tags like <img>, <br>) */
+    var xhtml;
+    try{ xhtml=new XMLSerializer().serializeToString(clone); }
+    catch(e){ xhtml=clone.outerHTML; }
+    /* CSS goes inside CDATA so '>' combinators and '&' colors don't break the XML */
+    var inner='<div xmlns="http://www.w3.org/1999/xhtml" dir="'+(rtl?'rtl':'ltr')+'" style="width:'+w+'px;background:#FAF7EF">'+
+      '<style type="text/css"><![CDATA[\n'+css+'\n]]></style>'+xhtml+'</div>';
+    var svg='<?xml version="1.0" encoding="UTF-8"?>\n'+
+      '<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'" viewBox="0 0 '+w+' '+h+'">'+
+        '<foreignObject x="0" y="0" width="'+w+'" height="'+h+'">'+inner+'</foreignObject>'+
+      '</svg>';
+    downloadBlob(new Blob([svg],{type:'image/svg+xml;charset=utf-8'}), baseName()+'.svg');
+  }
+
+  var EXPORTERS={
+    pdfa:exportPdfA,
+    png:function(){return exportImage('png');},
+    jpeg:function(){return exportImage('jpeg');},
+    svg:exportSvg,
+    html:exportHtml,
+    txt:exportTxt,
+    json:exportJson
+  };
+
+  /* ===================== ENGINE: share ===================== */
+  async function shareDocument(){
+    var btn=document.getElementById('shareBtn'), orig=btn.innerHTML;
+    btn.disabled=true; btn.innerHTML='<span class="spin"></span>'+L('جارٍ التحضير…','Preparing…');
+    try{
+      if(!window.jspdf||!window.html2canvas) throw new Error(L('المكتبة غير محمّلة','library not loaded'));
+      var canvas=await paperCanvas();
+      var blob=dataURLtoBlob(canvas.toDataURL('image/png'));
+      var file=new File([blob], baseName()+'.png', {type:'image/png'});
+      var title=L('مستند','Document')+' '+docRef();
+      if(navigator.canShare&&navigator.canShare({files:[file]})){
+        await navigator.share({files:[file], title:title, text:title});
+      }else if(navigator.share){
+        await navigator.share({title:title, text:title});
+      }else{
+        /* fallback: just download the PNG and tell the user */
+        downloadBlob(blob, baseName()+'.png');
+        toast('المشاركة المباشرة غير مدعومة — نُزِّلت صورة بدلاً من ذلك','Direct share unsupported — image downloaded instead');
+      }
+    }catch(e){
+      if(e&&e.name==='AbortError'){ /* user cancelled — ignore */ }
+      else flashError('تعذّرت المشاركة: '+e.message,'Share failed: '+e.message);
+    }finally{ btn.disabled=false; btn.innerHTML=orig; applyLang(state.lang); }
+  }
+  async function copyImage(){
+    var btn=document.getElementById('copyImgBtn'),orig=btn.innerHTML;
+    btn.disabled=true; btn.innerHTML='<span class="spin"></span>';
+    try{
+      if(!window.ClipboardItem||!navigator.clipboard||!navigator.clipboard.write){
+        throw new Error(L('النسخ كصورة غير مدعوم في هذا المتصفّح','copy-image unsupported in this browser'));
+      }
+      var canvas=await paperCanvas();
+      await new Promise(function(res,rej){
+        canvas.toBlob(function(blob){
+          if(!blob){ rej(new Error('blob')); return; }
+          navigator.clipboard.write([new ClipboardItem({'image/png':blob})]).then(res,rej);
+        },'image/png');
+      });
+      toast('نُسِخت صورة المستند','Document image copied');
+    }catch(e){ flashError('تعذّر النسخ: '+e.message,'Copy failed: '+e.message); }
+    finally{ btn.disabled=false; btn.innerHTML=orig; applyLang(state.lang); }
   }
   function flashError(ar,en){ var b=document.getElementById('vban'); b.className='vban err'; b.textContent=L(ar,en); }
 
@@ -1424,6 +1637,13 @@
   });
   document.getElementById('gen').addEventListener('click',generatePdf);
   document.getElementById('printBtn').addEventListener('click',function(){ window.print(); });
+  document.getElementById('expGrid').addEventListener('click',function(e){
+    var btn=e.target.closest('[data-export]'); if(!btn) return;
+    var fmt=btn.dataset.export, fn=EXPORTERS[fmt]; if(!fn) return;
+    withBusy(btn,fn);
+  });
+  document.getElementById('shareBtn').addEventListener('click',shareDocument);
+  document.getElementById('copyImgBtn').addEventListener('click',copyImage);
   window.addEventListener('resize',fit);
 
   /* ---- brand + footer-extra inputs (live outside #editorMain) ---- */
