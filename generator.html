@@ -29,6 +29,12 @@
                radial-gradient(820px 460px at 0% 8%,#0e2a33 0,transparent 55%),var(--engine);
     -webkit-font-smoothing:antialiased}
   .mono{font-family:var(--font-mono)}
+  *{scrollbar-width:thin; scrollbar-color:#2c9085 #081b22}
+  *::-webkit-scrollbar{width:10px; height:10px}
+  *::-webkit-scrollbar-track{background:#081b22; border-radius:999px}
+  *::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--teal),var(--teal-dim)); border:2px solid #081b22; border-radius:999px}
+  *::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#64d7ca,var(--teal))}
+  *::-webkit-scrollbar-corner{background:#081b22}
 
   .bar{position:sticky; top:0; z-index:40; backdrop-filter:blur(10px); background:#0a1d24cc; border-bottom:1px solid var(--engine-line)}
   .bar .in{max-width:1200px; margin-inline:auto; padding:13px 22px; display:flex; align-items:center; gap:14px}
@@ -77,11 +83,15 @@
   .sign-row .sg{flex:1; text-align:center; font-size:11px; color:var(--ink-2)}
   .sign-row .sg .ln{border-top:1px solid var(--ink); margin-top:34px; padding-top:5px; font-family:var(--font-mono)}
 
-  .app{max-width:1200px; margin-inline:auto; padding:26px 22px 60px; display:grid; grid-template-columns:minmax(0,430px) 1fr; gap:26px; align-items:start}
-  .col-edit{display:flex; flex-direction:column; gap:16px; position:sticky; top:80px}
+  .app{max-width:1500px; height:calc(100vh - 55px); min-height:0; margin-inline:auto; padding:22px; display:grid; grid-template-columns:minmax(260px,300px) minmax(0,1fr) minmax(320px,410px); gap:22px; align-items:stretch; grid-template-areas:"actions preview edit"; overflow:hidden}
+  html[dir="ltr"] .app{grid-template-areas:"edit preview actions"}
+  .col-edit{grid-area:edit; display:flex; flex-direction:column; gap:16px; min-height:0; overflow-y:auto; overflow-x:hidden; padding-inline-end:4px; overscroll-behavior:contain; mask-image:linear-gradient(to bottom,transparent 0,#000 14px,#000 calc(100% - 14px),transparent 100%)}
+  .col-actions{grid-area:actions; min-width:0; min-height:0; overflow-y:auto; overflow-x:hidden; padding-inline-end:4px; overscroll-behavior:contain; mask-image:linear-gradient(to bottom,transparent 0,#000 14px,#000 calc(100% - 14px),transparent 100%)}
   .panel{background:#0d262e; border:1px solid var(--engine-line); border-radius:16px; padding:18px}
   .panel > h2{margin:0 0 4px; font-size:13px; font-family:var(--font-mono); color:var(--teal); letter-spacing:1.4px; text-transform:uppercase}
   .panel > .sub{margin:0 0 15px; font-size:12.5px; color:var(--cloud-dim)}
+  .action-panel{padding:16px; background:linear-gradient(180deg,#12313b,#0d262e 46%,#0a1d24); box-shadow:0 20px 48px -34px #000}
+  .action-panel .sub{margin-bottom:12px}
 
   .field{margin-bottom:12px}
   .field label{display:block; font-size:12px; color:var(--cloud-dim); margin-bottom:6px}
@@ -141,7 +151,7 @@
   .vban.ok{background:#1c6b4e1f; border:1px solid #1c6b4e55; color:#8fe6bd}
   .vban.err{background:#b0432d1f; border:1px solid #b0432d66; color:#ffb3a1}
 
-  .actions{display:flex; gap:10px; margin-top:14px}
+  .actions{display:grid; grid-template-columns:1fr; gap:9px; margin-top:14px}
   .btn{flex:1; font-family:var(--font-ui); font-size:14px; font-weight:600; padding:13px; border-radius:11px; border:0; cursor:pointer; transition:.18s; display:flex; align-items:center; justify-content:center; gap:8px}
   .btn.primary{background:var(--teal); color:#06181d; box-shadow:0 8px 22px -10px #46beae88}
   .btn.primary:hover{transform:translateY(-1px)}
@@ -156,7 +166,7 @@
   .exp-head{display:flex; align-items:center; gap:8px; margin:16px 0 9px}
   .exp-head .ttl{font-size:12px; font-family:var(--font-mono); color:var(--teal); letter-spacing:1.2px; text-transform:uppercase}
   .exp-head .ln{flex:1; height:1px; background:var(--engine-line)}
-  .exp-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px}
+  .exp-grid{display:grid; grid-template-columns:1fr 1fr; gap:8px}
   .exp-btn{display:flex; flex-direction:column; align-items:center; gap:5px; background:#0a1d24; border:1px solid var(--engine-line); border-radius:11px; padding:11px 6px; cursor:pointer; transition:.15s; color:var(--cloud); font-family:var(--font-ui)}
   .exp-btn:hover:not(:disabled){border-color:var(--teal); background:#0e2a33; transform:translateY(-1px)}
   .exp-btn:disabled{opacity:.45; cursor:not-allowed}
@@ -165,10 +175,10 @@
   .exp-btn .ex{font-size:9.5px; font-family:var(--font-mono); color:var(--cloud-dim); letter-spacing:.4px}
   .exp-btn.busy{pointer-events:none}
   .exp-btn.busy .ic{animation:sp .7s linear infinite; border:2px solid #46beae44; border-top-color:var(--teal); border-radius:50%; width:16px; height:16px; font-size:0}
-  .share-row{display:flex; gap:8px; margin-top:9px}
+  .share-row{display:grid; grid-template-columns:1fr; gap:8px; margin-top:9px}
   .share-row .btn{font-size:13px; padding:11px}
 
-  .col-prev{min-width:0}
+  .col-prev{grid-area:preview; min-width:0; min-height:0; overflow-y:auto; overflow-x:hidden; padding-inline-end:4px; overscroll-behavior:contain; mask-image:linear-gradient(to bottom,transparent 0,#000 14px,#000 calc(100% - 14px),transparent 100%)}
   .prev-bar{display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; gap:12px; flex-wrap:wrap}
   .prev-bar h1{font-family:var(--font-display); font-weight:700; font-size:22px; color:#fff; margin:0; letter-spacing:.4px}
   .prev-bar .tag{font-family:var(--font-mono); font-size:12px; color:var(--cloud-dim)}
@@ -290,11 +300,25 @@
   .stylegrid label.on{border-color:var(--teal); color:var(--cloud); background:#0e2a33}
   .stylegrid input{accent-color:var(--teal); flex:0 0 auto}
 
-  @media (max-width:900px){ .app{grid-template-columns:1fr} .col-edit{position:static} }
+  @media (max-width:1180px){
+    .app{grid-template-columns:minmax(0,1fr) minmax(300px,380px); grid-template-areas:"preview edit" "actions actions"}
+    html[dir="ltr"] .app{grid-template-areas:"edit preview" "actions actions"}
+    .col-actions{grid-column:1 / -1; max-width:760px; width:100%; justify-self:center}
+    .action-panel{display:grid; grid-template-columns:1fr 1fr; gap:14px; align-items:start}
+    .action-panel > h2,.action-panel > .sub{grid-column:1 / -1}
+    .action-panel .hint{grid-column:1 / -1}
+  }
+  @media (max-width:900px){
+    .app{height:auto; min-height:calc(100vh - 55px); overflow:visible; grid-template-columns:1fr; grid-template-areas:"edit" "preview" "actions"}
+    html[dir="ltr"] .app{grid-template-areas:"edit" "preview" "actions"}
+    .col-edit,.col-prev,.col-actions{max-height:72vh; overflow-y:auto; mask-image:none}
+    .action-panel{display:block}
+  }
   @media print{
     body{background:#fff}
-    .bar,.site-nav,.col-edit,.prev-bar{display:none !important}
-    .app{display:block; padding:0; max-width:none}
+    .bar,.site-nav,.col-edit,.col-actions,.prev-bar{display:none !important}
+    .app{display:block; height:auto; overflow:visible; padding:0; max-width:none}
+    .col-prev{overflow:visible; padding:0; mask-image:none}
     #stage{border:0; background:#fff; padding:0; overflow:visible; min-height:0}
     #paperScale{position:static; width:auto; margin:0; transform:none !important}
     #paper{box-shadow:none; width:auto}
@@ -375,8 +399,10 @@
     </div>
 
     <div id="editorMain"></div>
+  </div>
 
-    <div class="panel">
+  <aside class="col-actions">
+    <div class="panel action-panel">
       <h2 data-ar="التحقّق المالي" data-en="Financial validation">التحقّق المالي</h2>
       <div id="checks"></div>
       <div class="vban ok" id="vban"></div>
@@ -403,7 +429,7 @@
 
       <p class="hint" data-ar="كل التصدير يتم داخل متصفّحك — لا يُرسل شيء إلى أي خادم." data-en="All exports happen inside your browser — nothing is sent to any server.">كل التصدير يتم داخل متصفّحك — لا يُرسل شيء إلى أي خادم.</p>
     </div>
-  </div>
+  </aside>
 
   <div class="col-prev">
     <div class="prev-bar">
