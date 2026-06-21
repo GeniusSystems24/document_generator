@@ -186,6 +186,75 @@
   .vchip{display:inline-flex; align-items:center; gap:5px; background:#1c6b4e14; color:var(--jade); border:1px solid #1c6b4e3d; padding:3px 9px; border-radius:999px; font-size:10px; font-weight:600; margin-top:4px}
   .vchip::before{content:"✓"; font-weight:700}
 
+  /* ===== HEADER VARIANTS ===== */
+  .d-logo{width:54px; height:54px; flex:0 0 auto; border-radius:12px; display:grid; place-items:center; font-family:var(--font-mono); font-weight:700; font-size:24px; color:#fff; background:linear-gradient(150deg,var(--teal),var(--teal-dim))}
+  /* classic = existing .d-head (default) */
+  /* centered */
+  .hd-centered{text-align:center; border-bottom:2.5px solid var(--ink); padding-bottom:16px}
+  .hd-centered .d-logo{margin:0 auto 10px}
+  .hd-centered .d-co{font-size:26px}
+  .hd-centered .hd-meta{font-family:var(--font-mono); font-size:11px; color:var(--ink-2); margin-top:8px; line-height:1.8}
+  .hd-centered .hd-meta b{color:var(--ink)}
+  /* banner (colored bar) */
+  .hd-banner{display:flex; justify-content:space-between; align-items:center; gap:16px; background:var(--ink); color:#fff; border-radius:12px; padding:18px 22px}
+  .hd-banner .d-co{color:#fff; font-size:23px}
+  .hd-banner .d-co small{color:#ffffffbb}
+  .hd-banner .hd-meta{font-family:var(--font-mono); font-size:11px; color:#ffffffcc; text-align:end; line-height:1.9}
+  .hd-banner .hd-meta b{color:#fff}
+  .hd-banner .d-logo{background:#ffffff1f; border:1px solid #ffffff40}
+  /* minimal */
+  .hd-minimal{display:flex; justify-content:space-between; align-items:flex-end; gap:16px; border-bottom:1px solid var(--paper-line); padding-bottom:10px}
+  .hd-minimal .d-co{font-family:var(--font-ui); font-weight:700; font-size:18px}
+  .hd-minimal .d-co small{font-weight:400; color:var(--ink-2)}
+  .hd-minimal .hd-meta{font-family:var(--font-mono); font-size:10.5px; color:var(--ink-2); text-align:end; line-height:1.8}
+  /* formal (double border + seal + logo) */
+  .hd-formal{border-top:4px double var(--brass); border-bottom:2px solid var(--ink); padding:12px 0 14px; display:flex; justify-content:space-between; align-items:center; gap:16px}
+  .hd-formal .d-co{font-size:22px}
+  .hd-formal .hd-meta{font-family:var(--font-mono); font-size:10.5px; color:var(--ink-2); text-align:end; line-height:1.85}
+  .hd-formal .hd-meta b{color:var(--ink)}
+
+  /* ===== FOOTER VARIANTS ===== */
+  /* default = existing .d-foot */
+  .ft-signatures{display:flex; justify-content:space-between; gap:26px; margin-top:26px; padding-top:8px}
+  .ft-signatures .sg{flex:1; text-align:center; font-size:11px; color:var(--ink-2)}
+  .ft-signatures .sg .ln{border-top:1px solid var(--ink); margin-top:36px; padding-top:5px; font-family:var(--font-mono)}
+  .ft-bank{margin-top:20px; padding-top:14px; border-top:1px solid var(--paper-line); display:flex; justify-content:space-between; gap:18px; align-items:flex-start; font-size:11px}
+  .ft-bank .bk h5{margin:0 0 4px; font-family:var(--font-mono); font-size:10px; color:var(--brass); text-transform:uppercase; letter-spacing:.5px}
+  .ft-bank .bk p{margin:0; font-family:var(--font-mono); color:var(--ink-2); line-height:1.8}
+  .ft-bank #docQR{width:66px; height:66px}
+  .ft-band{margin-top:20px; background:var(--ink); color:#fff; border-radius:10px; padding:12px 18px; display:flex; justify-content:space-between; align-items:center; gap:14px; font-size:11px; line-height:1.7}
+  .ft-band .ft-band-txt{font-family:var(--font-mono); color:#ffffffcc}
+  .ft-band #docQR{width:60px; height:60px; background:#fff; padding:4px; border-radius:6px}
+  .ft-minimal{margin-top:18px; padding-top:10px; border-top:1px solid var(--paper-line); text-align:center; font-family:var(--font-mono); font-size:10px; color:var(--ink-2); line-height:1.8}
+
+  /* ===== TEMPLATES PANEL ===== */
+  .tpl-row{display:flex; align-items:center; gap:8px; background:#0a1d24; border:1px solid var(--engine-line); border-radius:10px; padding:9px 11px; margin-bottom:8px}
+  .tpl-row .tpl-info{flex:1; min-width:0}
+  .tpl-row .tpl-name{font-size:13px; color:var(--cloud); font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .tpl-row .tpl-sub{font-size:11px; color:var(--cloud-dim); font-family:var(--font-mono)}
+  .tpl-row button{flex:0 0 auto; border:1px solid var(--engine-line); background:#0c242c; color:var(--cloud); border-radius:7px; padding:6px 9px; font-size:12px; cursor:pointer; transition:.15s}
+  .tpl-row button.load{color:var(--teal); border-color:#2c5663}
+  .tpl-row button.load:hover{background:#0e2a33}
+  .tpl-row button.tdel{color:var(--rose)}
+  .tpl-row button.tdel:hover{background:#2a1a17; border-color:#b0432d66}
+  .tpl-empty{font-size:12px; color:var(--cloud-dim); text-align:center; padding:14px 8px; font-family:var(--font-mono)}
+  .tpl-tools{display:flex; gap:8px; margin-top:10px}
+  .tpl-tools button{flex:1; background:#0c242c; border:1px solid var(--engine-line); color:var(--cloud); border-radius:9px; padding:9px; cursor:pointer; font-size:12.5px; transition:.15s; display:flex; align-items:center; justify-content:center; gap:6px}
+  .tpl-tools button:hover{border-color:#2c5663; background:#0e2a33}
+  .tpl-save{display:flex; gap:8px; margin-bottom:12px}
+  .tpl-save input{flex:1; background:#0a1d24; border:1px solid var(--engine-line); border-radius:9px; padding:9px 11px; color:var(--cloud); font-family:var(--font-ui); font-size:13px}
+  .tpl-save input:focus{outline:none; border-color:var(--teal)}
+  .tpl-save button{flex:0 0 auto; background:var(--teal); color:#06181d; border:0; border-radius:9px; padding:9px 14px; font-weight:600; cursor:pointer; font-size:13px}
+  .tpl-save button:hover{filter:brightness(1.05)}
+  .toast{position:fixed; inset-block-end:22px; inset-inline:50%; transform:translateX(50%); background:var(--jade); color:#fff; padding:11px 20px; border-radius:10px; font-size:13px; font-weight:600; box-shadow:0 10px 30px -8px #000; z-index:90; opacity:0; transition:.25s; pointer-events:none}
+  .toast.show{opacity:1; transform:translateX(50%) translateY(-4px)}
+  .toast.err{background:var(--rose)}
+  .stylegrid{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+  .stylegrid label{display:flex; align-items:center; gap:7px; background:#0a1d24; border:1px solid var(--engine-line); border-radius:9px; padding:9px 11px; cursor:pointer; font-size:12.5px; color:var(--cloud-dim); transition:.15s}
+  .stylegrid label:hover{border-color:#2c5663; color:var(--cloud)}
+  .stylegrid label.on{border-color:var(--teal); color:var(--cloud); background:#0e2a33}
+  .stylegrid input{accent-color:var(--teal); flex:0 0 auto}
+
   @media (max-width:900px){ .app{grid-template-columns:1fr} .col-edit{position:static} }
   @media print{
     body{background:#fff}
@@ -238,6 +307,38 @@
       </div>
     </div>
 
+    <!-- ===== TEMPLATES ===== -->
+    <div class="panel">
+      <h2 data-ar="القوالب المحفوظة" data-en="Saved templates">القوالب المحفوظة</h2>
+      <p class="sub" data-ar="احفظ المستند الحالي بكل بياناته وترويسته وتذييله، ثم استعِده متى شئت." data-en="Save the current document with all its data, header and footer, then restore it any time.">احفظ المستند الحالي بكل بياناته وترويسته وتذييله، ثم استعِده متى شئت.</p>
+      <div class="tpl-save">
+        <input id="tplName" type="text" data-ar="" data-en="" placeholder="اسم القالب…">
+        <button id="tplSave" data-ar="حفظ" data-en="Save">حفظ</button>
+      </div>
+      <div id="tplList"></div>
+      <div class="tpl-tools">
+        <button id="tplExport" data-ar="⤓ تصدير JSON" data-en="⤓ Export JSON">⤓ تصدير JSON</button>
+        <button id="tplImport" data-ar="⤒ استيراد JSON" data-en="⤒ Import JSON">⤒ استيراد JSON</button>
+      </div>
+      <input id="tplFile" type="file" accept="application/json,.json" style="display:none">
+    </div>
+
+    <!-- ===== BRAND IDENTITY ===== -->
+    <div class="panel">
+      <h2 data-ar="هوية الشركة" data-en="Company identity">هوية الشركة</h2>
+      <p class="sub" data-ar="تظهر في ترويسة كل مستند." data-en="Shown in every document header.">تظهر في ترويسة كل مستند.</p>
+      <div id="brandEditor"></div>
+    </div>
+
+    <!-- ===== HEADER / FOOTER STYLE ===== -->
+    <div class="panel">
+      <h2 data-ar="نموذج الترويسة" data-en="Header style">نموذج الترويسة</h2>
+      <div class="stylegrid" id="headerStyle"></div>
+      <h2 style="margin-top:16px" data-ar="نموذج التذييل" data-en="Footer style">نموذج التذييل</h2>
+      <div class="stylegrid" id="footerStyle"></div>
+      <div id="footerExtra"></div>
+    </div>
+
     <div id="editorMain"></div>
 
     <div class="panel">
@@ -265,13 +366,24 @@
 (function(){
   "use strict";
   var TODAY=new Date().toISOString().slice(0,10);
-  var SELLER='مؤسسة جينيَس لينك', SELLER_VAT='310045678000003';
   var TYPE_EN={'مبيعات':'Sales','مشتريات':'Purchases','مقبوضات':'Receipts','مدفوعات':'Payments','أخرى':'Other'};
+  var TPL_KEY='geniusPdfTemplates';
+  var SETTINGS_KEY='geniusPdfSettings';
 
   /* ===================== STATE ===================== */
   var state={
     lang:'ar',
     docType:'invoice',
+    /* ---- company identity (was hardcoded SELLER / SELLER_VAT) ---- */
+    brand:{ nameAr:'مؤسسة جينيَس لينك', nameEn:'Genius Link Tech Solutions',
+      logo:'G', vat:'310045678000003', cr:'1010845221',
+      cityAr:'الرياض، السعودية', cityEn:'Riyadh, KSA' },
+    /* ---- selected header / footer model ---- */
+    headerStyle:'classic',   /* classic | centered | banner | minimal | formal */
+    footerStyle:'qr',        /* qr | signatures | bank | band | minimal */
+    footerData:{ bankName:'البنك الأهلي السعودي', iban:'SA00 0000 0000 0000 0000 0000', note:'' },
+    /* ---- saved templates ---- */
+    templates:[],
     invoice:{ client:'شركة الواحة للتجارة', inv:'INV-2026-0418', date:TODAY,
       discountRate:5, vatRate:15, vatBase:'post',
       items:[ {desc:'تطوير واجهة React',qty:1,price:8000},
@@ -316,6 +428,9 @@
 
   /* ===================== helpers ===================== */
   function L(ar,en){return state.lang==='ar'?ar:en;}
+  /* brand accessors — replace the old hardcoded SELLER / SELLER_VAT */
+  function SELLER(){return state.lang==='ar'?(state.brand.nameAr||state.brand.nameEn||''):(state.brand.nameEn||state.brand.nameAr||'');}
+  function SELLER_VAT(){return state.brand.vat||'';}
   function num(v){return parseFloat(v)||0;}
   function clamp(v,a,b){return Math.min(b,Math.max(a,v));}
   function halal(v){return Math.round((Number(v)||0)*100);}
@@ -329,19 +444,114 @@
   }
 
   /* ===================== shared document shell ===================== */
+  function brandName(){return esc(SELLER());}
+  function brandSub(){ var s=state.lang==='ar'?(state.brand.nameEn||''):(state.brand.nameAr||''); return s?'<small>'+esc(s)+'</small>':''; }
+  function brandCity(){return esc(state.lang==='ar'?(state.brand.cityAr||''):(state.brand.cityEn||state.brand.cityAr||''));}
+
+  /* ---- HEADER MODELS ---- */
+  var HEADERS={
+    classic:function(){
+      return '<div class="d-head">'+
+        '<div class="d-co">'+brandName()+brandSub()+'</div>'+
+        '<div class="d-seal">'+L('ختم<br>معتمد','Certified<br>Seal')+'</div>'+
+        '<div class="d-meta">'+defaultMeta()+'</div>'+
+      '</div>';
+    },
+    centered:function(){
+      return '<div class="hd-centered">'+
+        '<div class="d-logo">'+esc(state.brand.logo||'·')+'</div>'+
+        '<div class="d-co">'+brandName()+brandSub()+'</div>'+
+        '<div class="hd-meta">'+metaInline()+'</div>'+
+      '</div>';
+    },
+    banner:function(){
+      return '<div class="hd-banner">'+
+        '<div style="display:flex;align-items:center;gap:14px">'+
+          '<div class="d-logo">'+esc(state.brand.logo||'·')+'</div>'+
+          '<div class="d-co">'+brandName()+brandSub()+'</div>'+
+        '</div>'+
+        '<div class="hd-meta">'+defaultMeta()+'</div>'+
+      '</div>';
+    },
+    minimal:function(){
+      return '<div class="hd-minimal">'+
+        '<div class="d-co">'+brandName()+brandSub()+'</div>'+
+        '<div class="hd-meta">'+metaInline()+'</div>'+
+      '</div>';
+    },
+    formal:function(){
+      return '<div class="hd-formal">'+
+        '<div style="display:flex;align-items:center;gap:14px">'+
+          '<div class="d-seal" style="position:static;transform:rotate(-8deg)">'+L('ختم','Seal')+'</div>'+
+          '<div class="d-co">'+brandName()+brandSub()+'</div>'+
+        '</div>'+
+        '<div class="hd-meta">'+defaultMeta()+'</div>'+
+      '</div>';
+    }
+  };
+
+  /* ---- FOOTER MODELS ---- */
+  var FOOTERS={
+    qr:function(foot){
+      return '<div class="d-foot"><div id="docQR"></div><div class="ft">'+foot+'</div></div>';
+    },
+    signatures:function(foot){
+      return '<div class="ft-signatures">'+
+          '<div class="sg"><div class="ln">'+L('المُعِدّ / Prepared by','Prepared by')+'</div></div>'+
+          '<div class="sg"><div class="ln">'+L('المُراجِع / Reviewed by','Reviewed by')+'</div></div>'+
+          '<div class="sg"><div class="ln">'+L('المُعتمِد / Approved by','Approved by')+'</div></div>'+
+        '</div>'+
+        '<div class="ft-minimal" style="display:none"><div id="docQR"></div></div>'+
+        '<div class="ft-minimal">'+foot+'</div>';
+    },
+    bank:function(foot){
+      var fd=state.footerData;
+      return '<div class="ft-bank">'+
+          '<div id="docQR"></div>'+
+          '<div class="bk"><h5>'+L('بيانات التحويل البنكي','Bank transfer details')+'</h5>'+
+            '<p>'+esc(fd.bankName||'')+'<br>IBAN: '+esc(fd.iban||'')+'</p></div>'+
+          '<div class="bk" style="text-align:end">'+foot+'</div>'+
+        '</div>';
+    },
+    band:function(foot){
+      return '<div class="ft-band">'+
+          '<div class="ft-band-txt">'+foot+'</div>'+
+          '<div id="docQR"></div>'+
+        '</div>';
+    },
+    minimal:function(foot){
+      var fd=state.footerData, extra=fd.note?esc(fd.note)+'<br>':'';
+      return '<div class="ft-minimal" style="display:none"><div id="docQR"></div></div>'+
+        '<div class="ft-minimal">'+extra+brandName()+' · '+L('VAT','VAT')+' '+esc(SELLER_VAT())+'<br>'+foot+'</div>';
+    }
+  };
+
   function shell(titleAr,titleEn,ref,metaLines,body,foot){
-    return '<div class="wm"><span>نسخة أصلية</span></div><div class="doc">'+
-      '<div class="d-head">'+
-        '<div class="d-co">'+SELLER+'<small>Genius Link Tech Solutions</small></div>'+
-        '<div class="d-seal">ختم<br>معتمد</div>'+
-        '<div class="d-meta">'+metaLines+'</div>'+
-      '</div>'+
+    var hStyle=HEADERS[state.headerStyle]?state.headerStyle:'classic';
+    var fStyle=FOOTERS[state.footerStyle]?state.footerStyle:'qr';
+    return '<div class="wm"><span>'+L('نسخة أصلية','ORIGINAL')+'</span></div><div class="doc">'+
+      HEADERS[hStyle]()+
       '<div class="d-title"><h3>'+titleAr+'</h3><span class="en">'+titleEn+(ref?' · '+esc(ref):'')+'</span></div>'+
       body+
-      '<div class="d-foot"><div id="docQR"></div><div class="ft">'+foot+'</div></div>'+
+      FOOTERS[fStyle](foot)+
     '</div>';
   }
-  function defaultMeta(){return 'VAT <b>'+SELLER_VAT+'</b><br>CR <b>1010845221</b><br>الرياض، السعودية';}
+  /* meta as stacked lines (classic / banner / formal) */
+  function defaultMeta(){
+    var b=state.brand,out=[];
+    if(b.vat)  out.push('VAT <b>'+esc(b.vat)+'</b>');
+    if(b.cr)   out.push('CR <b>'+esc(b.cr)+'</b>');
+    if(brandCity()) out.push(brandCity());
+    return out.join('<br>');
+  }
+  /* meta as one inline line (centered / minimal) */
+  function metaInline(){
+    var b=state.brand,out=[];
+    if(b.vat) out.push('VAT '+esc(b.vat));
+    if(b.cr)  out.push('CR '+esc(b.cr));
+    if(brandCity()) out.push(brandCity());
+    return out.join(' · ');
+  }
   function infoBox(h4,val,sub){return '<div class="d-box"><h4>'+h4+'</h4><p>'+esc(val)+(sub?'<br><span>'+esc(sub)+'</span>':'')+'</p></div>';}
   function setQR(text){
     var box=document.getElementById('docQR'); if(!box) return;
@@ -426,7 +636,7 @@
         '</div>';
       var foot='رمز الاستجابة وفق هيئة الزكاة والضريبة (ZATCA)<br>العملة: SAR · صفحة 1 من 1<br><span class="vchip">تحقّق مالي ناجح</span>';
       document.getElementById('paper').innerHTML=shell('فاتورة ضريبية','Tax Invoice',st.inv,defaultMeta(),body,foot);
-      setQR(zatcaPayload(SELLER,SELLER_VAT,new Date().toISOString(),(t.grandH/100).toFixed(2),(t.vatH/100).toFixed(2)));
+      setQR(zatcaPayload(SELLER(),SELLER_VAT(),new Date().toISOString(),(t.grandH/100).toFixed(2),(t.vatH/100).toFixed(2)));
     }
   };
 
@@ -844,6 +1054,181 @@
   }
   function flashError(ar,en){ var b=document.getElementById('vban'); b.className='vban err'; b.textContent=L(ar,en); }
 
+  /* ============================================================
+     BRAND / HEADER / FOOTER / TEMPLATES  (new module)
+     ============================================================ */
+
+  /* ---- header & footer model catalogues (labels for the pickers) ---- */
+  var HEADER_MODELS=[
+    {id:'classic', ar:'كلاسيكي بالختم', en:'Classic + seal'},
+    {id:'centered',ar:'مركزي بشعار',    en:'Centered + logo'},
+    {id:'banner',  ar:'شريط ملوّن',      en:'Colored banner'},
+    {id:'minimal', ar:'مبسّط',           en:'Minimal'},
+    {id:'formal',  ar:'رسمي مزدوج',       en:'Formal'}
+  ];
+  var FOOTER_MODELS=[
+    {id:'qr',        ar:'QR + شهادة',     en:'QR + certificate'},
+    {id:'signatures',ar:'توقيعات',        en:'Signatures'},
+    {id:'bank',      ar:'بيانات بنكية',    en:'Bank details'},
+    {id:'band',      ar:'شريط ملوّن',      en:'Colored band'},
+    {id:'minimal',   ar:'مبسّط',           en:'Minimal'}
+  ];
+
+  /* ---- toast ---- */
+  var toastT;
+  function toast(ar,en,isErr){
+    var el=document.getElementById('toast');
+    if(!el){ el=document.createElement('div'); el.id='toast'; document.body.appendChild(el); }
+    el.className='toast show'+(isErr?' err':''); el.textContent=L(ar,en);
+    clearTimeout(toastT); toastT=setTimeout(function(){ el.className='toast'+(isErr?' err':''); },2200);
+  }
+
+  /* ---- brand editor ---- */
+  function renderBrand(){
+    var b=state.brand;
+    document.getElementById('brandEditor').innerHTML=
+      '<div class="grid2">'+field(L('الاسم (عربي)','Name (Arabic)'),'brand.nameAr',b.nameAr)+
+        field(L('الاسم (إنجليزي)','Name (English)'),'brand.nameEn',b.nameEn)+'</div>'+
+      '<div class="grid3">'+field(L('شعار (حرف/رمز)','Logo glyph'),'brand.logo',b.logo,'text','','maxlength="2"')+
+        field(L('الرقم الضريبي','VAT no.'),'brand.vat',b.vat)+
+        field(L('السجل التجاري','CR no.'),'brand.cr',b.cr)+'</div>'+
+      '<div class="grid2">'+field(L('المدينة (عربي)','City (Arabic)'),'brand.cityAr',b.cityAr)+
+        field(L('المدينة (إنجليزي)','City (English)'),'brand.cityEn',b.cityEn)+'</div>';
+  }
+
+  /* ---- header / footer style pickers ---- */
+  function renderStylePickers(){
+    var hp=document.getElementById('headerStyle');
+    hp.innerHTML=HEADER_MODELS.map(function(m){
+      var on=state.headerStyle===m.id;
+      return '<label class="'+(on?'on':'')+'"><input type="radio" name="hstyle" value="'+m.id+'"'+(on?' checked':'')+'>'+L(m.ar,m.en)+'</label>';
+    }).join('');
+    var fp=document.getElementById('footerStyle');
+    fp.innerHTML=FOOTER_MODELS.map(function(m){
+      var on=state.footerStyle===m.id;
+      return '<label class="'+(on?'on':'')+'"><input type="radio" name="fstyle" value="'+m.id+'"'+(on?' checked':'')+'>'+L(m.ar,m.en)+'</label>';
+    }).join('');
+    renderFooterExtra();
+  }
+  /* extra fields that only some footers need (bank / minimal note) */
+  function renderFooterExtra(){
+    var box=document.getElementById('footerExtra'),fd=state.footerData,html='';
+    if(state.footerStyle==='bank'){
+      html='<div style="margin-top:12px">'+field(L('اسم البنك','Bank name'),'footerData.bankName',fd.bankName)+
+        field(L('رقم الآيبان','IBAN'),'footerData.iban',fd.iban)+'</div>';
+    }else if(state.footerStyle==='minimal'){
+      html='<div style="margin-top:12px">'+field(L('ملاحظة التذييل','Footer note'),'footerData.note',fd.note)+'</div>';
+    }
+    box.innerHTML=html;
+  }
+
+  /* ---- settings persistence (brand + styles, convenience) ---- */
+  function saveSettings(){
+    try{ localStorage.setItem(SETTINGS_KEY,JSON.stringify({
+      brand:state.brand, headerStyle:state.headerStyle, footerStyle:state.footerStyle, footerData:state.footerData
+    })); }catch(e){}
+  }
+  function loadSettings(){
+    try{ var s=JSON.parse(localStorage.getItem(SETTINGS_KEY)||'null');
+      if(s&&typeof s==='object'){
+        if(s.brand) Object.assign(state.brand,s.brand);
+        if(HEADERS[s.headerStyle]) state.headerStyle=s.headerStyle;
+        if(FOOTERS[s.footerStyle]) state.footerStyle=s.footerStyle;
+        if(s.footerData) Object.assign(state.footerData,s.footerData);
+      }
+    }catch(e){}
+  }
+
+  /* ---- TEMPLATES: a template = full snapshot of one document ---- */
+  function snapshot(){
+    return {
+      docType:state.docType,
+      data:JSON.parse(JSON.stringify(state[state.docType])),
+      brand:JSON.parse(JSON.stringify(state.brand)),
+      headerStyle:state.headerStyle,
+      footerStyle:state.footerStyle,
+      footerData:JSON.parse(JSON.stringify(state.footerData))
+    };
+  }
+  function applyTemplate(tpl){
+    if(!tpl||!tpl.docType||!DOCS[tpl.docType]) return false;
+    state.docType=tpl.docType;
+    if(tpl.data) state[tpl.docType]=JSON.parse(JSON.stringify(tpl.data));
+    if(tpl.brand) Object.assign(state.brand,tpl.brand);
+    if(HEADERS[tpl.headerStyle]) state.headerStyle=tpl.headerStyle;
+    if(FOOTERS[tpl.footerStyle]) state.footerStyle=tpl.footerStyle;
+    if(tpl.footerData) Object.assign(state.footerData,tpl.footerData);
+    /* reflect doc-type buttons */
+    document.querySelectorAll('#docType button').forEach(function(x){x.setAttribute('aria-pressed',String(x.dataset.t===state.docType));});
+    return true;
+  }
+  function loadTemplates(){
+    try{ var arr=JSON.parse(localStorage.getItem(TPL_KEY)||'[]'); if(Array.isArray(arr)) state.templates=arr; }catch(e){}
+  }
+  function persistTemplates(){
+    try{ localStorage.setItem(TPL_KEY,JSON.stringify(state.templates)); }catch(e){}
+  }
+  function docLabel(dt){
+    var m={invoice:['فاتورة ضريبية','Tax invoice'],quotation:['عرض سعر','Quotation'],statement:['كشف حساب','Statement'],
+      transactions:['كشف عمليات','Operations'],voucher:['سند','Voucher'],payslip:['قسيمة راتب','Payslip'],journal:['قيد محاسبي','Journal']};
+    return m[dt]?L(m[dt][0],m[dt][1]):dt;
+  }
+  function renderTemplates(){
+    var list=document.getElementById('tplList');
+    if(!state.templates.length){
+      list.innerHTML='<div class="tpl-empty">'+L('لا توجد قوالب محفوظة بعد.','No saved templates yet.')+'</div>'; return;
+    }
+    list.innerHTML=state.templates.map(function(tpl,i){
+      return '<div class="tpl-row"><div class="tpl-info">'+
+          '<div class="tpl-name">'+esc(tpl.name||L('بدون اسم','Untitled'))+'</div>'+
+          '<div class="tpl-sub">'+docLabel(tpl.docType)+' · '+esc(tpl.headerStyle||'classic')+' / '+esc(tpl.footerStyle||'qr')+'</div>'+
+        '</div>'+
+        '<button class="load" data-tload="'+i+'">'+L('تحميل','Load')+'</button>'+
+        '<button class="tdel" data-tdel="'+i+'">×</button>'+
+      '</div>';
+    }).join('');
+  }
+
+  function saveCurrentTemplate(){
+    var inp=document.getElementById('tplName'), name=(inp.value||'').trim();
+    if(!name){ name=docLabel(state.docType)+' · '+new Date().toLocaleDateString(); }
+    var snap=snapshot(); snap.name=name; snap.savedAt=new Date().toISOString();
+    /* overwrite if same name + same docType, else push */
+    var idx=state.templates.findIndex(function(t){return t.name===name&&t.docType===snap.docType;});
+    if(idx>=0) state.templates[idx]=snap; else state.templates.push(snap);
+    persistTemplates(); renderTemplates(); inp.value='';
+    toast('تم حفظ القالب','Template saved');
+  }
+  function exportTemplates(){
+    var payload={ format:'genius-pdf-templates', version:1, exportedAt:new Date().toISOString(), templates:state.templates };
+    var blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+    var url=URL.createObjectURL(blob), a=document.createElement('a');
+    a.href=url; a.download='genius-pdf-templates.json'; document.body.appendChild(a); a.click();
+    document.body.removeChild(a); URL.revokeObjectURL(url);
+    toast('تم تصدير الملف','File exported');
+  }
+  function importTemplates(file){
+    var rd=new FileReader();
+    rd.onload=function(){
+      try{
+        var data=JSON.parse(rd.result), incoming=Array.isArray(data)?data:(data&&data.templates);
+        if(!Array.isArray(incoming)) throw new Error('bad');
+        var added=0;
+        incoming.forEach(function(tpl){
+          if(!tpl||!tpl.docType||!DOCS[tpl.docType]) return;
+          var idx=state.templates.findIndex(function(t){return t.name===tpl.name&&t.docType===tpl.docType;});
+          if(idx>=0) state.templates[idx]=tpl; else state.templates.push(tpl);
+          added++;
+        });
+        persistTemplates(); renderTemplates();
+        toast('تم استيراد '+added+' قالب','Imported '+added+' template(s)');
+      }catch(e){ toast('ملف غير صالح','Invalid file',true); }
+    };
+    rd.readAsText(file);
+  }
+
+  function renderControls(){ renderBrand(); renderStylePickers(); renderTemplates(); }
+
   /* ===================== render loop ===================== */
   function renderEditor(){ document.getElementById('editorMain').innerHTML=DOCS[state.docType].editor(); }
   function renderValidation(v){
@@ -895,6 +1280,51 @@
   document.getElementById('printBtn').addEventListener('click',function(){ window.print(); });
   window.addEventListener('resize',fit);
 
+  /* ---- brand + footer-extra inputs (live outside #editorMain) ---- */
+  function onSideEdit(e){
+    var el=e.target;
+    if(el.dataset.bind!=null){
+      setPath(el.dataset.bind, el.dataset.kind==='num'?num(el.value):el.value);
+      saveSettings(); refresh();
+    }
+  }
+  document.getElementById('brandEditor').addEventListener('input',onSideEdit);
+  document.getElementById('footerExtra').addEventListener('input',onSideEdit);
+
+  /* ---- header / footer style radios ---- */
+  document.getElementById('headerStyle').addEventListener('change',function(e){
+    if(e.target.name!=='hstyle') return;
+    state.headerStyle=e.target.value; saveSettings(); renderStylePickers(); refresh();
+  });
+  document.getElementById('footerStyle').addEventListener('change',function(e){
+    if(e.target.name!=='fstyle') return;
+    state.footerStyle=e.target.value; saveSettings(); renderStylePickers(); refresh();
+  });
+
+  /* ---- templates ---- */
+  document.getElementById('tplSave').addEventListener('click',saveCurrentTemplate);
+  document.getElementById('tplName').addEventListener('keydown',function(e){ if(e.key==='Enter') saveCurrentTemplate(); });
+  document.getElementById('tplList').addEventListener('click',function(e){
+    var el=e.target;
+    if(el.dataset.tload!=null){
+      var tpl=state.templates[+el.dataset.tload];
+      if(applyTemplate(tpl)){ saveSettings(); renderControls(); renderEditor(); refresh(); toast('تم تحميل القالب','Template loaded'); }
+      return;
+    }
+    if(el.dataset.tdel!=null){
+      var i=+el.dataset.tdel, nm=state.templates[i]&&state.templates[i].name;
+      if(confirm(L('حذف القالب «'+nm+'»؟','Delete template "'+nm+'"?'))){
+        state.templates.splice(i,1); persistTemplates(); renderTemplates(); toast('تم الحذف','Deleted');
+      }
+      return;
+    }
+  });
+  document.getElementById('tplExport').addEventListener('click',exportTemplates);
+  document.getElementById('tplImport').addEventListener('click',function(){ document.getElementById('tplFile').click(); });
+  document.getElementById('tplFile').addEventListener('change',function(e){
+    var f=e.target.files&&e.target.files[0]; if(f) importTemplates(f); this.value='';
+  });
+
   function applyLang(lang){
     state.lang=lang; var rtl=lang==='ar';
     try{ localStorage.setItem('geniusPdfLang',lang); }catch(e){}
@@ -902,7 +1332,8 @@
     document.getElementById('ar').setAttribute('aria-pressed',String(rtl));
     document.getElementById('en').setAttribute('aria-pressed',String(!rtl));
     document.querySelectorAll('[data-ar]').forEach(function(el){ var v=el.getAttribute(rtl?'data-ar':'data-en'); if(v!==null) el.textContent=v; });
-    renderEditor(); refresh();
+    var tplName=document.getElementById('tplName'); if(tplName) tplName.placeholder=L('اسم القالب…','Template name…');
+    renderControls(); renderEditor(); refresh();
   }
   document.getElementById('ar').addEventListener('click',function(){applyLang('ar');});
   document.getElementById('en').addEventListener('click',function(){applyLang('en');});
@@ -917,6 +1348,8 @@
   }
 
   /* init */
+  loadSettings();
+  loadTemplates();
   var savedLang='ar';
   try{ var s=localStorage.getItem('geniusPdfLang'); if(s==='ar'||s==='en') savedLang=s; }catch(e){}
   applyLang(savedLang);
